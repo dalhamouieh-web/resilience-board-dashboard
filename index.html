@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resilience Board Dashboard (sample)</title>
+<meta name="description" content="Sample Board dashboard for operational resilience and ICT risk, aligned to the CBUAE Operational Risk Management Regulation. Fictional bank, dummy data.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="viz-root">
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <p class="eyebrow" id="institution"></p>
+        <h1 id="report-title"></h1>
+        <p class="subtitle" id="framework"></p>
+      </div>
+      <div class="filters" role="group" aria-label="Reporting quarter">
+        <span class="filter-label">Quarter</span>
+        <div class="segmented" id="quarter-filter"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <p class="disclaimer">Sample dashboard with fictional data, for illustration only. Bank Horizon is not a real institution.</p>
+
+    <section class="card headline" aria-labelledby="h-headline">
+      <div class="headline-position">
+        <h2 id="h-headline" class="card-title">Overall position</h2>
+        <p class="position" id="position"></p>
+        <p class="headline-text" id="headline-text"></p>
+      </div>
+      <div class="headline-decisions">
+        <h3>Decisions needed from the Board</h3>
+        <ol id="decisions"></ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-outcomes">
+      <h2 id="h-outcomes" class="section-title">Six resilience outcomes</h2>
+      <div class="outcomes" id="outcomes"></div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card" aria-labelledby="h-kri">
+        <h2 id="h-kri" class="card-title">Risk appetite: key risk indicators</h2>
+        <p class="card-sub">Current value against Board-approved thresholds. Select an indicator to see its trend.</p>
+        <div class="table-wrap"><table class="data" id="kri-table"></table></div>
+      </div>
+      <div class="card" aria-labelledby="h-trend">
+        <h2 id="h-trend" class="card-title" >Trend: <span id="trend-name"></span></h2>
+        <p class="card-sub" id="trend-sub"></p>
+        <div class="chart" id="trend-chart"></div>
+        <details class="table-view"><summary>View as table</summary><div id="trend-table"></div></details>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card" aria-labelledby="h-ops">
+        <h2 id="h-ops" class="card-title">Critical Operations against tolerance for disruption</h2>
+        <p class="card-sub">Bar: latest tested recovery time. Marker: Board-approved maximum tolerable outage.</p>
+        <div class="chart" id="ops-chart"></div>
+        <details class="table-view"><summary>View as table</summary><div id="ops-table"></div></details>
+      </div>
+      <div class="card" aria-labelledby="h-inc">
+        <h2 id="h-inc" class="card-title">Incidents and regulatory notifications</h2>
+        <div class="stats" id="inc-stats"></div>
+        <p class="chart-caption">Minor incidents per quarter</p>
+        <div class="chart" id="inc-chart"></div>
+        <details class="table-view"><summary>View as table</summary><div id="inc-table"></div></details>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-major">
+      <h2 id="h-major" class="card-title">Major incidents: the four Board questions</h2>
+      <div class="table-wrap"><table class="data" id="major-table"></table></div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card" aria-labelledby="h-tp">
+        <h2 id="h-tp" class="card-title">Third parties and concentration</h2>
+        <p class="card-sub">Critical Operations supported by each critical provider (of 14).</p>
+        <div class="chart" id="tp-chart"></div>
+        <div class="table-wrap"><table class="data" id="tp-table"></table></div>
+      </div>
+      <div class="card" aria-labelledby="h-test">
+        <h2 id="h-test" class="card-title">Testing programme, year to date</h2>
+        <div id="testing"></div>
+        <h2 class="card-title spaced">Remediation</h2>
+        <div id="rem-bar"></div>
+        <div class="table-wrap"><table class="data" id="rem-table"></table></div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p>Structure inspired by Board-reporting good practice for DORA, adapted to the CBUAE Operational Risk Management Regulation (Circular 1/2026). All data is fictional. See README for how to load your own data.</p>
+    </footer>
+  </main>
+  <div class="tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
+</div>
+<script src="data/dashboard-data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+kri_id,indicator,quarter,value,unit,amber_threshold,red_threshold,direction,uae_anchor
+major,Major ICT incidents in the quarter,Q1 2026,0,,1,2,up,Incident management and notification
+major,Major ICT incidents in the quarter,Q2 2026,1,,1,2,up,Incident management and notification
+major,Major ICT incidents in the quarter,Q3 2026,0,,1,2,up,Incident management and notification
+major,Major ICT incidents in the quarter,Q4 2026,1,,1,2,up,Incident management and notification
+breach,Recovery tests that breached tolerance,Q1 2026,0,,,1,up,Board-approved tolerance for disruption
+breach,Recovery tests that breached tolerance,Q2 2026,0,,,1,up,Board-approved tolerance for disruption
+breach,Recovery tests that breached tolerance,Q3 2026,0,,,1,up,Board-approved tolerance for disruption
+breach,Recovery tests that breached tolerance,Q4 2026,1,,,1,up,Board-approved tolerance for disruption
+single,Critical Operations reliant on one provider,Q1 2026,33,%,30,40,up,Third-party concentration and substitutability
+single,Critical Operations reliant on one provider,Q2 2026,34,%,30,40,up,Third-party concentration and substitutability
+single,Critical Operations reliant on one provider,Q3 2026,36,%,30,40,up,Third-party concentration and substitutability
+single,Critical Operations reliant on one provider,Q4 2026,36,%,30,40,up,Third-party concentration and substitutability
+tested,Critical Operations tested in the last 12 months,Q1 2026,64,%,80,60,down,Annual BCP and DR testing
+tested,Critical Operations tested in the last 12 months,Q2 2026,70,%,80,60,down,Annual BCP and DR testing
+tested,Critical Operations tested in the last 12 months,Q3 2026,74,%,80,60,down,Annual BCP and DR testing
+tested,Critical Operations tested in the last 12 months,Q4 2026,78,%,80,60,down,Annual BCP and DR testing
+controls,Key controls rated effective (second line),Q1 2026,84,%,90,80,down,Internal control system
+controls,Key controls rated effective (second line),Q2 2026,85,%,90,80,down,Internal control system
+controls,Key controls rated effective (second line),Q3 2026,86,%,90,80,down,Internal control system
+controls,Key controls rated effective (second line),Q4 2026,91,%,90,80,down,Internal control system
+vulns,High-severity vulnerabilities past deadline,Q1 2026,7,,10,20,up,ICT and cyber risk controls
+vulns,High-severity vulnerabilities past deadline,Q2 2026,8,,10,20,up,ICT and cyber risk controls
+vulns,High-severity vulnerabilities past deadline,Q3 2026,9,,10,20,up,ICT and cyber risk controls
+vulns,High-severity vulnerabilities past deadline,Q4 2026,14,,10,20,up,ICT and cyber risk controls
+notify,"Regulator notifications on time (4h, 24h, 72h)",Q1 2026,100,%,100,95,down,CBUAE notification deadlines
+notify,"Regulator notifications on time (4h, 24h, 72h)",Q2 2026,100,%,100,95,down,CBUAE notification deadlines
+notify,"Regulator notifications on time (4h, 24h, 72h)",Q3 2026,100,%,100,95,down,CBUAE notification deadlines
+notify,"Regulator notifications on time (4h, 24h, 72h)",Q4 2026,100,%,100,95,down,CBUAE notification deadlines
+training,Board members trained on resilience (of 9),Q1 2026,6,,9,7,down,Board knowledge and oversight
+training,Board members trained on resilience (of 9),Q2 2026,7,,9,7,down,Board knowledge and oversight
+training,Board members trained on resilience (of 9),Q3 2026,8,,9,7,down,Board knowledge and oversight
+training,Board members trained on resilience (of 9),Q4 2026,9,,9,7,down,Board knowledge and oversight

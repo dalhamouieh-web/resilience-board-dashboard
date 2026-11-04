@@ -1,0 +1,6 @@
+critical_operation,tolerance_hours,tested_recovery_hours,test_month,fully_mapped
+Domestic payments,4,6,Sep 2026,Yes
+Card processing (vendor-run),4,,Not yet tested,Partly
+Mobile and online banking,8,5,Jul 2026,Yes
+Liquidity and treasury,8,7,Aug 2026,Partly
+Customer accounts and records,24,10,Jun 2026,Yes

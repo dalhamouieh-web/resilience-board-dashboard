@@ -1,0 +1,25 @@
+outcome,quarter,status,note
+Govern & Own,Q1 2026,amber,Appetite and tolerance for disruption approved by the Board
+Govern & Own,Q2 2026,green,Appetite and tolerance for disruption approved by the Board
+Govern & Own,Q3 2026,green,Appetite and tolerance for disruption approved by the Board
+Govern & Own,Q4 2026,green,Appetite and tolerance for disruption approved by the Board
+Know What Must Not Break,Q1 2026,amber,11 of 14 Critical Operations fully mapped
+Know What Must Not Break,Q2 2026,amber,11 of 14 Critical Operations fully mapped
+Know What Must Not Break,Q3 2026,amber,11 of 14 Critical Operations fully mapped
+Know What Must Not Break,Q4 2026,amber,11 of 14 Critical Operations fully mapped
+Protect & Detect,Q1 2026,amber,Critical vulnerability backlog above threshold
+Protect & Detect,Q2 2026,amber,Critical vulnerability backlog above threshold
+Protect & Detect,Q3 2026,green,Critical vulnerability backlog above threshold
+Protect & Detect,Q4 2026,amber,Critical vulnerability backlog above threshold
+Respond & Recover,Q1 2026,green,Payments recovery test: 6 h against a 4 h tolerance
+Respond & Recover,Q2 2026,amber,Payments recovery test: 6 h against a 4 h tolerance
+Respond & Recover,Q3 2026,amber,Payments recovery test: 6 h against a 4 h tolerance
+Respond & Recover,Q4 2026,red,Payments recovery test: 6 h against a 4 h tolerance
+Third Party & Concentration,Q1 2026,amber,4 of 9 critical providers lack a tested exit plan
+Third Party & Concentration,Q2 2026,amber,4 of 9 critical providers lack a tested exit plan
+Third Party & Concentration,Q3 2026,amber,4 of 9 critical providers lack a tested exit plan
+Third Party & Concentration,Q4 2026,amber,4 of 9 critical providers lack a tested exit plan
+Test & Assure,Q1 2026,amber,Testing programme on track
+Test & Assure,Q2 2026,amber,Testing programme on track
+Test & Assure,Q3 2026,green,Testing programme on track
+Test & Assure,Q4 2026,green,Testing programme on track

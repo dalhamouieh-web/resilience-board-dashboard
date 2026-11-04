@@ -1,0 +1,6 @@
+provider,supports,critical_operations_supported,slas_met,exit_plan,status
+CloudCo,Infrastructure,6,3 of 3,Tested in Q2,amber
+Vendor Y,Core banking,4,3 of 3,"Written, not tested",amber
+Group IT (intragroup),Security monitoring,3,3 of 3,No written agreement,amber
+Vendor X,Card processing,2,2 of 3,"Written, not tested",amber
+Vendor Z,Contact centre,1,3 of 3,Tested in Q3,green
