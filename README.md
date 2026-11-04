@@ -2,11 +2,10 @@
 
 A sample Board-level dashboard for **operational resilience and ICT risk** at a bank, aligned to the **CBUAE Operational Risk Management Regulation (Circular 1/2026)**. It turns the questions a Board must be able to answer into one interactive page.
 
-**Live demo:** `https://<your-github-username>.github.io/resilience-board-dashboard/` (after you enable GitHub Pages, see below)
-
+**Live demo:** https://dalhamouieh-web.github.io/resilience-board-dashboard/
 > All data is fictional. *Bank Horizon UAE* is not a real institution, and every figure is dummy data for illustration.
 
-![Dashboard preview](docs/dashboard-preview.png)
+![Dashboard preview](dashboard-preview.png)
 
 ## Objectives
 
