@@ -308,8 +308,31 @@
     $("rem-table").innerHTML = t;
   }
 
+
+  // ---------- External view ----------
+  function renderExternal() {
+    var E = D.externalView; if (!E) return;
+    var q = D.meta.quarters[state.qi];
+    var lv = E.threatLevel[q];
+    $("ext-level").innerHTML = badge(lv.status, lv.label, true);
+    $("ext-driver").textContent = lv.driver;
+    var t = "<tr><th>Threat</th><th>What we see outside</th><th>Trend</th><th>Same weakness here?</th><th>Critical Operations</th><th>Action and owner</th></tr>";
+    E.threats.forEach(function (x) {
+      t += "<tr><td><strong>" + esc(x.name) + "</strong></td><td>" + esc(x.signal) + "</td><td>" + esc(x.trend) + "</td><td>" + badge(x.exposure, x.exposureLabel) + "<br><span class='muted'>" + esc(x.why) + "</span></td><td>" + esc(x.ops) + "</td><td>" + esc(x.action) + "<br><span class='muted'>" + esc(x.owner) + "</span></td></tr>";
+    });
+    $("ext-threats").innerHTML = t;
+    var ev = E.events[q] || [];
+    var e = "<tr><th>Type</th><th>Event</th><th>So what for us</th></tr>";
+    if (!ev.length) e += "<tr><td colspan='3'>No material external events this quarter.</td></tr>";
+    ev.forEach(function (x) { e += "<tr><td>" + esc(x.type) + "</td><td>" + esc(x.what) + "</td><td>" + esc(x.soWhat) + "</td></tr>"; });
+    $("ext-events").innerHTML = e;
+    var r = "<tr><th>Rule</th><th>Status</th><th>What it requires</th><th>Owner</th></tr>";
+    E.regulatory.forEach(function (x) { r += "<tr><td>" + esc(x.item) + "</td><td>" + esc(x.status) + "</td><td>" + esc(x.impact) + "</td><td>" + esc(x.owner) + "</td></tr>"; });
+    $("ext-reg").innerHTML = r;
+  }
+
   function renderAll() {
-    renderHeader(); renderHeadline(); renderOutcomes(); renderKriTable(); renderTrend();
+    renderHeader(); renderHeadline(); renderOutcomes(); renderExternal(); renderKriTable(); renderTrend();
     renderOps(); renderIncidents(); renderThirdParties(); renderTesting();
   }
   window.addEventListener("scroll", hideTip, { passive: true });

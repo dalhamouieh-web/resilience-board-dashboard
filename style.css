@@ -155,3 +155,11 @@ table.data tr.selectable:focus-visible { outline: 2px solid var(--series-1); out
 .tooltip strong { display: block; margin-bottom: 2px; }
 .foot { font-size: 12.5px; color: var(--text-muted); }
 .outcome .badge, .headline-position .badge { align-self: flex-start; }
+
+/* External view */
+.external { margin-top: 0; }
+.ext-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.ext-level { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.ext-level-label { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-secondary); }
+.ext-driver { margin: 4px 0 14px; font-size: 14px; color: var(--text-primary); max-width: 80ch; }
+.muted { color: var(--text-secondary); font-size: 12.5px; }

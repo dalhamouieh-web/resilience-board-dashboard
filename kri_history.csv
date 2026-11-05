@@ -31,3 +31,11 @@ training,Board members trained on resilience (of 9),Q1 2026,6,,9,7,down,Board kn
 training,Board members trained on resilience (of 9),Q2 2026,7,,9,7,down,Board knowledge and oversight
 training,Board members trained on resilience (of 9),Q3 2026,8,,9,7,down,Board knowledge and oversight
 training,Board members trained on resilience (of 9),Q4 2026,9,,9,7,down,Board knowledge and oversight
+kev,Actively exploited vulnerabilities open over 7 days,Q1 2026,3,,3,6,up,Threat-led vulnerability management
+kev,Actively exploited vulnerabilities open over 7 days,Q2 2026,2,,3,6,up,Threat-led vulnerability management
+kev,Actively exploited vulnerabilities open over 7 days,Q3 2026,4,,3,6,up,Threat-led vulnerability management
+kev,Actively exploited vulnerabilities open over 7 days,Q4 2026,5,,3,6,up,Threat-led vulnerability management
+contain,Median hours to contain a critical security alert,Q1 2026,10,,4,12,up,Detection and response speed
+contain,Median hours to contain a critical security alert,Q2 2026,8,,4,12,up,Detection and response speed
+contain,Median hours to contain a critical security alert,Q3 2026,7,,4,12,up,Detection and response speed
+contain,Median hours to contain a critical security alert,Q4 2026,6,,4,12,up,Detection and response speed

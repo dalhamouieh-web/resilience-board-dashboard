@@ -19,6 +19,8 @@ A sample Board-level dashboard for **operational resilience and ICT risk** at a 
 | --- | --- | --- |
 | Overall position and decisions | Where do we stand, and what must we decide? | Board approval of appetite and tolerance |
 | Six resilience outcomes | Is each part of resilience green, amber or red? | Operational risk framework and resilience strategy |
+| **External view: threats and our exposure** (new) | What is happening outside, and do we have the same weakness? | Internal and external indicators; emerging risks |
+| **External events and regulatory horizon** (new) | Which outside events and rule changes matter for us this quarter? | Relevant external events and regulatory changes |
 | Key risk indicators and trend | Are we within appetite, and which way are we moving? | Thresholds, limits, monitoring and reporting |
 | Critical Operations vs tolerance | Can we recover our most important services in time? | Critical Operations mapping and tolerance for disruption |
 | Incidents and notifications | What went wrong, and did we tell the regulator on time? | Notices within 4 h, 24 h and 72 h |
@@ -38,7 +40,11 @@ Fictional quarterly data for 2026, provided in two formats:
 
 | File | Contents |
 | --- | --- |
-| `kri_history.csv` | 8 key risk indicators by quarter, with amber and red thresholds |
+| `kri_history.csv` | 10 key risk indicators by quarter, with amber and red thresholds (two of them measure exposure to external threats) |
+| `threat_level.csv` | External threat level by quarter, with its main driver |
+| `external_threats.csv` | Top external threats, whether the same weakness exists here, actions and owners |
+| `external_events.csv` | Geopolitical, sector, peer and provider events by quarter, with "so what for us" |
+| `regulatory_horizon.csv` | Rules in force, proposed or planned, and what they require |
 | `outcomes.csv` | Status of the six resilience outcomes by quarter |
 | `critical_operations.csv` | Tolerance for disruption vs latest tested recovery time |
 | `incidents.csv` | Major and minor incidents and notification timeliness by quarter |
@@ -49,6 +55,7 @@ Fictional quarterly data for 2026, provided in two formats:
 
 ## Key insights (sample data, Q4 2026)
 
+- **The external threat level is elevated:** identity-based intrusion, control-first ransomware and wipers, persistent DDoS and AI-accelerated attacks are rising; the bank has the same weakness, at least partly, for five of six.
 - **One key risk indicator is red:** a recovery test for domestic payments took 6 hours against a 4-hour tolerance.
 - **Vulnerabilities past deadline rose from 9 to 14**, now above the amber threshold.
 - **Concentration:** one provider supports 6 of 14 Critical Operations, and 4 of 9 critical providers lack a tested exit plan.
@@ -77,13 +84,17 @@ Edit `data/dashboard-data.js`. Each block is commented: change the values, thres
 ## Files in this repository
 
 ```
-index.html                 the dashboard page
-assets/style.css           styles, including light and dark themes
-assets/app.js              rendering, charts, tooltips and filters
-data/dashboard-data.js     sample data the page reads
-data/csv/                  the same sample data as CSV files
-docs/dashboard-preview.png screenshot used in this README
+index.html               the dashboard page
+style.css                styles, including light and dark themes
+app.js                   rendering, charts, tooltips and filters
+dashboard-data.js        sample data the page reads
+*.csv                    the same sample data as CSV files
+dashboard-preview.png    screenshot used in this README
 ```
+
+## About the external view
+
+The CBUAE expects Board reporting to use internal and external indicators and to cover emerging risks, relevant external events and regulatory changes. The external view shows one way to do it: each outside threat or event is paired with the bank's own answer to "do we have the same weakness?", an action and an owner. The threat themes are inspired by public threat reporting for the UAE and the region, such as Help AG's *State of the Market Report 2026*. Items marked "public" refer to publicly reported events; items marked "illustrative" are invented; all assessments are fictional.
 
 ## Roadmap
 

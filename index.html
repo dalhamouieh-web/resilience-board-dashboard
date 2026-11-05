@@ -24,7 +24,7 @@
   </header>
 
   <main class="page">
-    <p class="disclaimer">Sample dashboard with fictional data, for illustration only. Bank Horizon is not a real institution.</p>
+    <p class="disclaimer">Sample layout with fictional data, for illustration only: it shows what information a Board dashboard needs, not a finished product. Bank Horizon is not a real institution.</p>
 
     <section class="card headline" aria-labelledby="h-headline">
       <div class="headline-position">
@@ -41,6 +41,31 @@
     <section aria-labelledby="h-outcomes">
       <h2 id="h-outcomes" class="section-title">Six resilience outcomes</h2>
       <div class="outcomes" id="outcomes"></div>
+    </section>
+
+    <section class="card external" aria-labelledby="h-ext">
+      <div class="ext-head">
+        <div>
+          <h2 id="h-ext" class="card-title">External view: threats and our exposure</h2>
+          <p class="card-sub">What is happening outside the bank, and whether the same weakness exists here. Threat level and exposure are the bank's own assessment.</p>
+        </div>
+        <div class="ext-level"><span class="ext-level-label">Threat level</span><span id="ext-level"></span></div>
+      </div>
+      <p class="ext-driver" id="ext-driver"></p>
+      <div class="table-wrap"><table class="data" id="ext-threats"></table></div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card">
+        <h2 class="card-title">What happened outside this quarter</h2>
+        <p class="card-sub">Geopolitical, sector, peer and provider events, each with "so what for us".</p>
+        <div class="table-wrap"><table class="data" id="ext-events"></table></div>
+      </div>
+      <div class="card">
+        <h2 class="card-title">Regulatory horizon</h2>
+        <p class="card-sub">Rules in force, proposed or planned, and what they will require.</p>
+        <div class="table-wrap"><table class="data" id="ext-reg"></table></div>
+      </div>
     </section>
 
     <section class="grid-2">
@@ -95,7 +120,7 @@
     </section>
 
     <footer class="foot">
-      <p>Structure inspired by Board-reporting good practice for DORA, adapted to the CBUAE Operational Risk Management Regulation (Circular 1/2026). All data is fictional. See README for how to load your own data.</p>
+      <p>A sample layout of the key information a Board-level resilience dashboard should contain. Structure inspired by Board-reporting good practice for DORA, adapted to the CBUAE Operational Risk Management Regulation (Circular 1/2026). External view inspired by public threat reports for the region. All data is fictional unless marked "public". See README for how to load your own data.</p>
     </footer>
   </main>
   <div class="tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
