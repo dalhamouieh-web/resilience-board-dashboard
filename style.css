@@ -163,3 +163,9 @@ table.data tr.selectable:focus-visible { outline: 2px solid var(--series-1); out
 .ext-level-label { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-secondary); }
 .ext-driver { margin: 4px 0 14px; font-size: 14px; color: var(--text-primary); max-width: 80ch; }
 .muted { color: var(--text-secondary); font-size: 12.5px; }
+
+.kri-id { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--text-secondary, #5b6478); margin-right: 4px; white-space: nowrap; }
+.grid-kri { display: grid; grid-template-columns: 1.55fr 1fr; gap: 20px; align-items: start; }
+@media (max-width: 1100px) { .grid-kri { grid-template-columns: 1fr; } }
+#kri-table td.num, #kri-table td:nth-child(3), #kri-table td:nth-child(4) { white-space: nowrap; }
+.grid-kri > .card:last-child { position: sticky; top: 16px; }

@@ -1,41 +1,41 @@
-kri_id,indicator,quarter,value,unit,amber_threshold,red_threshold,direction,uae_anchor
-major,Major ICT incidents in the quarter,Q1 2026,0,,1,2,up,Incident management and notification
-major,Major ICT incidents in the quarter,Q2 2026,1,,1,2,up,Incident management and notification
-major,Major ICT incidents in the quarter,Q3 2026,0,,1,2,up,Incident management and notification
-major,Major ICT incidents in the quarter,Q4 2026,1,,1,2,up,Incident management and notification
-breach,Recovery tests that breached tolerance,Q1 2026,0,,,1,up,Board-approved tolerance for disruption
-breach,Recovery tests that breached tolerance,Q2 2026,0,,,1,up,Board-approved tolerance for disruption
-breach,Recovery tests that breached tolerance,Q3 2026,0,,,1,up,Board-approved tolerance for disruption
-breach,Recovery tests that breached tolerance,Q4 2026,1,,,1,up,Board-approved tolerance for disruption
-single,Critical Operations reliant on one provider,Q1 2026,33,%,30,40,up,Third-party concentration and substitutability
-single,Critical Operations reliant on one provider,Q2 2026,34,%,30,40,up,Third-party concentration and substitutability
-single,Critical Operations reliant on one provider,Q3 2026,36,%,30,40,up,Third-party concentration and substitutability
-single,Critical Operations reliant on one provider,Q4 2026,36,%,30,40,up,Third-party concentration and substitutability
-tested,Critical Operations tested in the last 12 months,Q1 2026,64,%,80,60,down,Annual BCP and DR testing
-tested,Critical Operations tested in the last 12 months,Q2 2026,70,%,80,60,down,Annual BCP and DR testing
-tested,Critical Operations tested in the last 12 months,Q3 2026,74,%,80,60,down,Annual BCP and DR testing
-tested,Critical Operations tested in the last 12 months,Q4 2026,78,%,80,60,down,Annual BCP and DR testing
-controls,Key controls rated effective (second line),Q1 2026,84,%,90,80,down,Internal control system
-controls,Key controls rated effective (second line),Q2 2026,85,%,90,80,down,Internal control system
-controls,Key controls rated effective (second line),Q3 2026,86,%,90,80,down,Internal control system
-controls,Key controls rated effective (second line),Q4 2026,91,%,90,80,down,Internal control system
-vulns,High-severity vulnerabilities past deadline,Q1 2026,7,,10,20,up,ICT and cyber risk controls
-vulns,High-severity vulnerabilities past deadline,Q2 2026,8,,10,20,up,ICT and cyber risk controls
-vulns,High-severity vulnerabilities past deadline,Q3 2026,9,,10,20,up,ICT and cyber risk controls
-vulns,High-severity vulnerabilities past deadline,Q4 2026,14,,10,20,up,ICT and cyber risk controls
-notify,"Regulator notifications on time (4h, 24h, 72h)",Q1 2026,100,%,100,95,down,CBUAE notification deadlines
-notify,"Regulator notifications on time (4h, 24h, 72h)",Q2 2026,100,%,100,95,down,CBUAE notification deadlines
-notify,"Regulator notifications on time (4h, 24h, 72h)",Q3 2026,100,%,100,95,down,CBUAE notification deadlines
-notify,"Regulator notifications on time (4h, 24h, 72h)",Q4 2026,100,%,100,95,down,CBUAE notification deadlines
-training,Board members trained on resilience (of 9),Q1 2026,6,,9,7,down,Board knowledge and oversight
-training,Board members trained on resilience (of 9),Q2 2026,7,,9,7,down,Board knowledge and oversight
-training,Board members trained on resilience (of 9),Q3 2026,8,,9,7,down,Board knowledge and oversight
-training,Board members trained on resilience (of 9),Q4 2026,9,,9,7,down,Board knowledge and oversight
-kev,Actively exploited vulnerabilities open over 7 days,Q1 2026,3,,3,6,up,Threat-led vulnerability management
-kev,Actively exploited vulnerabilities open over 7 days,Q2 2026,2,,3,6,up,Threat-led vulnerability management
-kev,Actively exploited vulnerabilities open over 7 days,Q3 2026,4,,3,6,up,Threat-led vulnerability management
-kev,Actively exploited vulnerabilities open over 7 days,Q4 2026,5,,3,6,up,Threat-led vulnerability management
-contain,Median hours to contain a critical security alert,Q1 2026,10,,4,12,up,Detection and response speed
-contain,Median hours to contain a critical security alert,Q2 2026,8,,4,12,up,Detection and response speed
-contain,Median hours to contain a critical security alert,Q3 2026,7,,4,12,up,Detection and response speed
-contain,Median hours to contain a critical security alert,Q4 2026,6,,4,12,up,Detection and response speed
+metric_id,metric,quarter,value,unit,target,appetite,tolerance,capacity,worse_when,method,owner,l2_green,l2_amber,l2_red,override_by,regulatory_anchor
+RAS-OPR-01,"Net operational risk losses, rolling 12 months",Q1 2026,31.0,AED m,25,35,70,160,higher,Direct,CRO,0,1,1,,"ORM art. 2.5.5, 4.2.1"
+RAS-OPR-01,"Net operational risk losses, rolling 12 months",Q2 2026,30.5,AED m,25,35,70,160,higher,Direct,CRO,0,1,1,KRI-LOS-02,"ORM art. 2.5.5, 4.2.1"
+RAS-OPR-01,"Net operational risk losses, rolling 12 months",Q3 2026,29.7,AED m,25,35,70,160,higher,Direct,CRO,1,0,1,KRI-LOS-02,"ORM art. 2.5.5, 4.2.1"
+RAS-OPR-01,"Net operational risk losses, rolling 12 months",Q4 2026,28.8,AED m,25,35,70,160,higher,Direct,CRO,1,0,1,KRI-LOS-02,"ORM art. 2.5.5, 4.2.1"
+RAS-OPR-02,Critical Operations recovered within tolerance in their last test,Q1 2026,58.3,%,100,100,90,50,lower,Roll-up of units,COO,0,0,5,,"ORM art. 4.2.2, 11.8, 11.10"
+RAS-OPR-02,Critical Operations recovered within tolerance in their last test,Q2 2026,58.3,%,100,100,90,50,lower,Roll-up of units,COO,0,0,5,,"ORM art. 4.2.2, 11.8, 11.10"
+RAS-OPR-02,Critical Operations recovered within tolerance in their last test,Q3 2026,66.7,%,100,100,90,50,lower,Roll-up of units,COO,0,1,4,,"ORM art. 4.2.2, 11.8, 11.10"
+RAS-OPR-02,Critical Operations recovered within tolerance in their last test,Q4 2026,66.7,%,100,100,90,50,lower,Roll-up of units,COO,0,3,2,,"ORM art. 4.2.2, 11.8, 11.10"
+RAS-OPR-03,"Severe ICT or cyber incidents affecting a Critical Operation, rolling 12 months",Q1 2026,3,,0,1,2,4,higher,Direct,CIO,1,1,3,,ORM art. 15.2
+RAS-OPR-03,"Severe ICT or cyber incidents affecting a Critical Operation, rolling 12 months",Q2 2026,3,,0,1,2,4,higher,Direct,CIO,1,1,3,,ORM art. 15.2
+RAS-OPR-03,"Severe ICT or cyber incidents affecting a Critical Operation, rolling 12 months",Q3 2026,2,,0,1,2,4,higher,Direct,CIO,1,1,3,,ORM art. 15.2
+RAS-OPR-03,"Severe ICT or cyber incidents affecting a Critical Operation, rolling 12 months",Q4 2026,2,,0,1,2,4,higher,Direct,CIO,1,3,1,,ORM art. 15.2
+RAS-OPR-04,ICT and cyber control effectiveness index,Q1 2026,52,index,85,80,65,50,lower,Composite index,CISO,0,0,10,,ORM art. 8.2
+RAS-OPR-04,ICT and cyber control effectiveness index,Q2 2026,55,index,85,80,65,50,lower,Composite index,CISO,0,0,10,,ORM art. 8.2
+RAS-OPR-04,ICT and cyber control effectiveness index,Q3 2026,60,index,85,80,65,50,lower,Composite index,CISO,0,3,7,,ORM art. 8.2
+RAS-OPR-04,ICT and cyber control effectiveness index,Q4 2026,64,index,85,80,65,50,lower,Composite index,CISO,0,4,6,,ORM art. 8.2
+RAS-OPR-05,Critical providers without a tested exit plan,Q1 2026,5,,0,2,4,6,higher,Direct,COO,1,2,2,,ORM art. 13; Outsourcing Reg. 14/2021
+RAS-OPR-05,Critical providers without a tested exit plan,Q2 2026,5,,0,2,4,6,higher,Direct,COO,1,2,2,,ORM art. 13; Outsourcing Reg. 14/2021
+RAS-OPR-05,Critical providers without a tested exit plan,Q3 2026,5,,0,2,4,6,higher,Direct,COO,1,2,2,,ORM art. 13; Outsourcing Reg. 14/2021
+RAS-OPR-05,Critical providers without a tested exit plan,Q4 2026,4,,0,2,4,6,higher,Direct,COO,1,3,1,,ORM art. 13; Outsourcing Reg. 14/2021
+RAS-OPR-06,"Significant customer data breaches notified to the CBUAE, rolling 12 months",Q1 2026,0,,0,0,1,2,higher,Direct,Chief Compliance Officer,1,1,1,,Consumer Protection Reg. art. 6.1
+RAS-OPR-06,"Significant customer data breaches notified to the CBUAE, rolling 12 months",Q2 2026,0,,0,0,1,2,higher,Direct,Chief Compliance Officer,1,1,1,KRI-DAT-02,Consumer Protection Reg. art. 6.1
+RAS-OPR-06,"Significant customer data breaches notified to the CBUAE, rolling 12 months",Q3 2026,0,,0,0,1,2,higher,Direct,Chief Compliance Officer,1,1,1,KRI-DAT-02,Consumer Protection Reg. art. 6.1
+RAS-OPR-06,"Significant customer data breaches notified to the CBUAE, rolling 12 months",Q4 2026,0,,0,0,1,2,higher,Direct,Chief Compliance Officer,2,0,1,KRI-DAT-02,Consumer Protection Reg. art. 6.1
+RAS-OPR-07,Overdue high-rated audit and regulatory findings on ICT and resilience,Q1 2026,2,,0,0,3,6,higher,Direct,CRO,0,0,4,,"ORM art. 4.3, 4.5"
+RAS-OPR-07,Overdue high-rated audit and regulatory findings on ICT and resilience,Q2 2026,2,,0,0,3,6,higher,Direct,CRO,0,0,4,,"ORM art. 4.3, 4.5"
+RAS-OPR-07,Overdue high-rated audit and regulatory findings on ICT and resilience,Q3 2026,1,,0,0,3,6,higher,Direct,CRO,0,2,2,,"ORM art. 4.3, 4.5"
+RAS-OPR-07,Overdue high-rated audit and regulatory findings on ICT and resilience,Q4 2026,1,,0,0,3,6,higher,Direct,CRO,0,3,1,,"ORM art. 4.3, 4.5"
+RAS-OPR-08,Critical Operations that depend on one person without a trained deputy,Q1 2026,9,,0,0,2,4,higher,Direct,COO,0,0,3,,"ORM art. 5.8, 11.4"
+RAS-OPR-08,Critical Operations that depend on one person without a trained deputy,Q2 2026,8,,0,0,2,4,higher,Direct,COO,0,0,3,,"ORM art. 5.8, 11.4"
+RAS-OPR-08,Critical Operations that depend on one person without a trained deputy,Q3 2026,6,,0,0,2,4,higher,Direct,COO,0,0,3,,"ORM art. 5.8, 11.4"
+RAS-OPR-08,Critical Operations that depend on one person without a trained deputy,Q4 2026,4,,0,0,2,4,higher,Direct,COO,0,1,2,,"ORM art. 5.8, 11.4"
+RAS-OPR-09,"Internal and external fraud losses, rolling 12 months",Q1 2026,5.1,AED m,5,8,15,30,higher,Direct,Head of Fraud,2,0,0,,ORM art. 2.6
+RAS-OPR-09,"Internal and external fraud losses, rolling 12 months",Q2 2026,5.4,AED m,5,8,15,30,higher,Direct,Head of Fraud,2,0,0,,ORM art. 2.6
+RAS-OPR-09,"Internal and external fraud losses, rolling 12 months",Q3 2026,5.7,AED m,5,8,15,30,higher,Direct,Head of Fraud,2,0,0,,ORM art. 2.6
+RAS-OPR-09,"Internal and external fraud losses, rolling 12 months",Q4 2026,5.9,AED m,5,8,15,30,higher,Direct,Head of Fraud,2,0,0,,ORM art. 2.6
+RAS-OPR-10,"Board risk indicators with an owner, a source and a data contract",Q1 2026,40.0,%,100,90,75,50,lower,Roll-up of units,CRO,0,0,2,,"ORM art. 4.7, 10.3"
+RAS-OPR-10,"Board risk indicators with an owner, a source and a data contract",Q2 2026,53.0,%,100,90,75,50,lower,Roll-up of units,CRO,0,0,2,,"ORM art. 4.7, 10.3"
+RAS-OPR-10,"Board risk indicators with an owner, a source and a data contract",Q3 2026,68.6,%,100,90,75,50,lower,Roll-up of units,CRO,0,0,2,,"ORM art. 4.7, 10.3"
+RAS-OPR-10,"Board risk indicators with an owner, a source and a data contract",Q4 2026,79.6,%,100,90,75,50,lower,Roll-up of units,CRO,0,1,1,,"ORM art. 4.7, 10.3"

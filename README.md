@@ -21,7 +21,7 @@ A sample Board-level dashboard for **operational resilience and ICT risk** at a 
 | Six resilience outcomes | Is each part of resilience green, amber or red? | Operational risk framework and resilience strategy |
 | **External view: threats and our exposure** (new) | What is happening outside, and do we have the same weakness? | Internal and external indicators; emerging risks |
 | **External events and regulatory horizon** (new) | Which outside events and rule changes matter for us this quarter? | Relevant external events and regulatory changes |
-| Key risk indicators and trend | Are we within appetite, and which way are we moving? | Thresholds, limits, monitoring and reporting |
+| Risk appetite: Board metrics and KRIs, with trend | Are we within appetite, and which way are we moving? | Appetite, tolerance and limits (art. 1.25 to 1.27, 4.2); thresholds and reporting (art. 2.5.5, 7.11) |
 | Critical Operations vs tolerance | Can we recover our most important services in time? | Critical Operations mapping and tolerance for disruption |
 | Incidents and notifications | What went wrong, and did we tell the regulator on time? | Notices within 4 h, 24 h and 72 h |
 | Major incidents: four questions | Classification, regulatory status, appetite, what it reveals | Incident management |
@@ -40,7 +40,7 @@ Fictional quarterly data for 2026, provided in two formats:
 
 | File | Contents |
 | --- | --- |
-| `kri_history.csv` | 10 key risk indicators by quarter, with amber and red thresholds (two of them measure exposure to external threats) |
+| `kri_history.csv` | The 10 Board risk appetite metrics (Level 1) by quarter, with target, appetite, tolerance and capacity, calculation method, owner, Level 2 KRI status and any override |
 | `threat_level.csv` | External threat level by quarter, with its main driver |
 | `external_threats.csv` | Top external threats, whether the same weakness exists here, actions and owners |
 | `external_events.csv` | Geopolitical, sector, peer and provider events by quarter, with "so what for us" |
@@ -56,9 +56,9 @@ Fictional quarterly data for 2026, provided in two formats:
 ## Key insights (sample data, Q4 2026)
 
 - **The external threat level is elevated:** identity-based intrusion, control-first ransomware and wipers, persistent DDoS and AI-accelerated attacks are rising; the bank has the same weakness, at least partly, for five of six.
-- **One key risk indicator is red:** a recovery test for domestic payments took 6 hours against a 4-hour tolerance.
-- **Vulnerabilities past deadline rose from 9 to 14**, now above the amber threshold.
-- **Concentration:** one provider supports 6 of 14 Critical Operations, and 4 of 9 critical providers lack a tested exit plan.
+- **Three of ten Board appetite metrics are red:** only 8 of 12 Critical Operations can show they recover within tolerance (domestic payments took 6 hours against 4); the cyber control index is 64, below its tolerance of 65; and four Critical Operations still depend on one person.
+- **Two green metrics are reported amber by the override rule:** operational losses look low, but loss events are recorded late; no data breach was notified, but critical data is not yet fully classified.
+- **Concentration:** one provider supports 7 of 12 Critical Operations, and 4 of 9 critical providers lack a tested exit plan.
 - **Notifications:** 100% of regulatory notifications were made on time throughout the year.
 - **Control effectiveness improved** from 84% to 91%, crossing back into green.
 
@@ -79,7 +79,7 @@ Open `index.html` in any browser. That's it.
 
 ## Use your own data
 
-Edit `data/dashboard-data.js`. Each block is commented: change the values, thresholds, names or quarters, and refresh the page. Statuses for key risk indicators are calculated automatically from the thresholds: for `direction: "up"`, higher is worse; for `"down"`, lower is worse.
+Edit `data/dashboard-data.js`. Each block is commented: change the values, thresholds, names or quarters, and refresh the page. Statuses for the risk appetite metrics are calculated automatically from the `appetite`, `tolerance` and `capacity` thresholds: for `direction: "up"`, higher is worse; for `"down"`, lower is worse. Set `override` for a quarter to the ID of a Level 2 KRI that has been red for three months to report a green metric as amber.
 
 ## Files in this repository
 
@@ -91,6 +91,16 @@ dashboard-data.js        sample data the page reads
 *.csv                    the same sample data as CSV files
 dashboard-preview.png    screenshot used in this README
 ```
+
+## How the risk appetite panel works
+
+The panel follows the risk appetite framework published with *The Resilience Bridge* (policy, procedure, statement and metrics workbook for the fictional Bank Horizon):
+
+- **Level 1 metrics** are the Board's appetite metrics. Each has four thresholds: **target**, **appetite**, **tolerance limit** and **capacity**. Green up to the appetite, amber up to the tolerance limit, red beyond it, "beyond capacity" past the capacity point. Status is calculated, never typed.
+- **Level 2 KRIs** are built from what the operational teams already measure and explain each Level 1 metric. The panel shows how many are green, amber and red.
+- **Calculation method:** each Level 1 metric is either measured directly, rolled up from units (for example, the share of Critical Operations within tolerance) or a weighted composite index (the cyber control index).
+- **Override:** if a Level 2 KRI has been red for three months, a green Level 1 metric is reported amber, so an average or a lagging count cannot hide a serious problem.
+- Quarters are restated against the 2027 thresholds, so the trend is comparable.
 
 ## About the external view
 
