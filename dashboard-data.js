@@ -49,10 +49,12 @@ window.DASHBOARD_DATA = {
     {"id": "RAS-OPR-10", "name": "Board risk indicators with an owner, a source and a data contract", "unit": "%", "values": [40.0, 53.0, 68.6, 79.6], "target": 100, "appetite": 90, "tolerance": 75, "capacity": 50, "direction": "down", "method": "Roll-up of units", "owner": "CRO", "anchor": "ORM art. 4.7, 10.3", "level2": [[0, 0, 2], [0, 0, 2], [0, 0, 2], [0, 1, 1]], "override": [null, null, null, null]}
   ],
 
-  // Critical Operations, per quarter: tolerance for disruption (approved or proposed), last tested recovery (hours; null = never tested), month of that test, mapped end to end. Counts match RAS-OPR-02, KRI-RES-01, KRI-RES-02 and KRI-RES-04.
+  // Critical Operations (register and maps: RB-B3-TPL-04), per quarter: tolerance for disruption (approved or proposed), last tested recovery (hours; null = never tested), month of that test, mapped end to end. Counts match RAS-OPR-02, KRI-RES-01, KRI-RES-02 and KRI-RES-04.
   criticalOperations: [
     {
       "name": "CO-01 Domestic payments",
+      "owner": "Head of Payments",
+      "keyDependencies": "Directory server; payment hub (one CloudCo region); Vendor X; key engineer",
       "toleranceHours": 4,
       "approved": [
         true,
@@ -81,6 +83,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-02 Cross-border payments",
+      "owner": "Head of Payments",
+      "keyDependencies": "Payments messaging bureau (single provider); directory server",
       "toleranceHours": 8,
       "approved": [
         true,
@@ -109,6 +113,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-03 Salaries (WPS)",
+      "owner": "Head of Corporate Banking",
+      "keyDependencies": "Payment hub (one region); Vendor X; key engineer",
       "toleranceHours": 4,
       "approved": [
         true,
@@ -137,6 +143,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-04 Cards authorisation",
+      "owner": "Head of Cards",
+      "keyDependencies": "Vendor X card platform (single provider)",
       "toleranceHours": 2,
       "approved": [
         true,
@@ -165,6 +173,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-05 Mobile and online banking",
+      "owner": "Head of Retail and Digital",
+      "keyDependencies": "CloudCo; directory server",
       "toleranceHours": 8,
       "approved": [
         true,
@@ -193,6 +203,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-06 Cash access",
+      "owner": "Head of Branches",
+      "keyDependencies": "ATM switch; cash-in-transit company; colocation site",
       "toleranceHours": 24,
       "approved": [
         true,
@@ -221,6 +233,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-07 Corporate cash",
+      "owner": "Head of Corporate Banking",
+      "keyDependencies": "Payment hub; Vendor X; directory server",
       "toleranceHours": 4,
       "approved": [
         true,
@@ -249,6 +263,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-08 Trade finance issuance",
+      "owner": "Head of Trade Finance",
+      "keyDependencies": "TradeSoft (sole supplier); 15-year-old platform; key engineer; scans outside backup",
       "toleranceHours": 24,
       "approved": [
         true,
@@ -277,6 +293,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-09 Treasury and liquidity",
+      "owner": "Treasurer",
+      "keyDependencies": "Treasury system; messaging bureau; directory server",
       "toleranceHours": 4,
       "approved": [
         true,
@@ -305,6 +323,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-10 Sanctions screening",
+      "owner": "Chief Compliance Officer",
+      "keyDependencies": "Screening engine on CloudCo; directory server",
       "toleranceHours": 4,
       "approved": [
         false,
@@ -333,6 +353,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-11 Government payments",
+      "owner": "Head of Government Banking",
+      "keyDependencies": "Gateway on CloudCo; one trained administrator",
       "toleranceHours": 8,
       "approved": [
         false,
@@ -361,6 +383,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "CO-12 Digital wallet",
+      "owner": "Head of Retail and Digital",
+      "keyDependencies": "CloudCo and Vendor X (single provider); no map yet",
       "toleranceHours": 4,
       "approved": [
         false,
@@ -452,8 +476,8 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "Payments messaging bureau",
-      "supports": "Cross-border payment messaging",
-      "criticalOps": 1,
+      "supports": "SWIFT messaging for cross-border payments, trade finance and treasury",
+      "criticalOps": 3,
       "slaBreaches": [
         0,
         0,
@@ -606,7 +630,7 @@ window.DASHBOARD_DATA = {
     },
     regulatory: [
       { item: "CBUAE Operational Risk Management Regulation", status: "In force (2026)", impact: "Close gaps on mapping, third parties and testing", owner: "CRO" },
-      { item: "DFSA operational resilience framework (DIFC entity)", status: "Proposed (consultation, March 2026)", impact: "Prepare impact tolerances for critical business services", owner: "Head of Compliance" },
+      { item: "DFSA operational resilience framework (benchmark only: Bank Horizon has no DIFC entity)", status: "Proposed (consultation, March 2026)", impact: "Compare our tolerances with the proposed DIFC approach for critical business services", owner: "Head of Compliance" },
       { item: "CBUAE capital rules aligned to revised Basel III", status: "Planned", impact: "Assess the effect on operational risk capital", owner: "CFO, CRO" },
       { item: "Capital Market Authority rules, incl. cybersecurity for virtual assets", status: "New (2025)", impact: "Applies if the group launches virtual asset services", owner: "Head of Compliance" }
     ]

@@ -195,7 +195,7 @@
   function QV(v) { return Array.isArray(v) ? v[state.qi] : v; }
   function renderOps() {
     var ops = D.criticalOperations.map(function (o) {
-      return { name: o.name, toleranceHours: o.toleranceHours, approved: QV(o.approved), testedHours: QV(o.testedHours), testMonth: QV(o.testMonth), mapped: QV(o.mapped) ? "Yes" : "Not yet" };
+      return { name: o.name, owner: o.owner || "", deps: o.keyDependencies || "", toleranceHours: o.toleranceHours, approved: QV(o.approved), testedHours: QV(o.testedHours), testMonth: QV(o.testMonth), mapped: QV(o.mapped) ? "Yes" : "Not yet" };
     });
     var W = 600, rowH = 46, L = 200, R = 120, T = 8;
     var H = T + ops.length * rowH + 28;
@@ -225,12 +225,12 @@
       text(s, W - R + 10, cy + 4, label, { class: st === "red" ? "label-strong" : "" });
       var hit = svg("rect", { x: 0, y: cy - rowH / 2, width: W, height: rowH, fill: "transparent" }, s);
       hit.addEventListener("mousemove", function (e) {
-        showTip(e, "<strong>" + esc(o.name) + "</strong>Tolerance: " + o.toleranceHours + " h" + (o.approved ? "" : " (proposed, not yet approved)") + "<br>Last test: " + (o.testedHours === null ? "not yet tested" : o.testedHours + " h (" + esc(o.testMonth) + ")") + "<br>Fully mapped: " + esc(o.mapped) + "<br>Status: " + LABEL[st]);
+        showTip(e, "<strong>" + esc(o.name) + "</strong>Tolerance: " + o.toleranceHours + " h" + (o.approved ? "" : " (proposed, not yet approved)") + "<br>Last test: " + (o.testedHours === null ? "not yet tested" : o.testedHours + " h (" + esc(o.testMonth) + ")") + "<br>Fully mapped: " + esc(o.mapped) + (o.owner ? "<br>Owner: " + esc(o.owner) : "") + (o.deps ? "<br>Key dependencies: " + esc(o.deps) : "") + "<br>Status: " + LABEL[st]);
       });
       hit.addEventListener("mouseleave", hideTip);
     });
-    $("ops-table").innerHTML = simpleTable(["Critical Operation", "Tolerance", "Last test", "Mapped end to end"], ops.map(function (o) {
-      return [o.name, o.toleranceHours + " h" + (o.approved ? "" : " (proposed)"), o.testedHours === null ? "Not yet tested (" + o.testMonth + ")" : o.testedHours + " h (" + o.testMonth + ")", o.mapped];
+    $("ops-table").innerHTML = simpleTable(["Critical Operation", "Owner", "Tolerance", "Last test", "Mapped end to end", "Key dependencies (from the map)"], ops.map(function (o) {
+      return [o.name, o.owner, o.toleranceHours + " h" + (o.approved ? "" : " (proposed)"), o.testedHours === null ? "Not yet tested (" + o.testMonth + ")" : o.testedHours + " h (" + o.testMonth + ")", o.mapped, o.deps];
     }));
   }
 
