@@ -192,8 +192,11 @@
   }
 
   // ---------- Critical Operations bullet bars ----------
+  function QV(v) { return Array.isArray(v) ? v[state.qi] : v; }
   function renderOps() {
-    var ops = D.criticalOperations;
+    var ops = D.criticalOperations.map(function (o) {
+      return { name: o.name, toleranceHours: o.toleranceHours, approved: QV(o.approved), testedHours: QV(o.testedHours), testMonth: QV(o.testMonth), mapped: QV(o.mapped) ? "Yes" : "Not yet" };
+    });
     var W = 600, rowH = 46, L = 200, R = 120, T = 8;
     var H = T + ops.length * rowH + 28;
     var maxH = 26;
@@ -210,23 +213,24 @@
       text(s, 0, cy + 4, o.name, {});
       var st, label;
       if (o.testedHours === null) {
-        st = "amber"; label = "Not tested · Amber";
+        st = "red"; label = "Not tested · outside";
         svg("rect", { x: X(0), y: cy - 7, width: X(o.toleranceHours) - X(0), height: 14, rx: 4, fill: "none", stroke: "var(--axis)", "stroke-dasharray": "4 3" }, s);
       } else {
         st = o.testedHours > o.toleranceHours ? "red" : "green";
         label = o.testedHours + " h vs " + o.toleranceHours + " h · " + LABEL[st];
-        svg("rect", { x: X(0), y: cy - 7, width: Math.max(4, X(o.testedHours) - X(0)), height: 14, rx: 4, fill: "var(--series-1)" }, s);
+        svg("rect", { x: X(0), y: cy - 7, width: Math.max(4, X(Math.min(o.testedHours, maxH)) - X(0)), height: 14, rx: 4, fill: "var(--series-1)" }, s);
+        if (o.testedHours > maxH) text(s, X(maxH) - 4, cy - 10, "off scale", { "text-anchor": "end" });
       }
-      svg("line", { x1: X(o.toleranceHours), x2: X(o.toleranceHours), y1: cy - 13, y2: cy + 13, stroke: "var(--marker)", "stroke-width": 3, "stroke-linecap": "round" }, s);
+      svg("line", { x1: X(o.toleranceHours), x2: X(o.toleranceHours), y1: cy - 13, y2: cy + 13, stroke: "var(--marker)", "stroke-width": 3, "stroke-linecap": "round", "stroke-dasharray": o.approved ? "" : "3 3" }, s);
       text(s, W - R + 10, cy + 4, label, { class: st === "red" ? "label-strong" : "" });
       var hit = svg("rect", { x: 0, y: cy - rowH / 2, width: W, height: rowH, fill: "transparent" }, s);
       hit.addEventListener("mousemove", function (e) {
-        showTip(e, "<strong>" + esc(o.name) + "</strong>Tolerance: " + o.toleranceHours + " h<br>Last test: " + (o.testedHours === null ? "not yet tested" : o.testedHours + " h (" + esc(o.testMonth) + ")") + "<br>Fully mapped: " + esc(o.mapped) + "<br>Status: " + LABEL[st]);
+        showTip(e, "<strong>" + esc(o.name) + "</strong>Tolerance: " + o.toleranceHours + " h" + (o.approved ? "" : " (proposed, not yet approved)") + "<br>Last test: " + (o.testedHours === null ? "not yet tested" : o.testedHours + " h (" + esc(o.testMonth) + ")") + "<br>Fully mapped: " + esc(o.mapped) + "<br>Status: " + LABEL[st]);
       });
       hit.addEventListener("mouseleave", hideTip);
     });
-    $("ops-table").innerHTML = simpleTable(["Critical Operation", "Tolerance", "Last test", "Mapped"], ops.map(function (o) {
-      return [o.name, o.toleranceHours + " h", o.testedHours === null ? "Not yet tested" : o.testedHours + " h (" + o.testMonth + ")", o.mapped];
+    $("ops-table").innerHTML = simpleTable(["Critical Operation", "Tolerance", "Last test", "Mapped end to end"], ops.map(function (o) {
+      return [o.name, o.toleranceHours + " h" + (o.approved ? "" : " (proposed)"), o.testedHours === null ? "Not yet tested (" + o.testMonth + ")" : o.testedHours + " h (" + o.testMonth + ")", o.mapped];
     }));
   }
 
@@ -277,40 +281,41 @@
 
   // ---------- Third parties ----------
   function renderThirdParties() {
-    var tp = D.thirdParties.slice().sort(function (a, b) { return b.criticalOps - a.criticalOps; });
+    var tp = D.thirdParties.map(function (p) { return { name: p.name, supports: p.supports, criticalOps: p.criticalOps, slaBreaches: QV(p.slaBreaches), exitPlan: QV(p.exitPlan), status: QV(p.status) }; }).sort(function (a, b) { return b.criticalOps - a.criticalOps; });
     var W = 600, rowH = 34, L = 170, R = 60, T = 4;
     var H = T + tp.length * rowH + 4;
     var box = $("tp-chart");
     box.innerHTML = "";
     var s = svg("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": "Critical Operations supported per critical provider" }, box);
-    function X(v) { return L + (W - L - R) * (v / 14); }
+    function X(v) { return L + (W - L - R) * (v / 12); }
     tp.forEach(function (p, i) {
       var cy = T + i * rowH + rowH / 2;
       text(s, 0, cy + 4, p.name, {});
       svg("rect", { x: X(0), y: cy - 7, width: X(p.criticalOps) - X(0), height: 14, rx: 4, fill: "var(--series-1)" }, s);
-      text(s, X(p.criticalOps) + 8, cy + 4, p.criticalOps + " of 14", { class: i === 0 ? "label-strong" : "" });
+      text(s, X(p.criticalOps) + 8, cy + 4, p.criticalOps + " of 12", { class: i === 0 ? "label-strong" : "" });
       var hit = svg("rect", { x: 0, y: cy - rowH / 2, width: W, height: rowH, fill: "transparent" }, s);
-      hit.addEventListener("mousemove", function (e) { showTip(e, "<strong>" + esc(p.name) + "</strong>" + esc(p.supports) + "<br>Supports " + p.criticalOps + " of 14 Critical Operations"); });
+      hit.addEventListener("mousemove", function (e) { showTip(e, "<strong>" + esc(p.name) + "</strong>" + esc(p.supports) + "<br>Supports " + p.criticalOps + " of 12 Critical Operations"); });
       hit.addEventListener("mouseleave", hideTip);
     });
-    var t = "<tr><th>Provider</th><th>Supports</th><th>SLAs met</th><th>Exit plan</th><th>Status</th></tr>";
-    tp.forEach(function (p) { t += "<tr><td>" + esc(p.name) + "</td><td>" + esc(p.supports) + "</td><td class='num'>" + esc(p.slaMet) + "</td><td>" + esc(p.exitPlan) + "</td><td>" + badge(p.status) + "</td></tr>"; });
+    var t = "<tr><th>Provider</th><th>Supports</th><th>SLA breaches this quarter</th><th>Exit plan</th><th>Status</th></tr>";
+    tp.forEach(function (p) { t += "<tr><td>" + esc(p.name) + "</td><td>" + esc(p.supports) + "</td><td class='num'>" + p.slaBreaches + "</td><td>" + esc(p.exitPlan) + "</td><td>" + badge(p.status) + "</td></tr>"; });
     $("tp-table").innerHTML = t;
   }
 
   // ---------- Testing & remediation ----------
   function renderTesting() {
-    $("testing").innerHTML = D.testing.map(function (t) {
+    $("testing").innerHTML = D.testing.map(function (t0) {
+      var t = { name: t0.name, done: QV(t0.done), total: t0.total };
       var pct = Math.round(100 * t.done / t.total);
       var val = t.total === 100 ? pct + "%" : t.done + " of " + t.total;
       return '<div class="meter"><div class="meter-head"><span>' + esc(t.name) + "</span><strong>" + val + '</strong></div><div class="meter-track" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '" aria-label="' + esc(t.name) + '"><div class="meter-fill" style="width:' + pct + '%"></div></div></div>';
     }).join("");
-    var R = D.remediation, total = R.onTrack + R.late + R.atRisk;
+    var R = D.remediation[D.meta.quarters[state.qi]] || D.remediation, total = R.onTrack + R.late + R.atRisk;
     $("rem-bar").innerHTML =
       '<div class="segbar" role="img" aria-label="' + R.onTrack + " on track, " + R.late + " late, " + R.atRisk + ' at risk">' +
       '<div class="s-green" style="flex:' + R.onTrack + '">' + R.onTrack + " on track</div>" +
       '<div class="s-amber" style="flex:' + R.late + '">' + R.late + " late</div>" +
-      '<div class="s-red" style="flex:' + R.atRisk + '">' + R.atRisk + "</div></div>" +
+      (R.atRisk ? '<div class="s-red" style="flex:' + R.atRisk + '">' + R.atRisk + "</div>" : "") + "</div>" +
       '<div class="seglegend"><span>' + total + " actions in total</span><span>" + R.atRisk + " at risk</span></div>";
     var t = "<tr><th>Action</th><th>Source</th><th>Owner</th><th>Due</th><th>Status</th></tr>";
     R.items.forEach(function (x) { t += "<tr><td>" + esc(x.action) + "</td><td>" + esc(x.source) + "</td><td>" + esc(x.owner) + "</td><td class='num'>" + esc(x.due) + "</td><td>" + badge(x.status, x.label) + "</td></tr>"; });

@@ -60,7 +60,8 @@ Fictional quarterly data for 2026, provided in two formats:
 - **Two green metrics are reported amber by the override rule:** operational losses look low, but loss events are recorded late; no data breach was notified, but critical data is not yet fully classified.
 - **Concentration:** one provider supports 7 of 12 Critical Operations, and 4 of 9 critical providers lack a tested exit plan.
 - **Notifications:** 100% of regulatory notifications were made on time throughout the year.
-- **Control effectiveness improved** from 84% to 91%, crossing back into green.
+- **The wallet went live in December** without an approved tolerance for disruption or a recovery test, so it counts as outside tolerance.
+- **Every panel follows the selected quarter, and the numbers agree:** the Critical Operations chart, the testing programme, the third-party table, the six outcomes and the Board metrics all come from the same data.
 
 ## Tools
 

@@ -24,9 +24,9 @@ window.DASHBOARD_DATA = {
 
   // One headline per quarter: what the Board must know and decide
   headlines: {
-    "Q1 2026": { position: "amber", text: "Testing programme starting; Board resilience training incomplete.", decisions: ["Approve the 2026 testing plan"] },
-    "Q2 2026": { position: "amber", text: "One major incident (internet banking), notified on time.", decisions: ["Approve tolerance for disruption for 12 Critical Operations"] },
-    "Q3 2026": { position: "amber", text: "Control effectiveness improving; vendor exit plans lagging.", decisions: ["Endorse exit-plan testing for Vendor X and Vendor Y"] },
+    "Q1 2026": {"position": "red", "text": "Only 7 of 12 Critical Operations can show they recover within tolerance, the cyber control index is 52, and fewer than half of the Board's numbers can be traced to a source.", "decisions": ["Approve the 2026 testing plan", "Approve tolerances for 9 of 12 Critical Operations; the remaining 3 by Q3"]},
+    "Q2 2026": {"position": "red", "text": "One major incident (internet banking, 2 h 10 min), notified on time. Trade finance took 5 days to recover in testing against a 24-hour tolerance.", "decisions": ["Fund the trade finance recovery fix", "Endorse exit-plan testing for Vendor X and CloudCo"]},
+    "Q3 2026": {"position": "red", "text": "Payments recovered in 6 hours against a 4-hour tolerance in September's test. Five critical providers still have no tested exit plan.", "decisions": ["Ask the Board Risk Committee to set provisional appetite thresholds", "Decide how payments will meet its 4-hour tolerance"]},
     "Q4 2026": { position: "red", text: "Three Board appetite metrics are red: Critical Operations within tolerance (payments recovered in 6 h against 4 h), the cyber control index, and Critical Operations that depend on one person. The external threat level remains elevated.",
                  decisions: ["Approve funding for a second payments processing site", "Accept or reject the risk on Vendor X until its exit plan is tested in Q2 2027", "Approve a trained deputy for the engineer behind three Critical Operations"] }
   },
@@ -49,13 +49,344 @@ window.DASHBOARD_DATA = {
     {"id": "RAS-OPR-10", "name": "Board risk indicators with an owner, a source and a data contract", "unit": "%", "values": [40.0, 53.0, 68.6, 79.6], "target": 100, "appetite": 90, "tolerance": 75, "capacity": 50, "direction": "down", "method": "Roll-up of units", "owner": "CRO", "anchor": "ORM art. 4.7, 10.3", "level2": [[0, 0, 2], [0, 0, 2], [0, 0, 2], [0, 1, 1]], "override": [null, null, null, null]}
   ],
 
-  // Critical Operations: tolerance for disruption vs latest tested recovery (hours)
+  // Critical Operations, per quarter: tolerance for disruption (approved or proposed), last tested recovery (hours; null = never tested), month of that test, mapped end to end. Counts match RAS-OPR-02, KRI-RES-01, KRI-RES-02 and KRI-RES-04.
   criticalOperations: [
-    { name: "Domestic payments",               toleranceHours: 4,  testedHours: 6,    testMonth: "Sep 2026", mapped: "Yes" },
-    { name: "Card processing (vendor-run)",    toleranceHours: 4,  testedHours: null, testMonth: "Not yet tested", mapped: "Partly" },
-    { name: "Mobile and online banking",       toleranceHours: 8,  testedHours: 5,    testMonth: "Jul 2026", mapped: "Yes" },
-    { name: "Liquidity and treasury",          toleranceHours: 8,  testedHours: 7,    testMonth: "Aug 2026", mapped: "Partly" },
-    { name: "Customer accounts and records",   toleranceHours: 24, testedHours: 10,   testMonth: "Jun 2026", mapped: "Yes" }
+    {
+      "name": "CO-01 Domestic payments",
+      "toleranceHours": 4,
+      "approved": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "testedHours": [
+        5,
+        5,
+        6,
+        6
+      ],
+      "testMonth": [
+        "Nov 2025",
+        "Nov 2025",
+        "Sep 2026",
+        "Sep 2026"
+      ],
+      "mapped": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "CO-02 Cross-border payments",
+      "toleranceHours": 8,
+      "approved": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "testedHours": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "testMonth": [
+        "Mar 2026",
+        "Mar 2026",
+        "Mar 2026",
+        "Mar 2026"
+      ],
+      "mapped": [
+        false,
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "CO-03 Salaries (WPS)",
+      "toleranceHours": 4,
+      "approved": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "testedHours": [
+        5,
+        5,
+        6,
+        6
+      ],
+      "testMonth": [
+        "Nov 2025",
+        "Nov 2025",
+        "Sep 2026",
+        "Sep 2026"
+      ],
+      "mapped": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "CO-04 Cards authorisation",
+      "toleranceHours": 2,
+      "approved": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "testedHours": [
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "testMonth": [
+        "Feb 2026",
+        "Feb 2026",
+        "Feb 2026",
+        "Feb 2026"
+      ],
+      "mapped": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "CO-05 Mobile and online banking",
+      "toleranceHours": 8,
+      "approved": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "testedHours": [
+        6,
+        6,
+        5,
+        5
+      ],
+      "testMonth": [
+        "Oct 2025",
+        "Oct 2025",
+        "Jul 2026",
+        "Jul 2026"
+      ],
+      "mapped": [
+        false,
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "CO-06 Cash access",
+      "toleranceHours": 24,
+      "approved": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "testedHours": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "testMonth": [
+        "Jun 2025",
+        "Jun 2025",
+        "Jun 2025",
+        "Nov 2026"
+      ],
+      "mapped": [
+        false,
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "name": "CO-07 Corporate cash",
+      "toleranceHours": 4,
+      "approved": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "testedHours": [
+        5,
+        5,
+        3.5,
+        3.5
+      ],
+      "testMonth": [
+        "Feb 2025",
+        "Feb 2025",
+        "Aug 2026",
+        "Aug 2026"
+      ],
+      "mapped": [
+        false,
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "name": "CO-08 Trade finance issuance",
+      "toleranceHours": 24,
+      "approved": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "testedHours": [
+        96,
+        120,
+        120,
+        120
+      ],
+      "testMonth": [
+        "Jan 2025",
+        "Jun 2026",
+        "Jun 2026",
+        "Jun 2026"
+      ],
+      "mapped": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "CO-09 Treasury and liquidity",
+      "toleranceHours": 4,
+      "approved": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "testedHours": [
+        3,
+        3,
+        2,
+        2
+      ],
+      "testMonth": [
+        "Mar 2025",
+        "Mar 2025",
+        "Aug 2026",
+        "Aug 2026"
+      ],
+      "mapped": [
+        false,
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "name": "CO-10 Sanctions screening",
+      "toleranceHours": 4,
+      "approved": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "testedHours": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "testMonth": [
+        "Sep 2025",
+        "Sep 2025",
+        "Sep 2025",
+        "Sep 2025"
+      ],
+      "mapped": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "CO-11 Government payments",
+      "toleranceHours": 8,
+      "approved": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "testedHours": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "testMonth": [
+        "Jan 2025",
+        "Jan 2025",
+        "Jan 2025",
+        "Oct 2026"
+      ],
+      "mapped": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "CO-12 Digital wallet",
+      "toleranceHours": 4,
+      "approved": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "testedHours": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "testMonth": [
+        "In build",
+        "In build",
+        "In build",
+        "Live Dec 2026, not tested"
+      ],
+      "mapped": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
   ],
 
   incidents: {
@@ -65,82 +396,331 @@ window.DASHBOARD_DATA = {
     majorList: [
       { quarter: "Q2 2026", title: "Internet banking outage", duration: "2 h 10 min", customers: 12000,
         classification: "Major", regulatory: "CBUAE notified within 4 h; summary within 24 h", appetite: "Within threshold", systemic: "Capacity alerting tuned; no further action" },
-      { quarter: "Q4 2026", title: "Card payments outage", duration: "3 h 20 min", customers: 38000,
-        classification: "Major", regulatory: "CBUAE notified within 4 h; summary within 24 h; recovery confirmed", appetite: "Within threshold, 40 min short of the 4 h tolerance",
+      { quarter: "Q4 2026", title: "Card payments outage", duration: "1 h 20 min", customers: 38000,
+        classification: "Major", regulatory: "CBUAE notified within 4 h; summary within 24 h; recovery confirmed", appetite: "Within the 2 h tolerance for cards authorisation, with 40 min to spare",
         systemic: "Vendor may take 72 h to notify the bank; contract change requested" }
     ]
   },
 
+  // Critical providers (5 of the 9 shown). Per quarter: SLA breaches affecting a Critical Operation (KRI-TPR-03) and exit plan status. Providers without a tested exit match RAS-OPR-05 (5, 5, 5, 4).
   thirdParties: [
-    { name: "CloudCo",              supports: "Infrastructure",      criticalOps: 7, slaMet: "3 of 3", exitPlan: "Tested in Q2",          status: "amber" },
-    { name: "Vendor Y",             supports: "Core banking",        criticalOps: 4, slaMet: "3 of 3", exitPlan: "Written, not tested",   status: "amber" },
-    { name: "Group IT (intragroup)", supports: "Security monitoring", criticalOps: 3, slaMet: "3 of 3", exitPlan: "No written agreement",  status: "amber" },
-    { name: "Vendor X",             supports: "Card processing",     criticalOps: 2, slaMet: "2 of 3", exitPlan: "Written, not tested",   status: "amber" },
-    { name: "Vendor Z",             supports: "Contact centre",      criticalOps: 1, slaMet: "3 of 3", exitPlan: "Tested in Q3",          status: "green" }
-  ],
-
-  testing: [
-    { name: "BCP and DR tests on Critical Operations", done: 10, total: 12 },
-    { name: "Penetration tests on critical systems",   done: 9,  total: 12 },
-    { name: "Second-line control testing plan",        done: 78, total: 100 },
-    { name: "Severe but plausible scenario exercises", done: 2,  total: 3 }
-  ],
-
-  // External view: what is happening outside the bank, and what it means for us.
-  // Inspired by public threat reports for the UAE and the region (for example Help AG, State of the Market Report 2026).
-  // Threat level and exposure are Bank Horizon's own (fictional) assessment. Events marked "illustrative" are invented.
-  externalView: {
-    threatLevel: {
-      "Q1 2026": { status: "red",   label: "High",     driver: "Regional escalation from late February: publicly reported attack volumes against UAE organisations rose sharply. DDoS and phishing waves." },
-      "Q2 2026": { status: "amber", label: "Elevated", driver: "Attack volumes eased but stayed above 2025 levels. Identity-based attacks dominant." },
-      "Q3 2026": { status: "amber", label: "Elevated", driver: "Ransomware groups shifting to control-first campaigns: they take over identity before stealing or encrypting data." },
-      "Q4 2026": { status: "amber", label: "Elevated", driver: "Wiper and AI-accelerated intrusions reported in the region; the fastest attacks reach impact in under two days." }
-    },
-    threats: [
-      { name: "Identity-based intrusion", signal: "Most breaches in the region start with phishing, stolen credentials or application exploits", trend: "Rising",
-        exposure: "amber", exposureLabel: "Partly", why: "Vendor support accounts sit outside the access review", ops: "All", action: "Phishing-resistant MFA for all admins; vendor accounts into the review", owner: "CISO" },
-      { name: "Control-first ransomware and wipers", signal: "Attackers take over identity first, then steal, encrypt or destroy data and backups", trend: "Rising",
-        exposure: "amber", exposureLabel: "Partly", why: "Core banking backups not yet isolated; no full restore test this year", ops: "Customer accounts, payments", action: "Isolated backups and a full restore test in Q1 2027", owner: "CIO" },
-      { name: "Persistent multi-vector DDoS", signal: "Attacks last longer and combine several techniques at once", trend: "Rising",
-        exposure: "amber", exposureLabel: "Partly", why: "Payments gateway relies on the vendor's protection, never tested jointly", ops: "Mobile banking, payments", action: "Joint DDoS test with Vendor X", owner: "CISO, Head of Procurement" },
-      { name: "AI-accelerated attacks", signal: "In the fastest cases, access to impact in under 48 hours", trend: "Rising",
-        exposure: "red", exposureLabel: "Yes", why: "Containment takes 6 hours on median; cloud logs only partly monitored", ops: "All", action: "Automated containment playbooks; full cloud log coverage", owner: "CISO" },
-      { name: "Provider and supply-chain compromise", signal: "Attackers reach banks through shared providers and software", trend: "Stable",
-        exposure: "amber", exposureLabel: "Partly", why: "Two critical providers have no security attestation this year", ops: "Card processing, security monitoring", action: "Obtain attestations; add to contract reviews", owner: "Head of Procurement" },
-      { name: "Post-quantum readiness", signal: "Data stolen today could be decrypted later; planning has started across the region", trend: "Emerging",
-        exposure: "amber", exposureLabel: "Not assessed", why: "No inventory yet of where cryptography is used", ops: "Customer accounts, payments", action: "Cryptographic inventory in 2027", owner: "CISO" }
-    ],
-    events: {
-      "Q1 2026": [
-        { type: "Geopolitical", what: "Regional escalation; sharp rise in reported cyber attack volumes in the UAE (public reports)", soWhat: "Monitoring raised, daily threat briefings, DDoS readiness checked with providers" },
-        { type: "Regulatory",   what: "CBUAE Financial Institution Resilience Package approved on 17 March (public)", soWhat: "Treasury and Risk reviewed the liquidity and capital relief; no change to resilience plans" }
+    {
+      "name": "CloudCo",
+      "supports": "Cloud infrastructure",
+      "criticalOps": 7,
+      "slaBreaches": [
+        0,
+        0,
+        0,
+        0
       ],
-      "Q2 2026": [
-        { type: "Peer incident", what: "A regional bank's card outage traced to a vendor change (illustrative)", soWhat: "Reviewed change controls with Vendor X; one gap found and fixed" }
+      "exitPlan": [
+        "Written, not tested",
+        "Written, not tested",
+        "Written, not tested",
+        "Written, not tested"
       ],
-      "Q3 2026": [
-        { type: "Provider alert", what: "Actively exploited vulnerability in a widely used remote-access product (illustrative)", soWhat: "Patched in 3 days; threat hunt found no compromise" }
-      ],
-      "Q4 2026": [
-        { type: "Sector threat", what: "Wiper malware reported in incidents in the region (public reports)", soWhat: "Backup isolation for core banking brought forward" },
-        { type: "Provider alert", what: "Critical provider announced a data-centre migration (illustrative)", soWhat: "Migration added to the risk committee agenda; recovery test requested" }
+      "status": [
+        "amber",
+        "amber",
+        "amber",
+        "amber"
       ]
     },
-    regulatory: [
-      { item: "CBUAE Operational Risk Management Regulation", status: "In force (2026)", impact: "Close gaps on mapping, third parties and testing", owner: "CRO" },
-      { item: "DFSA operational resilience framework (DIFC entity)", status: "Proposed (consultation, March 2026)", impact: "Prepare impact tolerances for critical business services", owner: "Head of Compliance" },
-      { item: "CBUAE capital rules aligned to revised Basel III", status: "Planned", impact: "Assess the effect on operational risk capital", owner: "CFO, CRO" },
-      { item: "Capital Market Authority rules, incl. cybersecurity for virtual assets", status: "New (2025)", impact: "Applies if the group launches virtual asset services", owner: "Head of Compliance" }
-    ]
-  },
+    {
+      "name": "Vendor X",
+      "supports": "Payment hub and card platform",
+      "criticalOps": 5,
+      "slaBreaches": [
+        3,
+        3,
+        3,
+        2
+      ],
+      "exitPlan": [
+        "Not written",
+        "Written, not tested",
+        "Written, not tested",
+        "Written, not tested"
+      ],
+      "status": [
+        "amber",
+        "amber",
+        "amber",
+        "amber"
+      ]
+    },
+    {
+      "name": "Payments messaging bureau",
+      "supports": "Cross-border payment messaging",
+      "criticalOps": 1,
+      "slaBreaches": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "exitPlan": [
+        "Written, not tested",
+        "Written, not tested",
+        "Written, not tested",
+        "Tested in Nov 2026"
+      ],
+      "status": [
+        "amber",
+        "amber",
+        "amber",
+        "green"
+      ]
+    },
+    {
+      "name": "Colocation provider",
+      "supports": "Primary data centre",
+      "criticalOps": 4,
+      "slaBreaches": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "exitPlan": [
+        "Written, not tested",
+        "Written, not tested",
+        "Written, not tested",
+        "Written, not tested"
+      ],
+      "status": [
+        "amber",
+        "amber",
+        "amber",
+        "amber"
+      ]
+    },
+    {
+      "name": "TradeSoft",
+      "supports": "Trade finance platform",
+      "criticalOps": 1,
+      "slaBreaches": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "exitPlan": [
+        "Not written",
+        "Not written",
+        "Written, not tested",
+        "Written, not tested"
+      ],
+      "status": [
+        "amber",
+        "amber",
+        "amber",
+        "amber"
+      ]
+    }
+  ],
 
+  // Testing per quarter. The first line matches KRI-RES-02.
+  testing: [
+    {
+      "name": "Critical Operations tested in the last 12 months",
+      "done": [
+        7,
+        7,
+        8,
+        10
+      ],
+      "total": 12
+    },
+    {
+      "name": "Penetration tests on critical systems, year to date",
+      "done": [
+        2,
+        5,
+        8,
+        9
+      ],
+      "total": 12
+    },
+    {
+      "name": "Second-line control testing plan, year to date",
+      "done": [
+        18,
+        40,
+        62,
+        78
+      ],
+      "total": 100
+    },
+    {
+      "name": "Severe but plausible scenario exercises, year to date",
+      "done": [
+        0,
+        1,
+        2,
+        2
+      ],
+      "total": 3
+    }
+  ],
+  // Remediation, per quarter.
   remediation: {
-    onTrack: 17, late: 4, atRisk: 2,
-    items: [
-      { action: "Automate payments failover",          source: "Recovery test",      owner: "COO",                 due: "Mar 2027",              status: "red",   label: "At risk" },
-      { action: "Identity platform migration",         source: "Internal audit",     owner: "CIO",                 due: "Jun 2027 (was Mar)",    status: "amber", label: "Late" },
-      { action: "Test Vendor X exit plan",             source: "Third-party review", owner: "Head of Procurement", due: "Q2 2027",               status: "amber", label: "Late" },
-      { action: "Reconcile cloud assets into inventory", source: "Self-identified",  owner: "CIO",                 due: "Jan 2027",              status: "amber", label: "Late" }
-    ]
+    "Q1 2026": {
+      "onTrack": 14,
+      "late": 2,
+      "atRisk": 0,
+      "items": [
+        {
+          "action": "Retest corporate cash management recovery (5 h vs 4 h)",
+          "source": "Recovery test",
+          "owner": "COO",
+          "due": "Aug 2026",
+          "status": "green",
+          "label": "On track"
+        },
+        {
+          "action": "Name an owner for every tier-1 asset",
+          "source": "Internal audit",
+          "owner": "CIO",
+          "due": "Sep 2026 (was Mar)",
+          "status": "amber",
+          "label": "Late"
+        },
+        {
+          "action": "Approve tolerances for the last three Critical Operations",
+          "source": "Self-identified",
+          "owner": "COO",
+          "due": "Sep 2026",
+          "status": "green",
+          "label": "On track"
+        }
+      ]
+    },
+    "Q2 2026": {
+      "onTrack": 15,
+      "late": 3,
+      "atRisk": 1,
+      "items": [
+        {
+          "action": "Fix trade finance recovery (5 days vs 24 h)",
+          "source": "Recovery test",
+          "owner": "CIO",
+          "due": "Dec 2026",
+          "status": "red",
+          "label": "At risk"
+        },
+        {
+          "action": "Name an owner for every tier-1 asset",
+          "source": "Internal audit",
+          "owner": "CIO",
+          "due": "Sep 2026 (was Mar)",
+          "status": "amber",
+          "label": "Late"
+        },
+        {
+          "action": "Retest corporate cash management recovery (5 h vs 4 h)",
+          "source": "Recovery test",
+          "owner": "COO",
+          "due": "Aug 2026",
+          "status": "green",
+          "label": "On track"
+        },
+        {
+          "action": "Write an exit plan for Vendor X",
+          "source": "Third-party review",
+          "owner": "Head of Procurement",
+          "due": "Jun 2026",
+          "status": "green",
+          "label": "Done"
+        }
+      ]
+    },
+    "Q3 2026": {
+      "onTrack": 16,
+      "late": 3,
+      "atRisk": 2,
+      "items": [
+        {
+          "action": "Automate payments failover (6 h vs 4 h)",
+          "source": "Recovery test",
+          "owner": "COO",
+          "due": "Mar 2027",
+          "status": "red",
+          "label": "At risk"
+        },
+        {
+          "action": "Fix trade finance recovery (5 days vs 24 h)",
+          "source": "Recovery test",
+          "owner": "CIO",
+          "due": "Dec 2026",
+          "status": "red",
+          "label": "At risk"
+        },
+        {
+          "action": "Test Vendor X exit plan",
+          "source": "Third-party review",
+          "owner": "Head of Procurement",
+          "due": "Q2 2027",
+          "status": "amber",
+          "label": "Late"
+        },
+        {
+          "action": "Map the wallet end to end before launch",
+          "source": "Self-identified",
+          "owner": "COO",
+          "due": "Nov 2026",
+          "status": "amber",
+          "label": "Late"
+        }
+      ]
+    },
+    "Q4 2026": {
+      "onTrack": 17,
+      "late": 4,
+      "atRisk": 2,
+      "items": [
+        {
+          "action": "Automate payments failover (6 h vs 4 h)",
+          "source": "Recovery test",
+          "owner": "COO",
+          "due": "Mar 2027",
+          "status": "red",
+          "label": "At risk"
+        },
+        {
+          "action": "Fix trade finance recovery (5 days vs 24 h)",
+          "source": "Recovery test",
+          "owner": "CIO",
+          "due": "Jun 2027 (was Dec)",
+          "status": "red",
+          "label": "At risk"
+        },
+        {
+          "action": "Test the wallet's recovery against its 4 h tolerance",
+          "source": "Self-identified",
+          "owner": "COO",
+          "due": "May 2027",
+          "status": "amber",
+          "label": "Late"
+        },
+        {
+          "action": "Test Vendor X exit plan",
+          "source": "Third-party review",
+          "owner": "Head of Procurement",
+          "due": "Q2 2027",
+          "status": "amber",
+          "label": "Late"
+        },
+        {
+          "action": "Reconcile cloud assets into the inventory",
+          "source": "Self-identified",
+          "owner": "CIO",
+          "due": "Jan 2027",
+          "status": "amber",
+          "label": "Late"
+        }
+      ]
+    }
   }
 };
