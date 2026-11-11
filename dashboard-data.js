@@ -13,8 +13,8 @@ window.DASHBOARD_DATA = {
 
   // Six resilience outcomes, status per quarter: "green" | "amber" | "red"
   outcomes: [
-    { id: "govern",  name: "Govern & Own",                status: ["amber", "green", "green", "green"], note: "Appetite and tolerance for disruption approved by the Board" },
-    { id: "know",    name: "Know What Must Not Break",    status: ["amber", "amber", "amber", "amber"], note: "11 of 14 Critical Operations fully mapped" },
+    { id: "govern",  name: "Govern & Own",                status: ["amber", "green", "green", "green"], note: "Tolerances for disruption approved; provisional appetite thresholds set in October, full appetite to the Board in April 2027" },
+    { id: "know",    name: "Know What Must Not Break",    status: ["amber", "amber", "amber", "amber"], note: "10 of 12 Critical Operations mapped end to end" },
     { id: "protect", name: "Protect & Detect",            status: ["amber", "amber", "green", "amber"], note: "Critical vulnerability backlog above threshold" },
     { id: "respond", name: "Respond & Recover",           status: ["green", "amber", "amber", "red"],   note: "Payments recovery test: 6 h against a 4 h tolerance" },
     { id: "third",   name: "Third Party & Concentration", status: ["amber", "amber", "amber", "amber"], note: "4 of 9 critical providers lack a tested exit plan" },
@@ -24,26 +24,28 @@ window.DASHBOARD_DATA = {
   // One headline per quarter: what the Board must know and decide
   headlines: {
     "Q1 2026": { position: "amber", text: "Testing programme starting; Board resilience training incomplete.", decisions: ["Approve the 2026 testing plan"] },
-    "Q2 2026": { position: "amber", text: "One major incident (internet banking), notified on time.", decisions: ["Approve tolerance for disruption for 14 Critical Operations"] },
+    "Q2 2026": { position: "amber", text: "One major incident (internet banking), notified on time.", decisions: ["Approve tolerance for disruption for 12 Critical Operations"] },
     "Q3 2026": { position: "amber", text: "Control effectiveness improving; vendor exit plans lagging.", decisions: ["Endorse exit-plan testing for Vendor X and Vendor Y"] },
-    "Q4 2026": { position: "amber", text: "One key risk indicator is red: payments missed its tolerance for disruption in testing. The external threat level remains elevated.",
-                 decisions: ["Approve funding for a second payments processing site", "Accept or reject the risk on Vendor X until its exit plan is tested in Q2 2027"] }
+    "Q4 2026": { position: "red", text: "Three Board appetite metrics are red: Critical Operations within tolerance (payments recovered in 6 h against 4 h), the cyber control index, and Critical Operations that depend on one person. The external threat level remains elevated.",
+                 decisions: ["Approve funding for a second payments processing site", "Accept or reject the risk on Vendor X until its exit plan is tested in Q2 2027", "Approve a trained deputy for the engineer behind three Critical Operations"] }
   },
 
-  // Key risk indicators. direction "up" = higher is worse; "down" = lower is worse.
-  // amber / red are thresholds; null means no amber band.
+  // Board risk appetite metrics (Level 1), from the Risk Appetite Statement RB-B2-RAF-01 and workbook RB-B2-TPL-03.
+  // Four thresholds: green up to the appetite, amber up to the tolerance limit, red beyond it, 'beyond capacity' past the capacity point.
+  // direction "up" = higher is worse; "down" = lower is worse. method: how the metric is calculated from the Level 2 KRIs.
+  // level2: Level 2 KRIs under the metric per quarter [green, amber, red]. override: a Level 2 KRI linked to a Critical Operation
+  // red for three months raises a green metric to amber. Quarters are restated against the 2027 thresholds.
   kris: [
-    { id: "major",     name: "Major ICT incidents in the quarter",              unit: "",  values: [0, 1, 0, 1],      amber: 1,   red: 2,   direction: "up",   anchor: "Incident management and notification" },
-    { id: "breach",    name: "Recovery tests that breached tolerance",           unit: "",  values: [0, 0, 0, 1],      amber: null, red: 1,  direction: "up",   anchor: "Board-approved tolerance for disruption" },
-    { id: "single",    name: "Critical Operations reliant on one provider",      unit: "%", values: [33, 34, 36, 36],  amber: 30,  red: 40,  direction: "up",   anchor: "Third-party concentration and substitutability" },
-    { id: "tested",    name: "Critical Operations tested in the last 12 months", unit: "%", values: [64, 70, 74, 78],  amber: 80,  red: 60,  direction: "down", anchor: "Annual BCP and DR testing" },
-    { id: "controls",  name: "Key controls rated effective (second line)",       unit: "%", values: [84, 85, 86, 91],  amber: 90,  red: 80,  direction: "down", anchor: "Internal control system" },
-    { id: "vulns",     name: "High-severity vulnerabilities past deadline",      unit: "",  values: [7, 8, 9, 14],     amber: 10,  red: 20,  direction: "up",   anchor: "ICT and cyber risk controls" },
-    { id: "notify",    name: "Regulator notifications on time (4h, 24h, 72h)",   unit: "%", values: [100, 100, 100, 100], amber: 100, red: 95, direction: "down", anchor: "CBUAE notification deadlines" },
-    { id: "training",  name: "Board members trained on resilience (of 9)",       unit: "",  values: [6, 7, 8, 9],      amber: 9,   red: 7,   direction: "down", anchor: "Board knowledge and oversight" },
-    // Two indicators that show exposure to the external threat landscape
-    { id: "kev",       name: "Actively exploited vulnerabilities open over 7 days", unit: "", values: [3, 2, 4, 5],    amber: 3,   red: 6,   direction: "up",   anchor: "Threat-led vulnerability management" },
-    { id: "contain",   name: "Median hours to contain a critical security alert", unit: "",  values: [10, 8, 7, 6],    amber: 4,   red: 12,  direction: "up",   anchor: "Detection and response speed" }
+    {"id": "RAS-OPR-01", "name": "Net operational risk losses, rolling 12 months", "unit": "AED m", "values": [31.0, 30.5, 29.7, 28.8], "target": 25, "appetite": 35, "tolerance": 70, "capacity": 160, "direction": "up", "method": "Direct", "owner": "CRO", "anchor": "ORM art. 2.5.5, 4.2.1", "level2": [[0, 1, 1], [0, 1, 1], [1, 0, 1], [1, 0, 1]], "override": [null, "KRI-LOS-02", "KRI-LOS-02", "KRI-LOS-02"]},
+    {"id": "RAS-OPR-02", "name": "Critical Operations recovered within tolerance in their last test", "unit": "%", "values": [58.3, 58.3, 66.7, 66.7], "target": 100, "appetite": 100, "tolerance": 90, "capacity": 50, "direction": "down", "method": "Roll-up of units", "owner": "COO", "anchor": "ORM art. 4.2.2, 11.8, 11.10", "level2": [[0, 0, 5], [0, 0, 5], [0, 1, 4], [0, 3, 2]], "override": [null, null, null, null]},
+    {"id": "RAS-OPR-03", "name": "Severe ICT or cyber incidents affecting a Critical Operation, rolling 12 months", "unit": "", "values": [3, 3, 2, 2], "target": 0, "appetite": 1, "tolerance": 2, "capacity": 4, "direction": "up", "method": "Direct", "owner": "CIO", "anchor": "ORM art. 15.2", "level2": [[1, 1, 3], [1, 1, 3], [1, 1, 3], [1, 3, 1]], "override": [null, null, null, null]},
+    {"id": "RAS-OPR-04", "name": "ICT and cyber control effectiveness index", "unit": "index", "values": [52, 55, 60, 64], "target": 85, "appetite": 80, "tolerance": 65, "capacity": 50, "direction": "down", "method": "Composite index", "owner": "CISO", "anchor": "ORM art. 8.2", "level2": [[0, 0, 10], [0, 0, 10], [0, 3, 7], [0, 4, 6]], "override": [null, null, null, null]},
+    {"id": "RAS-OPR-05", "name": "Critical providers without a tested exit plan", "unit": "", "values": [5, 5, 5, 4], "target": 0, "appetite": 2, "tolerance": 4, "capacity": 6, "direction": "up", "method": "Direct", "owner": "COO", "anchor": "ORM art. 13; Outsourcing Reg. 14/2021", "level2": [[1, 2, 2], [1, 2, 2], [1, 2, 2], [1, 3, 1]], "override": [null, null, null, null]},
+    {"id": "RAS-OPR-06", "name": "Significant customer data breaches notified to the CBUAE, rolling 12 months", "unit": "", "values": [0, 0, 0, 0], "target": 0, "appetite": 0, "tolerance": 1, "capacity": 2, "direction": "up", "method": "Direct", "owner": "Chief Compliance Officer", "anchor": "Consumer Protection Reg. art. 6.1", "level2": [[1, 1, 1], [1, 1, 1], [1, 1, 1], [2, 0, 1]], "override": [null, "KRI-DAT-02", "KRI-DAT-02", "KRI-DAT-02"]},
+    {"id": "RAS-OPR-07", "name": "Overdue high-rated audit and regulatory findings on ICT and resilience", "unit": "", "values": [2, 2, 1, 1], "target": 0, "appetite": 0, "tolerance": 3, "capacity": 6, "direction": "up", "method": "Direct", "owner": "CRO", "anchor": "ORM art. 4.3, 4.5", "level2": [[0, 0, 4], [0, 0, 4], [0, 2, 2], [0, 3, 1]], "override": [null, null, null, null]},
+    {"id": "RAS-OPR-08", "name": "Critical Operations that depend on one person without a trained deputy", "unit": "", "values": [9, 8, 6, 4], "target": 0, "appetite": 0, "tolerance": 2, "capacity": 4, "direction": "up", "method": "Direct", "owner": "COO", "anchor": "ORM art. 5.8, 11.4", "level2": [[0, 0, 3], [0, 0, 3], [0, 0, 3], [0, 1, 2]], "override": [null, null, null, null]},
+    {"id": "RAS-OPR-09", "name": "Internal and external fraud losses, rolling 12 months", "unit": "AED m", "values": [5.1, 5.4, 5.7, 5.9], "target": 5, "appetite": 8, "tolerance": 15, "capacity": 30, "direction": "up", "method": "Direct", "owner": "Head of Fraud", "anchor": "ORM art. 2.6", "level2": [[2, 0, 0], [2, 0, 0], [2, 0, 0], [2, 0, 0]], "override": [null, null, null, null]},
+    {"id": "RAS-OPR-10", "name": "Board risk indicators with an owner, a source and a data contract", "unit": "%", "values": [40.0, 53.0, 68.6, 79.6], "target": 100, "appetite": 90, "tolerance": 75, "capacity": 50, "direction": "down", "method": "Roll-up of units", "owner": "CRO", "anchor": "ORM art. 4.7, 10.3", "level2": [[0, 0, 2], [0, 0, 2], [0, 0, 2], [0, 1, 1]], "override": [null, null, null, null]}
   ],
 
   // Critical Operations: tolerance for disruption vs latest tested recovery (hours)
@@ -69,7 +71,7 @@ window.DASHBOARD_DATA = {
   },
 
   thirdParties: [
-    { name: "CloudCo",              supports: "Infrastructure",      criticalOps: 6, slaMet: "3 of 3", exitPlan: "Tested in Q2",          status: "amber" },
+    { name: "CloudCo",              supports: "Infrastructure",      criticalOps: 7, slaMet: "3 of 3", exitPlan: "Tested in Q2",          status: "amber" },
     { name: "Vendor Y",             supports: "Core banking",        criticalOps: 4, slaMet: "3 of 3", exitPlan: "Written, not tested",   status: "amber" },
     { name: "Group IT (intragroup)", supports: "Security monitoring", criticalOps: 3, slaMet: "3 of 3", exitPlan: "No written agreement",  status: "amber" },
     { name: "Vendor X",             supports: "Card processing",     criticalOps: 2, slaMet: "2 of 3", exitPlan: "Written, not tested",   status: "amber" },
@@ -77,7 +79,7 @@ window.DASHBOARD_DATA = {
   ],
 
   testing: [
-    { name: "BCP and DR tests on Critical Operations", done: 11, total: 14 },
+    { name: "BCP and DR tests on Critical Operations", done: 11, total: 12 },
     { name: "Penetration tests on critical systems",   done: 9,  total: 12 },
     { name: "Second-line control testing plan",        done: 78, total: 100 },
     { name: "Severe but plausible scenario exercises", done: 2,  total: 3 }

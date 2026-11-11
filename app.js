@@ -3,9 +3,9 @@
   "use strict";
   var D = window.DASHBOARD_DATA;
   var SVGNS = "http://www.w3.org/2000/svg";
-  var state = { qi: D.meta.quarters.indexOf(D.meta.defaultQuarter), kri: "vulns" };
+  var state = { qi: D.meta.quarters.indexOf(D.meta.defaultQuarter), kri: "RAS-OPR-02" };
   var tip = document.getElementById("tooltip");
-  var LABEL = { green: "Green", amber: "Amber", red: "Red" };
+  var LABEL = { green: "Green", amber: "Amber", red: "Red", capacity: "Beyond capacity" };
 
   // ---------- helpers ----------
   function $(id) { return document.getElementById(id); }
@@ -22,27 +22,36 @@
     return t;
   }
   function icon(status) {
-    var p = { green: "M4 8.5l2.5 2.5L12 5.5", amber: "M8 4.5v4.5M8 11.5v.5", red: "M5 5l6 6M11 5l-6 6" }[status];
+    var p = { green: "M4 8.5l2.5 2.5L12 5.5", amber: "M8 4.5v4.5M8 11.5v.5", red: "M5 5l6 6M11 5l-6 6", capacity: "M5 5l6 6M11 5l-6 6" }[status];
     return '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="' + p + '" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
   }
   function badge(status, label, big) {
-    return '<span class="badge ' + status + (big ? " big" : "") + '">' + icon(status) + esc(label || LABEL[status]) + "</span>";
+    return '<span class="badge ' + (status === "capacity" ? "red" : status) + (big ? " big" : "") + '">' + icon(status) + esc(label || LABEL[status]) + "</span>";
   }
-  function kriStatus(k, v) {
-    if (k.direction === "up") {
-      if (v >= k.red) return "red";
-      if (k.amber !== null && v >= k.amber) return "amber";
-      return "green";
-    }
-    if (v < k.red) return "red";
-    if (k.amber !== null && v < k.amber) return "amber";
-    return "green";
+  // Four zones, as in the Risk Appetite Policy: green up to the appetite, amber up to the tolerance limit,
+  // red beyond it, "beyond capacity" past the capacity point.
+  function ownStatus(k, v) {
+    var up = k.direction === "up";
+    function within(t) { return up ? v <= t : v >= t; }
+    if (within(k.appetite)) return "green";
+    if (within(k.tolerance)) return "amber";
+    if (k.capacity === null || within(k.capacity)) return "red";
+    return "capacity";
   }
-  function fmt(k, v) { return v + (k.unit === "%" ? "%" : ""); }
+  // Reported status: the override rule raises a green metric to amber when a Level 2 KRI has been red for three months.
+  function kriStatus(k, v, qi) {
+    var s = ownStatus(k, v);
+    if (qi !== undefined && s === "green" && k.override && k.override[qi]) return "amber";
+    return s;
+  }
+  function statusLabel(k, qi) {
+    var s = kriStatus(k, k.values[qi], qi);
+    return LABEL[s] + (k.override && k.override[qi] && ownStatus(k, k.values[qi]) === "green" ? " (override)" : "");
+  }
+  function fmt(k, v) { return k.unit === "%" ? v + "%" : k.unit === "AED m" ? "AED " + v + "m" : String(v); }
   function thresholdText(k) {
-    var op = k.direction === "up" ? "at or above " : "below ";
-    var a = k.amber === null ? "n/a" : op + fmt(k, k.amber);
-    return "Amber " + a + " · Red " + op + fmt(k, k.red);
+    var w = k.direction === "up" ? "worse when higher" : "worse when lower";
+    return "Appetite " + fmt(k, k.appetite) + " · tolerance " + fmt(k, k.tolerance) + (k.capacity === null ? "" : " · capacity " + fmt(k, k.capacity)) + " (" + w + ")";
   }
   function trendWord(k, i) {
     if (i === 0) return "First quarter";
@@ -90,12 +99,12 @@
   function renderHeadline() {
     var q = D.meta.quarters[state.qi];
     var h = D.headlines[q];
-    var kris = D.kris.map(function (k) { return kriStatus(k, k.values[state.qi]); });
-    var red = kris.filter(function (s) { return s === "red"; }).length;
+    var kris = D.kris.map(function (k) { return kriStatus(k, k.values[state.qi], state.qi); });
+    var red = kris.filter(function (s) { return s === "red" || s === "capacity"; }).length;
     var amber = kris.filter(function (s) { return s === "amber"; }).length;
     var pos = red > 0 || amber > 0 ? (red > 2 ? "red" : "amber") : "green";
     $("position").innerHTML = badge(pos, LABEL[pos] + " · " + q, true);
-    $("headline-text").textContent = h.text + " Key risk indicators: " + red + " red, " + amber + " amber, " + (kris.length - red - amber) + " green.";
+    $("headline-text").textContent = h.text + " Board appetite metrics: " + red + " red, " + amber + " amber, " + (kris.length - red - amber) + " green.";
     $("decisions").innerHTML = h.decisions.map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("");
   }
 
@@ -110,12 +119,13 @@
   // ---------- KRI table ----------
   function renderKriTable() {
     var t = $("kri-table");
-    var h = "<tr><th>Indicator</th><th>Value</th><th>Thresholds</th><th>Status</th><th>Trend</th></tr>";
+    var h = "<tr><th>Board metric</th><th>Value</th><th>Appetite · tolerance</th><th>Status</th><th>Trend</th><th>Level 2 KRIs (G / A / R)</th></tr>";
     D.kris.forEach(function (k) {
       var v = k.values[state.qi];
-      var s = kriStatus(k, v);
+      var s = kriStatus(k, v, state.qi);
+      var l2 = k.level2[state.qi];
       h += '<tr class="selectable' + (k.id === state.kri ? " selected" : "") + '" tabindex="0" data-id="' + k.id + '">' +
-        "<td>" + esc(k.name) + "</td><td class='num'>" + esc(fmt(k, v)) + "</td><td>" + esc(thresholdText(k)) + "</td><td>" + badge(s) + "</td><td>" + esc(trendWord(k, state.qi)) + "</td></tr>";
+        "<td><span class='kri-id'>" + esc(k.id) + "</span> " + esc(k.name) + "</td><td class='num'>" + esc(fmt(k, v)) + "</td><td>" + esc(fmt(k, k.appetite) + " · " + fmt(k, k.tolerance)) + "</td><td>" + badge(s, statusLabel(k, state.qi)) + "</td><td>" + esc(trendWord(k, state.qi)) + "</td><td class='num'>" + l2[0] + " / " + l2[1] + " / " + l2[2] + "</td></tr>";
     });
     t.innerHTML = h;
     Array.prototype.forEach.call(t.querySelectorAll("tr.selectable"), function (row) {
@@ -129,13 +139,13 @@
   function renderTrend() {
     var k = D.kris.filter(function (x) { return x.id === state.kri; })[0];
     $("trend-name").textContent = k.name;
-    $("trend-sub").textContent = thresholdText(k) + ". UAE anchor: " + k.anchor + ".";
+    $("trend-sub").textContent = thresholdText(k) + ". Calculated: " + k.method.toLowerCase() + ". Owner: " + k.owner + ". Anchor: " + k.anchor + "." + (k.override[state.qi] ? " Override this quarter: " + k.override[state.qi] + " red for three months." : "");
     var W = 600, H = 260, L = 44, R = 96, T = 16, B = 32;
     var box = $("trend-chart");
     box.innerHTML = "";
     var s = svg("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": k.name + " by quarter" }, box);
     var vals = k.values.slice();
-    var refs = [k.red].concat(k.amber === null ? [] : [k.amber]);
+    var refs = [k.appetite, k.tolerance];
     var hi = Math.max.apply(null, vals.concat(refs));
     var lo = Math.min.apply(null, vals.concat(refs));
     var yMin = k.unit === "%" ? Math.max(0, Math.floor((lo - 10) / 10) * 10) : 0;
@@ -154,7 +164,7 @@
       text(s, X(i), H - 10, q.replace(" 2026", ""), { "text-anchor": "middle", class: i === state.qi ? "label-strong" : "" });
     });
     // thresholds (reference lines, labelled in text ink)
-    [["Red", k.red, "var(--critical)"], ["Amber", k.amber, "var(--warning)"]].forEach(function (r) {
+    [["Tolerance", k.tolerance, "var(--critical)"], ["Appetite", k.appetite, "var(--warning)"]].forEach(function (r) {
       if (r[1] === null) return;
       svg("line", { x1: L, x2: W - R, y1: Y(r[1]), y2: Y(r[1]), stroke: r[2], "stroke-width": 1.5, "stroke-dasharray": "5 4" }, s);
       text(s, W - R + 8, Y(r[1]) + 4, r[0] + " " + fmt(k, r[1]), {});
@@ -175,11 +185,10 @@
       var px = (e.clientX - r.left) * (W / r.width);
       var i = Math.max(0, Math.min(vals.length - 1, Math.round((px - L) / ((W - L - R) / (vals.length - 1)))));
       cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("visibility", "visible");
-      var st = kriStatus(k, vals[i]);
-      showTip(e, "<strong>" + esc(D.meta.quarters[i]) + "</strong>" + esc(fmt(k, vals[i])) + " · " + LABEL[st]);
+      showTip(e, "<strong>" + esc(D.meta.quarters[i]) + "</strong>" + esc(fmt(k, vals[i])) + " · " + esc(statusLabel(k, i)));
     });
     hit.addEventListener("mouseleave", function () { cross.setAttribute("visibility", "hidden"); hideTip(); });
-    $("trend-table").innerHTML = simpleTable(["Quarter", "Value", "Status"], vals.map(function (v, i) { return [D.meta.quarters[i], fmt(k, v), LABEL[kriStatus(k, v)]]; }));
+    $("trend-table").innerHTML = simpleTable(["Quarter", "Value", "Status"], vals.map(function (v, i) { return [D.meta.quarters[i], fmt(k, v), statusLabel(k, i)]; }));
   }
 
   // ---------- Critical Operations bullet bars ----------
