@@ -1,25 +1,25 @@
-outcome,quarter,status,note
-Govern & Own,Q1 2026,amber,Appetite and tolerance for disruption approved by the Board
-Govern & Own,Q2 2026,green,Appetite and tolerance for disruption approved by the Board
-Govern & Own,Q3 2026,green,Appetite and tolerance for disruption approved by the Board
-Govern & Own,Q4 2026,green,Appetite and tolerance for disruption approved by the Board
-Know What Must Not Break,Q1 2026,amber,11 of 14 Critical Operations fully mapped
-Know What Must Not Break,Q2 2026,amber,11 of 14 Critical Operations fully mapped
-Know What Must Not Break,Q3 2026,amber,11 of 14 Critical Operations fully mapped
-Know What Must Not Break,Q4 2026,amber,11 of 14 Critical Operations fully mapped
-Protect & Detect,Q1 2026,amber,Critical vulnerability backlog above threshold
-Protect & Detect,Q2 2026,amber,Critical vulnerability backlog above threshold
-Protect & Detect,Q3 2026,green,Critical vulnerability backlog above threshold
-Protect & Detect,Q4 2026,amber,Critical vulnerability backlog above threshold
-Respond & Recover,Q1 2026,green,Payments recovery test: 6 h against a 4 h tolerance
-Respond & Recover,Q2 2026,amber,Payments recovery test: 6 h against a 4 h tolerance
-Respond & Recover,Q3 2026,amber,Payments recovery test: 6 h against a 4 h tolerance
-Respond & Recover,Q4 2026,red,Payments recovery test: 6 h against a 4 h tolerance
-Third Party & Concentration,Q1 2026,amber,4 of 9 critical providers lack a tested exit plan
-Third Party & Concentration,Q2 2026,amber,4 of 9 critical providers lack a tested exit plan
-Third Party & Concentration,Q3 2026,amber,4 of 9 critical providers lack a tested exit plan
-Third Party & Concentration,Q4 2026,amber,4 of 9 critical providers lack a tested exit plan
-Test & Assure,Q1 2026,amber,Testing programme on track
-Test & Assure,Q2 2026,amber,Testing programme on track
-Test & Assure,Q3 2026,green,Testing programme on track
-Test & Assure,Q4 2026,green,Testing programme on track
+outcome,quarter,status,driven_by,note
+Govern & Own,Q1 2026,red,"RAS-OPR-07, RAS-OPR-10",40% of Board indicators traceable to a source and owner (appetite 90%)
+Govern & Own,Q2 2026,red,"RAS-OPR-07, RAS-OPR-10",53% of Board indicators traceable to a source and owner (appetite 90%)
+Govern & Own,Q3 2026,red,"RAS-OPR-07, RAS-OPR-10",68.6% of Board indicators traceable to a source and owner (appetite 90%)
+Govern & Own,Q4 2026,amber,"RAS-OPR-07, RAS-OPR-10",1 overdue high-rated finding on ICT and resilience (appetite 0)
+Know What Must Not Break,Q1 2026,red,"KRI-RES-01, KRI-RES-04",9 of 12 Critical Operations have an approved tolerance
+Know What Must Not Break,Q2 2026,red,"KRI-RES-01, KRI-RES-04",9 of 12 Critical Operations have an approved tolerance
+Know What Must Not Break,Q3 2026,red,"KRI-RES-01, KRI-RES-04",10 of 12 Critical Operations have an approved tolerance
+Know What Must Not Break,Q4 2026,red,"KRI-RES-01, KRI-RES-04",8 of 12 Critical Operations mapped end to end
+Protect & Detect,Q1 2026,red,"RAS-OPR-04, RAS-OPR-06","Cyber control index 52 (appetite 80, tolerance 65)"
+Protect & Detect,Q2 2026,red,"RAS-OPR-04, RAS-OPR-06","Cyber control index 55 (appetite 80, tolerance 65)"
+Protect & Detect,Q3 2026,red,"RAS-OPR-04, RAS-OPR-06","Cyber control index 60 (appetite 80, tolerance 65)"
+Protect & Detect,Q4 2026,red,"RAS-OPR-04, RAS-OPR-06","Cyber control index 64 (appetite 80, tolerance 65)"
+Respond & Recover,Q1 2026,red,"RAS-OPR-02, RAS-OPR-03",7 of 12 Critical Operations recovered within tolerance
+Respond & Recover,Q2 2026,red,"RAS-OPR-02, RAS-OPR-03",7 of 12 Critical Operations recovered within tolerance
+Respond & Recover,Q3 2026,red,"RAS-OPR-02, RAS-OPR-03",8 of 12 Critical Operations recovered within tolerance; payments 6 h against 4 h
+Respond & Recover,Q4 2026,red,"RAS-OPR-02, RAS-OPR-03",8 of 12 Critical Operations recovered within tolerance; payments 6 h against 4 h
+Third Party & Concentration,Q1 2026,red,"RAS-OPR-05, KRI-TPR-01",5 of 9 critical providers lack a tested exit plan (appetite 2)
+Third Party & Concentration,Q2 2026,red,"RAS-OPR-05, KRI-TPR-01",5 of 9 critical providers lack a tested exit plan (appetite 2)
+Third Party & Concentration,Q3 2026,red,"RAS-OPR-05, KRI-TPR-01",5 of 9 critical providers lack a tested exit plan (appetite 2)
+Third Party & Concentration,Q4 2026,amber,"RAS-OPR-05, KRI-TPR-01",4 of 9 critical providers lack a tested exit plan (appetite 2)
+Test & Assure,Q1 2026,red,"KRI-RES-02, KRI-RES-05",7 of 12 Critical Operations tested in the last 12 months
+Test & Assure,Q2 2026,red,"KRI-RES-02, KRI-RES-05",7 of 12 Critical Operations tested in the last 12 months
+Test & Assure,Q3 2026,red,"KRI-RES-02, KRI-RES-05",8 of 12 Critical Operations tested in the last 12 months
+Test & Assure,Q4 2026,red,"KRI-RES-02, KRI-RES-05",10 of 12 Critical Operations tested in the last 12 months

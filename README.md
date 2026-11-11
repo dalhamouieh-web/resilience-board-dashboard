@@ -18,7 +18,7 @@ A sample Board-level dashboard for **operational resilience and ICT risk** at a 
 | Panel | Board question it answers | Regulatory anchor (CBUAE 1/2026) |
 | --- | --- | --- |
 | Overall position and decisions | Where do we stand, and what must we decide? | Board approval of appetite and tolerance |
-| Six resilience outcomes | Is each part of resilience green, amber or red? | Operational risk framework and resilience strategy |
+| Six resilience outcomes | Is each part of resilience green, amber or red? Each status is the worst of the risk appetite metrics behind it | Operational risk framework and resilience strategy |
 | **External view: threats and our exposure** (new) | What is happening outside, and do we have the same weakness? | Internal and external indicators; emerging risks |
 | **External events and regulatory horizon** (new) | Which outside events and rule changes matter for us this quarter? | Relevant external events and regulatory changes |
 | Risk appetite: Board metrics and KRIs, with trend | Are we within appetite, and which way are we moving? | Appetite, tolerance and limits (art. 1.25 to 1.27, 4.2); thresholds and reporting (art. 2.5.5, 7.11) |
@@ -45,7 +45,7 @@ Fictional quarterly data for 2026, provided in two formats:
 | `external_threats.csv` | Top external threats, whether the same weakness exists here, actions and owners |
 | `external_events.csv` | Geopolitical, sector, peer and provider events by quarter, with "so what for us" |
 | `regulatory_horizon.csv` | Rules in force, proposed or planned, and what they require |
-| `outcomes.csv` | Status of the six resilience outcomes by quarter |
+| `outcomes.csv` | Status of the six resilience outcomes by quarter, the metrics that drive each one, and the note shown |
 | `critical_operations.csv` | Tolerance for disruption vs latest tested recovery time |
 | `incidents.csv` | Major and minor incidents and notification timeliness by quarter |
 | `major_incidents.csv` | Major incidents framed by the four Board questions |

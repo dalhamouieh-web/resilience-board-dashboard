@@ -112,7 +112,7 @@
   function renderOutcomes() {
     $("outcomes").innerHTML = D.outcomes.map(function (o, i) {
       var s = o.status[state.qi];
-      return '<div class="outcome ' + s + '"><span class="outcome-num">0' + (i + 1) + '</span><span class="outcome-name">' + esc(o.name) + "</span>" + badge(s) + '<span class="outcome-note">' + esc(o.note) + "</span></div>";
+      return '<div class="outcome ' + s + '"><span class="outcome-num">0' + (i + 1) + '</span><span class="outcome-name">' + esc(o.name) + "</span>" + badge(s) + '<span class="outcome-note">' + esc(Array.isArray(o.note) ? o.note[state.qi] : o.note) + "</span></div>";
     }).join("");
   }
 

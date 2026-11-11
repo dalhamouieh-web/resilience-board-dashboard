@@ -11,14 +11,15 @@ window.DASHBOARD_DATA = {
     defaultQuarter: "Q4 2026"
   },
 
-  // Six resilience outcomes, status per quarter: "green" | "amber" | "red"
+  // Six resilience outcomes, per quarter. Status = the worst reported status of the metrics listed (Level 1 RAS-OPR or Level 2 KRI
+  // from the risk appetite workbook); the note names the metric that drives it. Generated, so status and note always agree.
   outcomes: [
-    { id: "govern",  name: "Govern & Own",                status: ["amber", "green", "green", "green"], note: "Tolerances for disruption approved; provisional appetite thresholds set in October, full appetite to the Board in April 2027" },
-    { id: "know",    name: "Know What Must Not Break",    status: ["amber", "amber", "amber", "amber"], note: "10 of 12 Critical Operations mapped end to end" },
-    { id: "protect", name: "Protect & Detect",            status: ["amber", "amber", "green", "amber"], note: "Critical vulnerability backlog above threshold" },
-    { id: "respond", name: "Respond & Recover",           status: ["green", "amber", "amber", "red"],   note: "Payments recovery test: 6 h against a 4 h tolerance" },
-    { id: "third",   name: "Third Party & Concentration", status: ["amber", "amber", "amber", "amber"], note: "4 of 9 critical providers lack a tested exit plan" },
-    { id: "test",    name: "Test & Assure",               status: ["amber", "amber", "green", "green"], note: "Testing programme on track" }
+    {"id": "govern", "name": "Govern & Own", "metrics": ["RAS-OPR-07", "RAS-OPR-10"], "status": ["red", "red", "red", "amber"], "note": ["40% of Board indicators traceable to a source and owner (appetite 90%)", "53% of Board indicators traceable to a source and owner (appetite 90%)", "68.6% of Board indicators traceable to a source and owner (appetite 90%)", "1 overdue high-rated finding on ICT and resilience (appetite 0)"]},
+    {"id": "know", "name": "Know What Must Not Break", "metrics": ["KRI-RES-01", "KRI-RES-04"], "status": ["red", "red", "red", "red"], "note": ["9 of 12 Critical Operations have an approved tolerance", "9 of 12 Critical Operations have an approved tolerance", "10 of 12 Critical Operations have an approved tolerance", "8 of 12 Critical Operations mapped end to end"]},
+    {"id": "protect", "name": "Protect & Detect", "metrics": ["RAS-OPR-04", "RAS-OPR-06"], "status": ["red", "red", "red", "red"], "note": ["Cyber control index 52 (appetite 80, tolerance 65)", "Cyber control index 55 (appetite 80, tolerance 65)", "Cyber control index 60 (appetite 80, tolerance 65)", "Cyber control index 64 (appetite 80, tolerance 65)"]},
+    {"id": "respond", "name": "Respond & Recover", "metrics": ["RAS-OPR-02", "RAS-OPR-03"], "status": ["red", "red", "red", "red"], "note": ["7 of 12 Critical Operations recovered within tolerance", "7 of 12 Critical Operations recovered within tolerance", "8 of 12 Critical Operations recovered within tolerance; payments 6 h against 4 h", "8 of 12 Critical Operations recovered within tolerance; payments 6 h against 4 h"]},
+    {"id": "third", "name": "Third Party & Concentration", "metrics": ["RAS-OPR-05", "KRI-TPR-01"], "status": ["red", "red", "red", "amber"], "note": ["5 of 9 critical providers lack a tested exit plan (appetite 2)", "5 of 9 critical providers lack a tested exit plan (appetite 2)", "5 of 9 critical providers lack a tested exit plan (appetite 2)", "4 of 9 critical providers lack a tested exit plan (appetite 2)"]},
+    {"id": "test", "name": "Test & Assure", "metrics": ["KRI-RES-02", "KRI-RES-05"], "status": ["red", "red", "red", "red"], "note": ["7 of 12 Critical Operations tested in the last 12 months", "7 of 12 Critical Operations tested in the last 12 months", "8 of 12 Critical Operations tested in the last 12 months", "10 of 12 Critical Operations tested in the last 12 months"]}
   ],
 
   // One headline per quarter: what the Board must know and decide
@@ -79,7 +80,7 @@ window.DASHBOARD_DATA = {
   ],
 
   testing: [
-    { name: "BCP and DR tests on Critical Operations", done: 11, total: 12 },
+    { name: "BCP and DR tests on Critical Operations", done: 10, total: 12 },
     { name: "Penetration tests on critical systems",   done: 9,  total: 12 },
     { name: "Second-line control testing plan",        done: 78, total: 100 },
     { name: "Severe but plausible scenario exercises", done: 2,  total: 3 }
