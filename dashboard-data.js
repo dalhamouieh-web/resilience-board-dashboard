@@ -8,7 +8,9 @@ window.DASHBOARD_DATA = {
     reportTitle: "Operational Resilience & ICT Risk Dashboard",
     framework: "Aligned to the CBUAE Operational Risk Management Regulation (Circular 1/2026)",
     quarters: ["Q1 2026", "Q2 2026", "Q3 2026", "Q4 2026"],
-    defaultQuarter: "Q4 2026"
+    defaultQuarter: "Q4 2026",
+    newsletter: "The Resilience Bridge",
+    siteUrl: ""
   },
 
   // Six resilience outcomes, per quarter. Status = the worst reported status of the metrics listed (Level 1 RAS-OPR or Level 2 KRI
@@ -20,6 +22,1061 @@ window.DASHBOARD_DATA = {
     {"id": "respond", "name": "Respond & Recover", "metrics": ["RAS-OPR-02", "RAS-OPR-03"], "status": ["red", "red", "red", "red"], "note": ["7 of 12 Critical Operations recovered within tolerance", "7 of 12 Critical Operations recovered within tolerance", "8 of 12 Critical Operations recovered within tolerance; payments 6 h against 4 h", "8 of 12 Critical Operations recovered within tolerance; payments 6 h against 4 h"]},
     {"id": "third", "name": "Third Party & Concentration", "metrics": ["RAS-OPR-05", "KRI-TPR-01"], "status": ["red", "red", "red", "amber"], "note": ["5 of 9 critical providers lack a tested exit plan (appetite 2)", "5 of 9 critical providers lack a tested exit plan (appetite 2)", "5 of 9 critical providers lack a tested exit plan (appetite 2)", "4 of 9 critical providers lack a tested exit plan (appetite 2)"]},
     {"id": "test", "name": "Test & Assure", "metrics": ["KRI-RES-02", "KRI-RES-05"], "status": ["red", "red", "red", "red"], "note": ["7 of 12 Critical Operations tested in the last 12 months", "7 of 12 Critical Operations tested in the last 12 months", "8 of 12 Critical Operations tested in the last 12 months", "10 of 12 Critical Operations tested in the last 12 months"]}
+  ],
+
+  // What is behind each outcome: the question it answers, the metrics that set its colour, the newsletter editions that explain it, the deliverables that build it and the rule it meets.
+  behind: {
+    "govern": {
+      "question": "Who owns it?",
+      "rule": "ORM art. 2, 4, 7.8, 7.9",
+      "editions": [
+        {
+          "n": 1,
+          "title": "The Page Nobody Could Fill"
+        },
+        {
+          "n": 2,
+          "title": "Behind the Page: How the Numbers Get There"
+        },
+        {
+          "n": 3,
+          "title": "Who Owns the Risk When Everyone Owns It?"
+        },
+        {
+          "n": 6,
+          "title": "Who Reports to Whom?"
+        },
+        {
+          "n": 7,
+          "title": "The House of Documents"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "RB-B2-RAF-01",
+          "name": "Risk Appetite Statement 2027",
+          "module": "raf"
+        },
+        {
+          "id": "RB-B2-TPL-03",
+          "name": "Risk appetite metrics workbook",
+          "module": "raf"
+        },
+        {
+          "id": "RB-B4-GDE-05",
+          "name": "Operating model playbook",
+          "module": "om"
+        }
+      ],
+      "measures": [
+        {
+          "id": "RAS-OPR-07",
+          "name": "Overdue high-rated audit and regulatory findings on ICT and resilience",
+          "unit": "count",
+          "owner": "CRO",
+          "appetite": 0,
+          "tolerance": 3,
+          "values": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "status": [
+            "amber",
+            "amber",
+            "amber",
+            "amber"
+          ]
+        },
+        {
+          "id": "RAS-OPR-10",
+          "name": "Board risk indicators with an owner, a source and a data contract",
+          "unit": "%",
+          "owner": "CRO",
+          "appetite": 90,
+          "tolerance": 75,
+          "values": [
+            40.0,
+            53.0,
+            68.6,
+            79.6
+          ],
+          "status": [
+            "red",
+            "red",
+            "red",
+            "amber"
+          ]
+        }
+      ]
+    },
+    "know": {
+      "question": "What must never break, and what does it depend on?",
+      "rule": "ORM art. 3.4, 3.5, 4.2.2",
+      "editions": [
+        {
+          "n": 4,
+          "title": "Follow the Money: What Bank Horizon Actually Sells"
+        },
+        {
+          "n": 5,
+          "title": "The Map Nobody Had"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "RB-B3-PRO-02",
+          "name": "Identifying and mapping Critical Operations",
+          "module": "cops"
+        },
+        {
+          "id": "RB-B3-TPL-04",
+          "name": "Critical Operations register and maps",
+          "module": "cops"
+        },
+        {
+          "id": "RB-B3-RPT-01",
+          "name": "Critical Operations 2026: Bank Horizon",
+          "module": "cops"
+        }
+      ],
+      "measures": [
+        {
+          "id": "KRI-RES-01",
+          "name": "Critical Operations with a Board-approved tolerance for disruption",
+          "unit": "%",
+          "owner": "COO",
+          "appetite": 100,
+          "tolerance": 90,
+          "values": [
+            75.0,
+            75.0,
+            83.3,
+            91.7
+          ],
+          "status": [
+            "red",
+            "red",
+            "red",
+            "amber"
+          ]
+        },
+        {
+          "id": "KRI-RES-04",
+          "name": "Critical Operations with a dependency map reviewed in the last 12 months",
+          "unit": "%",
+          "owner": "COO",
+          "appetite": 100,
+          "tolerance": 90,
+          "values": [
+            25.0,
+            25.0,
+            41.7,
+            66.7
+          ],
+          "status": [
+            "red",
+            "red",
+            "red",
+            "red"
+          ]
+        }
+      ]
+    },
+    "protect": {
+      "question": "How do we protect it and spot trouble early?",
+      "rule": "ORM art. 8",
+      "editions": [
+        {
+          "n": 2,
+          "title": "Behind the Page: How the Numbers Get There"
+        },
+        {
+          "n": 3,
+          "title": "Who Owns the Risk When Everyone Owns It?"
+        },
+        {
+          "n": 8,
+          "title": "Fifty Controls That Matter"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "RB-B2-TPL-03",
+          "name": "Risk appetite metrics workbook",
+          "module": "raf"
+        },
+        {
+          "id": "RB-B4-TPL-05",
+          "name": "Operating model workbook",
+          "module": "om"
+        }
+      ],
+      "measures": [
+        {
+          "id": "RAS-OPR-04",
+          "name": "ICT and cyber control effectiveness index",
+          "unit": "index",
+          "owner": "CISO",
+          "appetite": 80,
+          "tolerance": 65,
+          "values": [
+            52,
+            55,
+            60,
+            64
+          ],
+          "status": [
+            "red",
+            "red",
+            "red",
+            "red"
+          ]
+        },
+        {
+          "id": "RAS-OPR-06",
+          "name": "Significant customer data breaches notified to the CBUAE, rolling 12 months",
+          "unit": "count",
+          "owner": "Chief Compliance Officer",
+          "appetite": 0,
+          "tolerance": 1,
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": [
+            "green",
+            "amber",
+            "amber",
+            "amber"
+          ]
+        }
+      ]
+    },
+    "respond": {
+      "question": "How do we respond and recover?",
+      "rule": "ORM art. 11, 15",
+      "editions": [
+        {
+          "n": 1,
+          "title": "The Page Nobody Could Fill"
+        },
+        {
+          "n": 4,
+          "title": "Follow the Money: What Bank Horizon Actually Sells"
+        },
+        {
+          "n": 5,
+          "title": "The Map Nobody Had"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "RB-B3-RPT-01",
+          "name": "Critical Operations 2026: Bank Horizon",
+          "module": "cops"
+        },
+        {
+          "id": "RB-B3-TPL-04",
+          "name": "Critical Operations register and maps",
+          "module": "cops"
+        }
+      ],
+      "measures": [
+        {
+          "id": "RAS-OPR-02",
+          "name": "Critical Operations recovered within tolerance in their last test",
+          "unit": "%",
+          "owner": "COO",
+          "appetite": 100,
+          "tolerance": 90,
+          "values": [
+            58.3,
+            58.3,
+            66.7,
+            66.7
+          ],
+          "status": [
+            "red",
+            "red",
+            "red",
+            "red"
+          ]
+        },
+        {
+          "id": "RAS-OPR-03",
+          "name": "Severe ICT or cyber incidents affecting a Critical Operation, rolling 12 months",
+          "unit": "count",
+          "owner": "CIO",
+          "appetite": 1,
+          "tolerance": 2,
+          "values": [
+            3,
+            3,
+            2,
+            2
+          ],
+          "status": [
+            "red",
+            "red",
+            "amber",
+            "amber"
+          ]
+        }
+      ]
+    },
+    "third": {
+      "question": "Who do we depend on?",
+      "rule": "ORM art. 13; Outsourcing Standards for Banks",
+      "editions": [
+        {
+          "n": 3,
+          "title": "Who Owns the Risk When Everyone Owns It?"
+        },
+        {
+          "n": 5,
+          "title": "The Map Nobody Had"
+        },
+        {
+          "n": 6,
+          "title": "Who Reports to Whom?"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "RB-B4-GDE-05",
+          "name": "Operating model playbook",
+          "module": "om"
+        },
+        {
+          "id": "RB-B4-TPL-05",
+          "name": "Operating model workbook",
+          "module": "om"
+        },
+        {
+          "id": "RB-B3-TPL-04",
+          "name": "Critical Operations register and maps",
+          "module": "cops"
+        }
+      ],
+      "measures": [
+        {
+          "id": "RAS-OPR-05",
+          "name": "Critical providers without a tested exit plan",
+          "unit": "count",
+          "owner": "COO",
+          "appetite": 2,
+          "tolerance": 4,
+          "values": [
+            5,
+            5,
+            5,
+            4
+          ],
+          "status": [
+            "red",
+            "red",
+            "red",
+            "amber"
+          ]
+        },
+        {
+          "id": "KRI-TPR-01",
+          "name": "Critical Operations relying on a single provider",
+          "unit": "%",
+          "owner": "COO",
+          "appetite": 25,
+          "tolerance": 35,
+          "values": [
+            33.3,
+            33.3,
+            33.3,
+            33.3
+          ],
+          "status": [
+            "amber",
+            "amber",
+            "amber",
+            "amber"
+          ]
+        }
+      ]
+    },
+    "test": {
+      "question": "How do we prove it works?",
+      "rule": "ORM art. 6.2, 7.9, 11.3, 11.10",
+      "editions": [
+        {
+          "n": 6,
+          "title": "Who Reports to Whom?"
+        },
+        {
+          "n": 8,
+          "title": "Fifty Controls That Matter"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "RB-B4-GDE-05",
+          "name": "Operating model playbook",
+          "module": "om"
+        },
+        {
+          "id": "RB-B3-RPT-01",
+          "name": "Critical Operations 2026: Bank Horizon",
+          "module": "cops"
+        }
+      ],
+      "measures": [
+        {
+          "id": "KRI-RES-02",
+          "name": "Critical Operations tested in the last 12 months",
+          "unit": "%",
+          "owner": "COO",
+          "appetite": 100,
+          "tolerance": 90,
+          "values": [
+            58.3,
+            58.3,
+            66.7,
+            83.3
+          ],
+          "status": [
+            "red",
+            "red",
+            "red",
+            "red"
+          ]
+        },
+        {
+          "id": "KRI-RES-05",
+          "name": "Successful restore tests for tier-1 systems in the quarter",
+          "unit": "%",
+          "owner": "CIO",
+          "appetite": 98,
+          "tolerance": 95,
+          "values": [
+            93.9,
+            93.9,
+            95.0,
+            96.0
+          ],
+          "status": [
+            "red",
+            "red",
+            "amber",
+            "amber"
+          ]
+        }
+      ]
+    }
+  },
+
+  // Key control library (30 controls, five per outcome; starter set from Edition 8). Result per quarter from first- and second-line testing. A red outcome always has at least one ineffective control behind it.
+  controls: [
+    {
+      "id": "GV-01",
+      "outcome": "govern",
+      "name": "The Board approves the risk appetite and the tolerance for disruption of every Critical Operation, at least yearly",
+      "type": "Preventive",
+      "owner": "CRO",
+      "frequency": "Yearly",
+      "evidence": "Board minutes; approved statement",
+      "feeds": "KRI-RES-01",
+      "rule": "ORM 4.2.2",
+      "edition": 1,
+      "deliverable": "RB-B2-RAF-01",
+      "result": [
+        "Partially effective",
+        "Partially effective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "11 of 12 tolerances approved; the wallet's is proposed"
+    },
+    {
+      "id": "GV-02",
+      "outcome": "govern",
+      "name": "Every process in the process universe has a named process owner and risk owner",
+      "type": "Preventive",
+      "owner": "COO",
+      "frequency": "Quarterly",
+      "evidence": "Process register",
+      "feeds": "RAS-OPR-10",
+      "rule": "ORM 7.8",
+      "edition": 3,
+      "deliverable": "RB-B4-TPL-05",
+      "result": [
+        "Ineffective",
+        "Partially effective",
+        "Partially effective",
+        "Effective"
+      ],
+      "note": "Owners named for all processes since Q4"
+    },
+    {
+      "id": "GV-03",
+      "outcome": "govern",
+      "name": "Every Board indicator has an owner, a source and a data contract",
+      "type": "Preventive",
+      "owner": "CRO",
+      "frequency": "Monthly",
+      "evidence": "KRI cards; signed data contracts",
+      "feeds": "RAS-OPR-10",
+      "rule": "ORM 7.11; BCBS 239",
+      "edition": 2,
+      "deliverable": "RB-B2-TPL-03",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Ineffective",
+        "Partially effective"
+      ],
+      "note": "79.6% covered against an appetite of 90%"
+    },
+    {
+      "id": "GV-04",
+      "outcome": "govern",
+      "name": "Overdue audit and regulatory findings on ICT and resilience are escalated monthly to the Operational Risk Committee",
+      "type": "Detective",
+      "owner": "CRO",
+      "frequency": "Monthly",
+      "evidence": "ORC minutes; findings tracker",
+      "feeds": "RAS-OPR-07",
+      "rule": "ORM 7.11.7",
+      "edition": 3,
+      "deliverable": "RB-B2-PRO-01",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "1 finding still overdue"
+    },
+    {
+      "id": "GV-05",
+      "outcome": "govern",
+      "name": "Each security capability has one accountable owner and, if federated or delegated, a signed mandate",
+      "type": "Preventive",
+      "owner": "CISO",
+      "frequency": "Yearly",
+      "evidence": "Capability map; mandates",
+      "feeds": "RAS-OPR-08",
+      "rule": "ORM 7.9",
+      "edition": 6,
+      "deliverable": "RB-B4-GDE-05",
+      "result": [
+        "Not yet tested",
+        "Not yet tested",
+        "Not yet tested",
+        "Partially effective"
+      ],
+      "note": "Map agreed; two mandates still unsigned"
+    },
+    {
+      "id": "ID-01",
+      "outcome": "know",
+      "name": "Critical Operations are identified with the four harm tests and the list is reviewed yearly",
+      "type": "Preventive",
+      "owner": "CRO",
+      "frequency": "Yearly",
+      "evidence": "Long list with scores; Board approval",
+      "feeds": "KRI-RES-01",
+      "rule": "ORM 3.4, 3.5",
+      "edition": 4,
+      "deliverable": "RB-B3-PRO-02",
+      "result": [
+        "Partially effective",
+        "Partially effective",
+        "Effective",
+        "Effective"
+      ],
+      "note": "List rebuilt and approved in Q3"
+    },
+    {
+      "id": "ID-02",
+      "outcome": "know",
+      "name": "Asset inventories are reconciled monthly against the scanner, cloud console and vendor inventories",
+      "type": "Detective",
+      "owner": "CIO",
+      "frequency": "Monthly",
+      "evidence": "Reconciliation report",
+      "feeds": "KRI-CYB-05",
+      "rule": "ORM 3.4",
+      "edition": 5,
+      "deliverable": "RB-B3-TPL-04",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "Monthly since Q3; vendor inventories still partial"
+    },
+    {
+      "id": "ID-03",
+      "outcome": "know",
+      "name": "Each Critical Operation is mapped end to end and its map is reviewed within 12 months",
+      "type": "Preventive",
+      "owner": "Continuity office",
+      "frequency": "Yearly",
+      "evidence": "Maps signed by owner and second line",
+      "feeds": "KRI-RES-04",
+      "rule": "ORM 3.4",
+      "edition": 5,
+      "deliverable": "RB-B3-TPL-04",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Ineffective",
+        "Ineffective"
+      ],
+      "note": "8 of 12 mapped; trade finance, screening, government payments and wallet still open"
+    },
+    {
+      "id": "ID-04",
+      "outcome": "know",
+      "name": "Critical Information Assets have a data owner and a classification",
+      "type": "Preventive",
+      "owner": "Chief Data Officer",
+      "frequency": "Quarterly",
+      "evidence": "Data catalogue",
+      "feeds": "KRI-DAT-02",
+      "rule": "ORM 1.9, 8.9",
+      "edition": 5,
+      "deliverable": "RB-B3-TPL-04",
+      "result": [
+        "Partially effective",
+        "Partially effective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "Trade documents on the shared drive still unclassified"
+    },
+    {
+      "id": "ID-05",
+      "outcome": "know",
+      "name": "Changes to systems behind a Critical Operation are assessed against its map and tolerance before go-live",
+      "type": "Preventive",
+      "owner": "Head of Change",
+      "frequency": "Per change",
+      "evidence": "Change records with impact assessment",
+      "feeds": "KRI-RES-04",
+      "rule": "ORM 3.4, 12.3",
+      "edition": 5,
+      "deliverable": "RB-B3-PRO-02",
+      "result": [
+        "Not yet tested",
+        "Not yet tested",
+        "Ineffective",
+        "Ineffective"
+      ],
+      "note": "The wallet went live without a map or a recovery test"
+    },
+    {
+      "id": "PR-04",
+      "outcome": "protect",
+      "name": "Access to systems supporting Critical Operations is reviewed every quarter",
+      "type": "Detective",
+      "owner": "Application owners",
+      "frequency": "Quarterly",
+      "evidence": "Signed review; removals",
+      "feeds": "KRI-CYB-03",
+      "rule": "ORM 8.1; ISO 27001 A.5.18",
+      "edition": 3,
+      "deliverable": "RB-B4-TPL-05",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Partially effective",
+        "Effective"
+      ],
+      "note": "Reviews restarted after audit; all done in Q4"
+    },
+    {
+      "id": "PR-05",
+      "outcome": "protect",
+      "name": "Privileged and remote access to tier-1 systems requires multi-factor authentication",
+      "type": "Preventive",
+      "owner": "CISO",
+      "frequency": "Continuous",
+      "evidence": "Access configuration report",
+      "feeds": "KRI-CYB-09",
+      "rule": "ORM 8.1",
+      "edition": 8,
+      "deliverable": "RB-B4-TPL-05",
+      "result": [
+        "Partially effective",
+        "Partially effective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "Two legacy platforms still without MFA for administrators"
+    },
+    {
+      "id": "PR-07",
+      "outcome": "protect",
+      "name": "Critical vulnerabilities on tier-1 systems are fixed within the deadline, or an exception is approved",
+      "type": "Corrective",
+      "owner": "CIO",
+      "frequency": "Monthly",
+      "evidence": "Scanner export under data contract; exception register",
+      "feeds": "KRI-CYB-01",
+      "rule": "ORM 8.1",
+      "edition": 2,
+      "deliverable": "RB-B2-TPL-03",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Ineffective",
+        "Partially effective"
+      ],
+      "note": "Within deadline for 84%; target 95%"
+    },
+    {
+      "id": "PR-09",
+      "outcome": "protect",
+      "name": "Tier-1 systems sit in segmented network zones",
+      "type": "Preventive",
+      "owner": "CIO (delegated to infrastructure)",
+      "frequency": "Quarterly",
+      "evidence": "Network zone report",
+      "feeds": "KRI-CYB-10",
+      "rule": "ORM 8.1",
+      "edition": 8,
+      "deliverable": "RB-B4-GDE-05",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Ineffective",
+        "Ineffective"
+      ],
+      "note": "Payment hub and trade platform share a flat zone"
+    },
+    {
+      "id": "DE-01",
+      "outcome": "protect",
+      "name": "Tier-1 systems send security logs to the SOC, and gaps are alerted within 24 hours",
+      "type": "Detective",
+      "owner": "CISO (SecureOps)",
+      "frequency": "Daily",
+      "evidence": "SOC coverage report; provider scorecard",
+      "feeds": "KRI-CYB-06",
+      "rule": "ORM 8.1; EBA GL para 9",
+      "edition": 8,
+      "deliverable": "RB-B4-TPL-05",
+      "result": [
+        "Partially effective",
+        "Partially effective",
+        "Partially effective",
+        "Ineffective"
+      ],
+      "note": "Two tier-1 systems stopped sending logs for three weeks"
+    },
+    {
+      "id": "RS-01",
+      "outcome": "respond",
+      "name": "Incidents affecting Critical Operations are classified and notified to the CBUAE within the required times",
+      "type": "Corrective",
+      "owner": "CISO with Compliance",
+      "frequency": "Per incident",
+      "evidence": "Incident log; notifications",
+      "feeds": "RAS-OPR-03",
+      "rule": "ORM 15",
+      "edition": 1,
+      "deliverable": "RB-B2-PRO-01",
+      "result": [
+        "Effective",
+        "Effective",
+        "Effective",
+        "Effective"
+      ],
+      "note": "All notifications on time in 2026"
+    },
+    {
+      "id": "RC-02",
+      "outcome": "respond",
+      "name": "Recovery of each Critical Operation is tested against its tolerance, and every gap gets a funded plan",
+      "type": "Detective",
+      "owner": "Continuity office",
+      "frequency": "Yearly",
+      "evidence": "Test reports; remediation plan",
+      "feeds": "RAS-OPR-02",
+      "rule": "ORM 11.8, 11.10",
+      "edition": 4,
+      "deliverable": "RB-B3-RPT-01",
+      "result": [
+        "Partially effective",
+        "Partially effective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "Payments 6 h against 4 h; trade finance 5 days against 24 h"
+    },
+    {
+      "id": "RC-03",
+      "outcome": "respond",
+      "name": "Full restores of tier-1 systems are tested every quarter",
+      "type": "Detective",
+      "owner": "CIO",
+      "frequency": "Quarterly",
+      "evidence": "Restore test log",
+      "feeds": "KRI-RES-05",
+      "rule": "ORM 11.8",
+      "edition": 5,
+      "deliverable": "RB-B3-TPL-04",
+      "result": [
+        "Ineffective",
+        "Partially effective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "96% successful; trade documents not in the backup"
+    },
+    {
+      "id": "RC-04",
+      "outcome": "respond",
+      "name": "Every single point of failure behind a Critical Operation has a funded fix",
+      "type": "Corrective",
+      "owner": "CIO",
+      "frequency": "Quarterly",
+      "evidence": "Weak-point log",
+      "feeds": "KRI-RES-03",
+      "rule": "ORM 3.2",
+      "edition": 5,
+      "deliverable": "RB-B3-RPT-01",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Ineffective",
+        "Ineffective"
+      ],
+      "note": "Second payment hub region still unfunded"
+    },
+    {
+      "id": "RC-05",
+      "outcome": "respond",
+      "name": "No Critical Operation's recovery depends on one person: named deputy, runbook, tested without them",
+      "type": "Preventive",
+      "owner": "CIO",
+      "frequency": "Yearly",
+      "evidence": "Deputy list; test without the key person",
+      "feeds": "RAS-OPR-08",
+      "rule": "ORM 3.2",
+      "edition": 5,
+      "deliverable": "RB-B4-GDE-05",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Ineffective",
+        "Ineffective"
+      ],
+      "note": "4 Critical Operations still depend on one person"
+    },
+    {
+      "id": "TP-01",
+      "outcome": "third",
+      "name": "No outsourcing affecting a Critical Operation is signed without risk assessment, due diligence and, where needed, Central Bank non-objection",
+      "type": "Preventive",
+      "owner": "Vendor management office",
+      "frequency": "Per contract",
+      "evidence": "Assessment file; non-objection",
+      "feeds": "RAS-OPR-05",
+      "rule": "Outsourcing Standards 2.2, 8; ORM 13.3, 13.5",
+      "edition": 3,
+      "deliverable": "RB-B4-TPL-05",
+      "result": [
+        "Effective",
+        "Effective",
+        "Effective",
+        "Effective"
+      ],
+      "note": "No exceptions in 2026"
+    },
+    {
+      "id": "TP-02",
+      "outcome": "third",
+      "name": "Every outsourced service has a named service owner who reviews it monthly on evidence",
+      "type": "Detective",
+      "owner": "Service owners",
+      "frequency": "Monthly",
+      "evidence": "Review minutes; provider scorecards",
+      "feeds": "KRI-TPR-05",
+      "rule": "ORM 13.9",
+      "edition": 3,
+      "deliverable": "RB-B4-GDE-05",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "Owners named; TradeSoft has no scorecard yet"
+    },
+    {
+      "id": "TP-03",
+      "outcome": "third",
+      "name": "Every critical provider has a documented and tested exit plan",
+      "type": "Corrective",
+      "owner": "COO",
+      "frequency": "Yearly",
+      "evidence": "Exit plans; exit test reports",
+      "feeds": "RAS-OPR-05",
+      "rule": "Outsourcing Standards 2.1(3); ORM 13",
+      "edition": 5,
+      "deliverable": "RB-B4-TPL-05",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Ineffective",
+        "Partially effective"
+      ],
+      "note": "4 critical providers without a tested exit; bureau tested in November"
+    },
+    {
+      "id": "TP-04",
+      "outcome": "third",
+      "name": "Concentration on providers is monitored against the limit in the appetite",
+      "type": "Detective",
+      "owner": "COO",
+      "frequency": "Quarterly",
+      "evidence": "Resource matrix; register",
+      "feeds": "KRI-TPR-01",
+      "rule": "Outsourcing Standards 2.1(4)",
+      "edition": 5,
+      "deliverable": "RB-B3-TPL-04",
+      "result": [
+        "Partially effective",
+        "Partially effective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "4 Critical Operations rely on a single provider"
+    },
+    {
+      "id": "TP-05",
+      "outcome": "third",
+      "name": "Security findings at critical providers are tracked to closure",
+      "type": "Corrective",
+      "owner": "CISO",
+      "frequency": "Monthly",
+      "evidence": "Provider findings tracker",
+      "feeds": "KRI-TPR-05",
+      "rule": "ORM 13.9; EBA GL para 9",
+      "edition": 8,
+      "deliverable": "RB-B4-TPL-05",
+      "result": [
+        "Partially effective",
+        "Partially effective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "Vendor X findings past deadline"
+    },
+    {
+      "id": "TA-01",
+      "outcome": "test",
+      "name": "The second line tests key controls on a risk-based plan and reports results to the risk committee",
+      "type": "Detective",
+      "owner": "Head of ICT and cyber risk",
+      "frequency": "Quarterly",
+      "evidence": "Test plan; results",
+      "feeds": "RAS-OPR-04",
+      "rule": "ORM 6.2",
+      "edition": 8,
+      "deliverable": "RB-B4-GDE-05",
+      "result": [
+        "Not yet tested",
+        "Not yet tested",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "Plan covers 60% of key controls"
+    },
+    {
+      "id": "TA-02",
+      "outcome": "test",
+      "name": "Internal audit covers ICT, cyber and third-party risk, including outsourced activities",
+      "type": "Detective",
+      "owner": "Chief Internal Auditor",
+      "frequency": "Yearly",
+      "evidence": "Audit plan and reports",
+      "feeds": "RAS-OPR-07",
+      "rule": "ORM 7.9.3; Outsourcing Standards 7",
+      "edition": 6,
+      "deliverable": "RB-B4-GDE-05",
+      "result": [
+        "Effective",
+        "Effective",
+        "Effective",
+        "Effective"
+      ],
+      "note": "2026 plan delivered"
+    },
+    {
+      "id": "TA-03",
+      "outcome": "test",
+      "name": "The first line tests its own key ICT and security controls before the second line does",
+      "type": "Detective",
+      "owner": "CISO (SGRC office)",
+      "frequency": "Quarterly",
+      "evidence": "First-line test results",
+      "feeds": "RAS-OPR-04",
+      "rule": "ORM 7.9.1",
+      "edition": 8,
+      "deliverable": "RB-B4-GDE-05",
+      "result": [
+        "Not yet tested",
+        "Not yet tested",
+        "Not yet tested",
+        "Partially effective"
+      ],
+      "note": "SGRC office started in Q4"
+    },
+    {
+      "id": "TA-04",
+      "outcome": "test",
+      "name": "Every Critical Operation's recovery is tested at least once in 12 months",
+      "type": "Detective",
+      "owner": "Continuity office",
+      "frequency": "Yearly",
+      "evidence": "Test calendar; reports",
+      "feeds": "KRI-RES-02",
+      "rule": "ORM 11.10",
+      "edition": 4,
+      "deliverable": "RB-B3-RPT-01",
+      "result": [
+        "Ineffective",
+        "Ineffective",
+        "Ineffective",
+        "Ineffective"
+      ],
+      "note": "10 of 12 tested; wallet never tested"
+    },
+    {
+      "id": "TA-05",
+      "outcome": "test",
+      "name": "The second and third lines review continuity and recovery plans at least yearly",
+      "type": "Detective",
+      "owner": "CRO and internal audit",
+      "frequency": "Yearly",
+      "evidence": "Review reports",
+      "feeds": "KRI-RES-05",
+      "rule": "ORM 11.3",
+      "edition": 6,
+      "deliverable": "RB-B4-GDE-05",
+      "result": [
+        "Partially effective",
+        "Partially effective",
+        "Partially effective",
+        "Partially effective"
+      ],
+      "note": "Plans for 3 Critical Operations not yet reviewed"
+    }
   ],
 
   // One headline per quarter: what the Board must know and decide

@@ -46,12 +46,17 @@ Fictional quarterly data for 2026, provided in two formats:
 | `external_events.csv` | Geopolitical, sector, peer and provider events by quarter, with "so what for us" |
 | `regulatory_horizon.csv` | Rules in force, proposed or planned, and what they require |
 | `outcomes.csv` | Status of the six resilience outcomes by quarter, the metrics that drive each one, and the note shown |
+| `controls.csv` | The 30 key controls behind the six outcomes: owner, frequency, evidence, the KRI each feeds, the rule it meets, the newsletter edition and deliverable that explain it, and the test result by quarter |
 | `critical_operations.csv` | Tolerance for disruption vs latest tested recovery time |
 | `incidents.csv` | Major and minor incidents and notification timeliness by quarter |
 | `major_incidents.csv` | Major incidents framed by the four Board questions |
 | `third_parties.csv` | Critical providers, concentration, SLAs and exit plans |
 | `testing.csv` | Testing programme progress |
 | `remediation.csv` | Late and at-risk remediation actions |
+
+## What is behind each outcome
+
+Select any of the six outcome cards to open what is behind it: the question it answers, the metrics that set its colour and why, the five key controls that drive those metrics (owner, frequency, evidence, test result), the newsletter editions that explain it, the deliverables that build it, and the rule it meets. A red outcome always has at least one ineffective control behind it, so the colour can be traced from the Board page down to evidence.
 
 ## Key insights (sample data, Q4 2026)
 
