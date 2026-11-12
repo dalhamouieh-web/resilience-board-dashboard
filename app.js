@@ -3,7 +3,7 @@
   "use strict";
   var D = window.DASHBOARD_DATA;
   var SVGNS = "http://www.w3.org/2000/svg";
-  var state = { qi: D.meta.quarters.indexOf(D.meta.defaultQuarter), kri: "RAS-OPR-02" };
+  var state = { qi: D.meta.quarters.indexOf(D.meta.defaultQuarter), kri: "RAS-OPR-02", outcome: null };
   var tip = document.getElementById("tooltip");
   var LABEL = { green: "Green", amber: "Amber", red: "Red", capacity: "Beyond capacity" };
 
@@ -109,11 +109,51 @@
   }
 
   // ---------- outcomes ----------
+  var RES = { "Effective": "green", "Partially effective": "amber", "Ineffective": "red", "Not yet tested": "grey" };
+  function resultPill(r) { return '<span class="pill ' + RES[r] + '">' + esc(r) + "</span>"; }
   function renderOutcomes() {
     $("outcomes").innerHTML = D.outcomes.map(function (o, i) {
-      var s = o.status[state.qi];
-      return '<div class="outcome ' + s + '"><span class="outcome-num">0' + (i + 1) + '</span><span class="outcome-name">' + esc(o.name) + "</span>" + badge(s) + '<span class="outcome-note">' + esc(Array.isArray(o.note) ? o.note[state.qi] : o.note) + "</span></div>";
+      var s = o.status[state.qi], sel = state.outcome === o.id;
+      return '<button type="button" class="outcome ' + s + (sel ? " selected" : "") + '" data-id="' + o.id + '" aria-expanded="' + sel + '" aria-controls="behind"><span class="outcome-num">0' + (i + 1) + '</span><span class="outcome-name">' + esc(o.name) + "</span>" + badge(s) + '<span class="outcome-note">' + esc(Array.isArray(o.note) ? o.note[state.qi] : o.note) + '</span><span class="outcome-more">' + (sel ? "Hide what is behind it" : "What is behind it") + "</span></button>";
     }).join("");
+    Array.prototype.forEach.call($("outcomes").querySelectorAll(".outcome"), function (b) {
+      b.addEventListener("click", function () { var id = b.getAttribute("data-id"); state.outcome = state.outcome === id ? null : id; renderOutcomes(); renderBehind(); if (state.outcome) $("behind").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+    });
+    var tally = { "Effective": 0, "Partially effective": 0, "Ineffective": 0, "Not yet tested": 0 };
+    D.controls.forEach(function (c) { tally[c.result[state.qi]]++; });
+    $("controls-tally").innerHTML = D.controls.length + " key controls sit behind these outcomes. This quarter: " + tally["Effective"] + " effective, " + tally["Partially effective"] + " partially effective, " + tally["Ineffective"] + " ineffective, " + tally["Not yet tested"] + " not yet tested. Select an outcome to see what is behind it.";
+  }
+  function measureValue(m, v) { return m.unit === "%" ? (Math.round(v * 10) / 10) + "%" : String(v); }
+  function link(label, href) { return D.meta.siteUrl ? '<a href="' + esc(D.meta.siteUrl + href) + '" target="_blank" rel="noopener">' + esc(label) + "</a>" : esc(label); }
+  function renderBehind() {
+    var el = $("behind");
+    if (!state.outcome) { el.hidden = true; el.innerHTML = ""; return; }
+    var o = D.outcomes.filter(function (x) { return x.id === state.outcome; })[0];
+    var b = D.behind[o.id], q = state.qi, s = o.status[q];
+    var ms = b.measures.map(function (m) {
+      var board = D.kris.filter(function (k) { return k.id === m.id; })[0];
+      var st = board ? kriStatus(board, board.values[q], q) : m.status[q];
+      var val = board ? fmt(board, board.values[q]) : measureValue(m, m.values[q]);
+      return { id: m.id, name: m.name, owner: board ? board.owner : m.owner, val: val, thr: board ? fmt(board, board.appetite) + " · " + fmt(board, board.tolerance) : measureValue(m, m.appetite) + " · " + measureValue(m, m.tolerance), st: st, level: board ? "Board metric" : "Level 2 KRI" };
+    });
+    var worst = ms.filter(function (m) { return m.st === s || (s === "red" && m.st === "capacity"); }).map(function (m) { return m.id; });
+    var ctl = D.controls.filter(function (c) { return c.outcome === o.id; });
+    var n = function (r) { return ctl.filter(function (c) { return c.result[q] === r; }).length; };
+    var h = '<div class="behind-head"><div><span class="outcome-num">' + esc(D.meta.quarters[q]) + '</span><h3>' + esc(o.name) + "</h3><p class='behind-q'>The question it answers: <strong>" + esc(b.question) + "</strong></p></div>" + badge(s, null, true) + "</div>";
+    h += '<ol class="chain" aria-label="How this outcome is built"><li>Outcome</li><li>Metrics set its colour</li><li>Key controls drive the metrics</li><li>Evidence proves the controls</li><li>Editions explain it; deliverables build it</li></ol>';
+    h += '<p class="behind-why">Why it is ' + esc(LABEL[s].toLowerCase()) + ": the outcome takes the worst status of its metrics" + (worst.length ? ", here " + esc(worst.join(" and ")) : "") + ". Of its " + ctl.length + " key controls, " + (n("Ineffective") ? n("Ineffective") + " " + (n("Ineffective") === 1 ? "is" : "are") + " ineffective, " : "none is ineffective, ") + n("Partially effective") + " partially effective, " + n("Effective") + " effective" + (n("Not yet tested") ? ", " + n("Not yet tested") + " not yet tested" : "") + ".</p>";
+    h += '<h4>1. Measured by</h4><div class="table-wrap"><table class="data"><tr><th>Metric</th><th>Level</th><th>Value</th><th>Appetite · tolerance</th><th>Status</th><th>Owner</th></tr>' + ms.map(function (m) {
+      return "<tr><td><span class='kri-id'>" + esc(m.id) + "</span> " + esc(m.name) + "</td><td>" + m.level + "</td><td class='num'>" + esc(m.val) + "</td><td>" + esc(m.thr) + "</td><td>" + badge(m.st) + "</td><td>" + esc(m.owner) + "</td></tr>";
+    }).join("") + "</table></div>";
+    h += '<h4>2. The key controls behind it</h4><div class="table-wrap"><table class="data"><tr><th>Control</th><th>Owner · frequency</th><th>Evidence</th><th>Feeds</th><th>Result</th><th>Why (as at Q4 2026)</th></tr>' + ctl.map(function (c) {
+      return "<tr><td><span class='kri-id'>" + esc(c.id) + "</span> " + esc(c.name) + "<div class='rule'>" + esc(c.rule) + "</div></td><td>" + esc(c.owner) + "<br><span class='muted'>" + esc(c.frequency) + "</span></td><td>" + esc(c.evidence) + "</td><td><span class='kri-id'>" + esc(c.feeds) + "</span></td><td>" + resultPill(c.result[q]) + "</td><td>" + esc(q === 3 ? c.note : "") + "</td></tr>";
+    }).join("") + "</table></div>";
+    h += '<div class="behind-cols"><div><h4>3. Learn it in ' + esc(D.meta.newsletter) + "</h4><ul>" + b.editions.map(function (e) { return "<li>" + link("Edition " + e.n + ": " + e.title, "editions/edition-" + (e.n < 10 ? "0" : "") + e.n + ".html") + "</li>"; }).join("") + "</ul></div>";
+    h += "<div><h4>4. Build it with</h4><ul>" + b.deliverables.map(function (d) { return "<li><span class='kri-id'>" + esc(d.id) + "</span> " + link(d.name, "pack.html#" + d.module) + "</li>"; }).join("") + "</ul></div>";
+    h += "<div><h4>5. The rule it meets</h4><p>" + esc(b.rule) + "</p><p class='muted'>CBUAE Operational Risk Management Regulation, Circular 1/2026, unless stated.</p></div></div>";
+    h += '<button type="button" class="behind-close" id="behind-close">Close</button>';
+    el.innerHTML = h; el.hidden = false;
+    $("behind-close").addEventListener("click", function () { state.outcome = null; renderOutcomes(); renderBehind(); });
   }
 
   // ---------- KRI table ----------
@@ -346,7 +386,7 @@
   }
 
   function renderAll() {
-    renderHeader(); renderHeadline(); renderOutcomes(); renderExternal(); renderKriTable(); renderTrend();
+    renderHeader(); renderHeadline(); renderOutcomes(); renderBehind(); renderExternal(); renderKriTable(); renderTrend();
     renderOps(); renderIncidents(); renderThirdParties(); renderTesting();
   }
   window.addEventListener("scroll", hideTip, { passive: true });

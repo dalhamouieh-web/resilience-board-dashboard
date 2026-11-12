@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Resilience Board Dashboard (sample)</title>
 <meta name="description" content="Sample Board dashboard for operational resilience and ICT risk, aligned to the CBUAE Operational Risk Management Regulation. Fictional bank, dummy data.">
-<link rel="stylesheet" href="style.css?v=20261112a">
+<link rel="stylesheet" href="style.css?v=20261112b">
 </head>
 <body>
 <div class="viz-root">
@@ -40,7 +40,9 @@
 
     <section aria-labelledby="h-outcomes">
       <h2 id="h-outcomes" class="section-title">Six resilience outcomes</h2>
+      <p class="controls-tally" id="controls-tally"></p>
       <div class="outcomes" id="outcomes"></div>
+      <div class="card behind" id="behind" hidden aria-live="polite"></div>
     </section>
 
     <section class="card external" aria-labelledby="h-ext">
@@ -125,7 +127,7 @@
   </main>
   <div class="tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
 </div>
-<script src="dashboard-data.js?v=20261112a"></script>
-<script src="app.js?v=20261112a"></script>
+<script src="dashboard-data.js?v=20261112b"></script>
+<script src="app.js?v=20261112b"></script>
 </body>
 </html>
