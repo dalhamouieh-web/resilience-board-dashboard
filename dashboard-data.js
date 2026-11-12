@@ -499,7 +499,7 @@ window.DASHBOARD_DATA = {
     },
     {
       "name": "Colocation provider",
-      "supports": "Primary data centre",
+      "supports": "Secondary data centre, Abu Dhabi",
       "criticalOps": 4,
       "slaBreaches": [
         0,
