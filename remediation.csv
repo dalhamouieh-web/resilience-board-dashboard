@@ -1,5 +1,17 @@
-action,source,owner,due,status
-Automate payments failover,Recovery test,COO,Mar 2027,At risk
-Identity platform migration,Internal audit,CIO,Jun 2027 (was Mar),Late
-Test Vendor X exit plan,Third-party review,Head of Procurement,Q2 2027,Late
-Reconcile cloud assets into inventory,Self-identified,CIO,Jan 2027,Late
+quarter,action,source,owner,due,status
+Q1 2026,Retest corporate cash management recovery (5 h vs 4 h),Recovery test,COO,Aug 2026,On track
+Q1 2026,Name an owner for every tier-1 asset,Internal audit,CIO,Sep 2026 (was Mar),Late
+Q1 2026,Approve tolerances for the last three Critical Operations,Self-identified,COO,Sep 2026,On track
+Q2 2026,Fix trade finance recovery (5 days vs 24 h),Recovery test,CIO,Dec 2026,At risk
+Q2 2026,Name an owner for every tier-1 asset,Internal audit,CIO,Sep 2026 (was Mar),Late
+Q2 2026,Retest corporate cash management recovery (5 h vs 4 h),Recovery test,COO,Aug 2026,On track
+Q2 2026,Write an exit plan for Vendor X,Third-party review,Head of Procurement,Jun 2026,Done
+Q3 2026,Automate payments failover (6 h vs 4 h),Recovery test,COO,Mar 2027,At risk
+Q3 2026,Fix trade finance recovery (5 days vs 24 h),Recovery test,CIO,Dec 2026,At risk
+Q3 2026,Test Vendor X exit plan,Third-party review,Head of Procurement,Q2 2027,Late
+Q3 2026,Map the wallet end to end before launch,Self-identified,COO,Nov 2026,Late
+Q4 2026,Automate payments failover (6 h vs 4 h),Recovery test,COO,Mar 2027,At risk
+Q4 2026,Fix trade finance recovery (5 days vs 24 h),Recovery test,CIO,Jun 2027 (was Dec),At risk
+Q4 2026,Test the wallet's recovery against its 4 h tolerance,Self-identified,COO,May 2027,Late
+Q4 2026,Test Vendor X exit plan,Third-party review,Head of Procurement,Q2 2027,Late
+Q4 2026,Reconcile cloud assets into the inventory,Self-identified,CIO,Jan 2027,Late

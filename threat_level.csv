@@ -1,5 +1,5 @@
 quarter,threat_level,driver
-"Q1 2026","High","Regional escalation from late February: publicly reported attack volumes against UAE organisations rose sharply. DDoS and phishing waves."
-"Q2 2026","Elevated","Attack volumes eased but stayed above 2025 levels. Identity-based attacks dominant."
-"Q3 2026","Elevated","Ransomware groups shifting to control-first campaigns: they take over identity before stealing or encrypting data."
-"Q4 2026","Elevated","Wiper and AI-accelerated intrusions reported in the region; the fastest attacks reach impact in under two days."
+Q1 2026,High,Regional escalation from late February: publicly reported attack volumes against UAE organisations rose sharply. DDoS and phishing waves.
+Q2 2026,Elevated,Attack volumes eased but stayed above 2025 levels. Identity-based attacks dominant.
+Q3 2026,Elevated,Ransomware groups shifting to control-first campaigns: they take over identity before stealing or encrypting data.
+Q4 2026,Elevated,Wiper and AI-accelerated intrusions reported in the region; the fastest attacks reach impact in under 40 hours.

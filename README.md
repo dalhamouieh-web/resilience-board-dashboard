@@ -35,8 +35,8 @@ A sample Board-level dashboard for **operational resilience and ICT risk** at a 
 
 Fictional quarterly data for 2026, provided in two formats:
 
-- `data/dashboard-data.js`: the file the dashboard reads
-- `data/csv/*.csv`: the same data as CSV, for Excel, Power BI or other tools
+- `dashboard-data.js`: the file the dashboard reads
+- `*.csv` (in the repository root): the same data as CSV, for Excel, Power BI or other tools. They are generated from `dashboard-data.js`, so the two always match
 
 | File | Contents |
 | --- | --- |
@@ -47,12 +47,12 @@ Fictional quarterly data for 2026, provided in two formats:
 | `regulatory_horizon.csv` | Rules in force, proposed or planned, and what they require |
 | `outcomes.csv` | Status of the six resilience outcomes by quarter, the metrics that drive each one, and the note shown |
 | `controls.csv` | The 30 key controls behind the six outcomes: owner, frequency, evidence, the KRI each feeds, the rule it meets, the newsletter edition and deliverable that explain it, and the test result by quarter |
-| `critical_operations.csv` | Tolerance for disruption vs latest tested recovery time |
+| `critical_operations.csv` | The 12 Critical Operations at Q4 2026: owner, tolerance for disruption, latest tested recovery, approval, mapping and key dependencies |
 | `incidents.csv` | Major and minor incidents and notification timeliness by quarter |
 | `major_incidents.csv` | Major incidents framed by the four Board questions |
-| `third_parties.csv` | Critical providers, concentration, SLAs and exit plans |
-| `testing.csv` | Testing programme progress |
-| `remediation.csv` | Late and at-risk remediation actions |
+| `third_parties.csv` | Critical providers at Q4 2026: Critical Operations supported, SLA breaches and exit plans |
+| `testing.csv` | Testing programme progress by quarter |
+| `remediation.csv` | Key remediation actions shown each quarter |
 
 ## What is behind each outcome
 
@@ -85,7 +85,7 @@ Open `index.html` in any browser. That's it.
 
 ## Use your own data
 
-Edit `data/dashboard-data.js`. Each block is commented: change the values, thresholds, names or quarters, and refresh the page. Statuses for the risk appetite metrics are calculated automatically from the `appetite`, `tolerance` and `capacity` thresholds: for `direction: "up"`, higher is worse; for `"down"`, lower is worse. Set `override` for a quarter to the ID of a Level 2 KRI that has been red for three months to report a green metric as amber.
+Edit `dashboard-data.js` (then rerun the CSV export so the CSV files match). Each block is commented: change the values, thresholds, names or quarters, and refresh the page. Statuses for the risk appetite metrics are calculated automatically from the `appetite`, `tolerance` and `capacity` thresholds: for `direction: "up"`, higher is worse; for `"down"`, lower is worse. Set `override` for a quarter to the ID of a Level 2 KRI that has been red for three months to report a green metric as amber.
 
 ## Files in this repository
 

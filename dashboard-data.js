@@ -1085,7 +1085,7 @@ window.DASHBOARD_DATA = {
     "Q2 2026": {"position": "red", "text": "One major incident (internet banking, 2 h 10 min), notified on time. Trade finance took 5 days to recover in testing against a 24-hour tolerance.", "decisions": ["Fund the trade finance recovery fix", "Endorse exit-plan testing for Vendor X and CloudCo"]},
     "Q3 2026": {"position": "red", "text": "Payments recovered in 6 hours against a 4-hour tolerance in September's test. Five critical providers still have no tested exit plan.", "decisions": ["Ask the Board Risk Committee to set provisional appetite thresholds", "Decide how payments will meet its 4-hour tolerance"]},
     "Q4 2026": { position: "red", text: "Three Board appetite metrics are red: Critical Operations within tolerance (payments recovered in 6 h against 4 h), the cyber control index, and Critical Operations that depend on one person. The external threat level remains elevated.",
-                 decisions: ["Approve funding for a second payments processing site", "Accept or reject the risk on Vendor X until its exit plan is tested in Q2 2027", "Approve a trained deputy for the engineer behind three Critical Operations"] }
+                 decisions: ["Approve funding for a second payments processing site", "Accept or reject the risk on Vendor X until its exit plan is tested in Q2 2027", "Approve a trained deputy for the engineer behind three Critical Operations", "Approve the digital wallet's 4-hour tolerance before it is tested"] }
   },
 
   // Board risk appetite metrics (Level 1), from the Risk Appetite Statement RB-B2-RAF-01 and workbook RB-B2-TPL-03.
@@ -1099,7 +1099,7 @@ window.DASHBOARD_DATA = {
     {"id": "RAS-OPR-03", "name": "Severe ICT or cyber incidents affecting a Critical Operation, rolling 12 months", "unit": "", "values": [3, 3, 2, 2], "target": 0, "appetite": 1, "tolerance": 2, "capacity": 4, "direction": "up", "method": "Direct", "owner": "CIO", "anchor": "ORM art. 15.2", "level2": [[1, 1, 3], [1, 1, 3], [1, 1, 3], [1, 3, 1]], "override": [null, null, null, null]},
     {"id": "RAS-OPR-04", "name": "ICT and cyber control effectiveness index", "unit": "index", "values": [52, 55, 60, 64], "target": 85, "appetite": 80, "tolerance": 65, "capacity": 50, "direction": "down", "method": "Composite index", "owner": "CISO", "anchor": "ORM art. 8.2", "level2": [[0, 0, 10], [0, 0, 10], [0, 3, 7], [0, 4, 6]], "override": [null, null, null, null]},
     {"id": "RAS-OPR-05", "name": "Critical providers without a tested exit plan", "unit": "", "values": [5, 5, 5, 4], "target": 0, "appetite": 2, "tolerance": 4, "capacity": 6, "direction": "up", "method": "Direct", "owner": "COO", "anchor": "ORM art. 13; Outsourcing Reg. 14/2021", "level2": [[1, 2, 2], [1, 2, 2], [1, 2, 2], [1, 3, 1]], "override": [null, null, null, null]},
-    {"id": "RAS-OPR-06", "name": "Significant customer data breaches notified to the CBUAE, rolling 12 months", "unit": "", "values": [0, 0, 0, 0], "target": 0, "appetite": 0, "tolerance": 1, "capacity": 2, "direction": "up", "method": "Direct", "owner": "Chief Compliance Officer", "anchor": "Consumer Protection Reg. art. 6.1", "level2": [[1, 1, 1], [1, 1, 1], [1, 1, 1], [2, 0, 1]], "override": [null, "KRI-DAT-02", "KRI-DAT-02", "KRI-DAT-02"]},
+    {"id": "RAS-OPR-06", "name": "Significant customer data breaches notified to the CBUAE, rolling 12 months", "unit": "", "values": [0, 0, 0, 0], "target": 0, "appetite": 0, "tolerance": 1, "capacity": 2, "direction": "up", "method": "Direct", "owner": "Chief Compliance Officer", "anchor": "Consumer Protection Reg. art. 6", "level2": [[1, 1, 1], [1, 1, 1], [1, 1, 1], [2, 0, 1]], "override": [null, "KRI-DAT-02", "KRI-DAT-02", "KRI-DAT-02"]},
     {"id": "RAS-OPR-07", "name": "Overdue high-rated audit and regulatory findings on ICT and resilience", "unit": "", "values": [2, 2, 1, 1], "target": 0, "appetite": 0, "tolerance": 3, "capacity": 6, "direction": "up", "method": "Direct", "owner": "CRO", "anchor": "ORM art. 4.3, 4.5", "level2": [[0, 0, 4], [0, 0, 4], [0, 2, 2], [0, 3, 1]], "override": [null, null, null, null]},
     {"id": "RAS-OPR-08", "name": "Critical Operations that depend on one person without a trained deputy", "unit": "", "values": [9, 8, 6, 4], "target": 0, "appetite": 0, "tolerance": 2, "capacity": 4, "direction": "up", "method": "Direct", "owner": "COO", "anchor": "ORM art. 5.8, 11.4", "level2": [[0, 0, 3], [0, 0, 3], [0, 0, 3], [0, 1, 2]], "override": [null, null, null, null]},
     {"id": "RAS-OPR-09", "name": "Internal and external fraud losses, rolling 12 months", "unit": "AED m", "values": [5.1, 5.4, 5.7, 5.9], "target": 5, "appetite": 8, "tolerance": 15, "capacity": 30, "direction": "up", "method": "Direct", "owner": "Head of Fraud", "anchor": "ORM art. 2.6", "level2": [[2, 0, 0], [2, 0, 0], [2, 0, 0], [2, 0, 0]], "override": [null, null, null, null]},
@@ -1653,7 +1653,7 @@ window.DASHBOARD_DATA = {
       "Q1 2026": { status: "red",   label: "High",     driver: "Regional escalation from late February: publicly reported attack volumes against UAE organisations rose sharply. DDoS and phishing waves." },
       "Q2 2026": { status: "amber", label: "Elevated", driver: "Attack volumes eased but stayed above 2025 levels. Identity-based attacks dominant." },
       "Q3 2026": { status: "amber", label: "Elevated", driver: "Ransomware groups shifting to control-first campaigns: they take over identity before stealing or encrypting data." },
-      "Q4 2026": { status: "amber", label: "Elevated", driver: "Wiper and AI-accelerated intrusions reported in the region; the fastest attacks reach impact in under two days." }
+      "Q4 2026": { status: "amber", label: "Elevated", driver: "Wiper and AI-accelerated intrusions reported in the region; the fastest attacks reach impact in under 40 hours." }
     },
     threats: [
       { name: "Identity-based intrusion", signal: "Most breaches in the region start with phishing, stolen credentials or application exploits", trend: "Rising",
@@ -1662,7 +1662,7 @@ window.DASHBOARD_DATA = {
         exposure: "amber", exposureLabel: "Partly", why: "Core banking backups not yet isolated; no full restore test this year", ops: "Customer accounts, payments", action: "Isolated backups and a full restore test in Q1 2027", owner: "CIO" },
       { name: "Persistent multi-vector DDoS", signal: "Attacks last longer and combine several techniques at once", trend: "Rising",
         exposure: "amber", exposureLabel: "Partly", why: "Payments gateway relies on the vendor's protection, never tested jointly", ops: "Mobile banking, payments", action: "Joint DDoS test with Vendor X", owner: "CISO, Head of Procurement" },
-      { name: "AI-accelerated attacks", signal: "In the fastest cases, access to impact in under 48 hours", trend: "Rising",
+      { name: "AI-accelerated attacks", signal: "In the fastest cases, access to impact in under 40 hours", trend: "Rising",
         exposure: "red", exposureLabel: "Yes", why: "Containment takes 7 hours on median; cloud logs only partly monitored", ops: "All", action: "Automated containment playbooks; full cloud log coverage", owner: "CISO" },
       { name: "Provider and supply-chain compromise", signal: "Attackers reach banks through shared providers and software", trend: "Stable",
         exposure: "amber", exposureLabel: "Partly", why: "Two critical providers have no security attestation this year", ops: "Card processing, security monitoring", action: "Obtain attestations; add to contract reviews", owner: "Head of Procurement" },
@@ -1689,7 +1689,7 @@ window.DASHBOARD_DATA = {
       { item: "CBUAE Operational Risk Management Regulation", status: "In force (2026)", impact: "Close gaps on mapping, third parties and testing", owner: "CRO" },
       { item: "DFSA operational resilience framework (benchmark only: Bank Horizon has no DIFC entity)", status: "Proposed (consultation, March 2026)", impact: "Compare our tolerances with the proposed DIFC approach for critical business services", owner: "Head of Compliance" },
       { item: "CBUAE capital rules aligned to revised Basel III", status: "Planned", impact: "Assess the effect on operational risk capital", owner: "CFO, CRO" },
-      { item: "Capital Market Authority rules, incl. cybersecurity for virtual assets", status: "New (2025)", impact: "Applies if the group launches virtual asset services", owner: "Head of Compliance" }
+      { item: "Capital Market Authority Virtual Assets Framework (the CMA replaced the SCA on 1 January 2026)", status: "Issued (April 2026)", impact: "Applies if the group launches virtual asset services", owner: "Head of Compliance" }
     ]
   },
 

@@ -1,3 +1,3 @@
 quarter,title,duration,customers_affected,classification,regulatory_status,appetite,what_it_reveals
 Q2 2026,Internet banking outage,2 h 10 min,12000,Major,CBUAE notified within 4 h; summary within 24 h,Within threshold,Capacity alerting tuned; no further action
-Q4 2026,Card payments outage,3 h 20 min,38000,Major,CBUAE notified within 4 h; summary within 24 h; recovery confirmed,"Within threshold, 40 min short of the 4 h tolerance",Vendor may take 72 h to notify the bank; contract change requested
+Q4 2026,Card payments outage,1 h 20 min,38000,Major,CBUAE notified within 4 h; summary within 24 h; recovery confirmed,"Within the 2 h tolerance for cards authorisation, with 40 min to spare",Vendor may take 72 h to notify the bank; contract change requested
