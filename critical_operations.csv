@@ -1,6 +1,13 @@
-critical_operation,tolerance_hours,tested_recovery_hours,test_month,fully_mapped
-Domestic payments,4,6,Sep 2026,Yes
-Card processing (vendor-run),4,,Not yet tested,Partly
-Mobile and online banking,8,5,Jul 2026,Yes
-Liquidity and treasury,8,7,Aug 2026,Partly
-Customer accounts and records,24,10,Jun 2026,Yes
+critical_operation,owner,tolerance_hours,tested_recovery_hours_Q4_2026,test_month_Q4_2026,tolerance_approved_Q4_2026,fully_mapped_Q4_2026,key_dependencies
+CO-01 Domestic payments,Head of Payments,4,6,Sep 2026,Yes,Yes,Directory server; payment hub (one CloudCo region); Vendor X; key engineer
+CO-02 Cross-border payments,Head of Payments,8,6,Mar 2026,Yes,Yes,Payments messaging bureau (single provider); directory server
+CO-03 Salaries (WPS),Head of Corporate Banking,4,6,Sep 2026,Yes,Yes,Payment hub (one region); Vendor X; key engineer
+CO-04 Cards authorisation,Head of Cards,2,1.5,Feb 2026,Yes,Yes,Vendor X card platform (single provider)
+CO-05 Mobile and online banking,Head of Retail and Digital,8,5,Jul 2026,Yes,Yes,CloudCo; directory server
+CO-06 Cash access,Head of Branches,24,12,Nov 2026,Yes,Yes,ATM switch; cash-in-transit company; colocation site
+CO-07 Corporate cash,Head of Corporate Banking,4,3.5,Aug 2026,Yes,Yes,Payment hub; Vendor X; directory server
+CO-08 Trade finance issuance,Head of Trade Finance,24,120,Jun 2026,Yes,No,TradeSoft (sole supplier); 15-year-old platform; key engineer; scans outside backup
+CO-09 Treasury and liquidity,Treasurer,4,2,Aug 2026,Yes,Yes,Treasury system; messaging bureau; directory server
+CO-10 Sanctions screening,Chief Compliance Officer,4,3,Sep 2025,Yes,No,Screening engine on CloudCo; directory server
+CO-11 Government payments,Head of Government Banking,8,6,Oct 2026,Yes,No,Gateway on CloudCo; one trained administrator
+CO-12 Digital wallet,Head of Retail and Digital,4,,"Live Dec 2026, not tested",No (proposed),No,CloudCo and Vendor X (single provider); no map yet

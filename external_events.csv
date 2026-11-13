@@ -1,7 +1,7 @@
 quarter,type,event,so_what_for_us
-"Q1 2026","Geopolitical","Regional escalation; sharp rise in reported cyber attack volumes in the UAE (public reports)","Monitoring raised, daily threat briefings, DDoS readiness checked with providers"
-"Q1 2026","Regulatory","CBUAE Financial Institution Resilience Package approved on 17 March (public)","Treasury and Risk reviewed the liquidity and capital relief; no change to resilience plans"
-"Q2 2026","Peer incident","A regional bank's card outage traced to a vendor change (illustrative)","Reviewed change controls with Vendor X; one gap found and fixed"
-"Q3 2026","Provider alert","Actively exploited vulnerability in a widely used remote-access product (illustrative)","Patched in 3 days; threat hunt found no compromise"
-"Q4 2026","Sector threat","Wiper malware reported in incidents in the region (public reports)","Backup isolation for core banking brought forward"
-"Q4 2026","Provider alert","Critical provider announced a data-centre migration (illustrative)","Migration added to the risk committee agenda; recovery test requested"
+Q1 2026,Geopolitical,Regional escalation; sharp rise in reported cyber attack volumes in the UAE (public reports),"Monitoring raised, daily threat briefings, DDoS readiness checked with providers"
+Q1 2026,Regulatory,CBUAE Financial Institution Resilience Package approved on 17 March (public),Treasury and Risk reviewed the liquidity and capital relief; no change to resilience plans
+Q2 2026,Peer incident,A regional bank's card outage traced to a vendor change (illustrative),Reviewed change controls with Vendor X; one gap found and fixed
+Q3 2026,Provider alert,Actively exploited vulnerability in a widely used remote-access product (illustrative),Patched in 3 days; threat hunt found no compromise
+Q4 2026,Sector threat,Wiper malware reported in incidents in the region (public reports),Backup isolation for core banking brought forward
+Q4 2026,Provider alert,Critical provider announced a data-centre migration (illustrative),Migration added to the risk committee agenda; recovery test requested

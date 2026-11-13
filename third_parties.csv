@@ -1,6 +1,6 @@
-provider,supports,critical_operations_supported,slas_met,exit_plan,status
-CloudCo,Infrastructure,6,3 of 3,Tested in Q2,amber
-Vendor Y,Core banking,4,3 of 3,"Written, not tested",amber
-Group IT (intragroup),Security monitoring,3,3 of 3,No written agreement,amber
-Vendor X,Card processing,2,2 of 3,"Written, not tested",amber
-Vendor Z,Contact centre,1,3 of 3,Tested in Q3,green
+provider,supports,critical_operations_supported,sla_breaches_Q4_2026,exit_plan_Q4_2026,status_Q4_2026
+CloudCo,Cloud infrastructure,7,0,"Written, not tested",amber
+Vendor X,Payment hub and card platform,5,2,"Written, not tested",amber
+Payments messaging bureau,"SWIFT messaging for cross-border payments, trade finance and treasury",3,0,Tested in Nov 2026,green
+Colocation provider,"Secondary data centre, Abu Dhabi",4,0,"Written, not tested",amber
+TradeSoft,Trade finance platform,1,0,"Written, not tested",amber
