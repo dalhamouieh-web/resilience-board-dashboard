@@ -55,6 +55,16 @@ window.DASHBOARD_DATA = {
       ],
       "deliverables": [
         {
+          "id": "RB-B5-TPL-06",
+          "name": "Control library, RCSA and testing workbook",
+          "module": "ctl"
+        },
+        {
+          "id": "RB-B5-POL-03",
+          "name": "Internal Control, RCSA and Control Testing Policy",
+          "module": "ctl"
+        },
+        {
           "id": "RB-B2-RAF-01",
           "name": "Risk Appetite Statement 2027",
           "module": "raf"
@@ -130,6 +140,11 @@ window.DASHBOARD_DATA = {
         }
       ],
       "deliverables": [
+        {
+          "id": "RB-B5-TPL-06",
+          "name": "Control library, RCSA and testing workbook",
+          "module": "ctl"
+        },
         {
           "id": "RB-B3-PRO-02",
           "name": "Identifying and mapping Critical Operations",
@@ -210,6 +225,11 @@ window.DASHBOARD_DATA = {
       ],
       "deliverables": [
         {
+          "id": "RB-B5-TPL-06",
+          "name": "Control library, RCSA and testing workbook",
+          "module": "ctl"
+        },
+        {
           "id": "RB-B2-TPL-03",
           "name": "Risk appetite metrics workbook",
           "module": "raf"
@@ -285,6 +305,11 @@ window.DASHBOARD_DATA = {
       ],
       "deliverables": [
         {
+          "id": "RB-B5-TPL-06",
+          "name": "Control library, RCSA and testing workbook",
+          "module": "ctl"
+        },
+        {
           "id": "RB-B3-RPT-01",
           "name": "Critical Operations 2026: Bank Horizon",
           "module": "cops"
@@ -358,6 +383,11 @@ window.DASHBOARD_DATA = {
         }
       ],
       "deliverables": [
+        {
+          "id": "RB-B5-TPL-06",
+          "name": "Control library, RCSA and testing workbook",
+          "module": "ctl"
+        },
         {
           "id": "RB-B4-GDE-05",
           "name": "Operating model playbook",
@@ -434,6 +464,16 @@ window.DASHBOARD_DATA = {
         }
       ],
       "deliverables": [
+        {
+          "id": "RB-B5-TPL-06",
+          "name": "Control library, RCSA and testing workbook",
+          "module": "ctl"
+        },
+        {
+          "id": "RB-B5-POL-03",
+          "name": "Internal Control, RCSA and Control Testing Policy",
+          "module": "ctl"
+        },
         {
           "id": "RB-B4-GDE-05",
           "name": "Operating model playbook",
