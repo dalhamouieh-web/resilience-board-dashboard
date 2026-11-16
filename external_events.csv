@@ -5,3 +5,4 @@ Q2 2026,Peer incident,A regional bank's card outage traced to a vendor change (i
 Q3 2026,Provider alert,Actively exploited vulnerability in a widely used remote-access product (illustrative),Patched in 3 days; threat hunt found no compromise
 Q4 2026,Sector threat,Wiper malware reported in incidents in the region (public reports),Backup isolation for core banking brought forward
 Q4 2026,Provider alert,Critical provider announced a data-centre migration (illustrative),Migration added to the risk committee agenda; recovery test requested
+Q4 2026,Sector threat,Large banks abroad report consumer AI agents logging into customer accounts with shared passwords (public reports),Digital banking checked for agent logins; AI agents added to the inventory and the 2027 risk appetite review
