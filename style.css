@@ -203,3 +203,12 @@ button.outcome:focus-visible { outline: 2px solid var(--text-primary, #222); out
 .pill.amber { background: var(--warning-bg); color: var(--warning-ink); }
 .pill.red { background: var(--critical-bg); color: var(--critical-ink); }
 .pill.grey { background: var(--surface-2, #ecebe7); color: var(--text-secondary); border: 1px dashed var(--border); }
+/* Challenge and action, per outcome */
+.ca { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 14px 0 4px; }
+.ca > div { border-radius: 10px; padding: 12px 14px; border: 1px solid var(--border); color: var(--text-primary); }
+.ca-c { background: var(--page); }
+.ca-a { background: var(--warning-bg); border-color: var(--gold); }
+.ca-k { display: block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 4px; }
+.ca p { margin: 0; font-size: 14px; }
+.ca-note { font-size: 12px; margin: 4px 0 0; }
+@media (max-width: 640px) { .ca { grid-template-columns: 1fr; } }

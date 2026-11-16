@@ -27,6 +27,8 @@ window.DASHBOARD_DATA = {
   // What is behind each outcome: the question it answers, the metrics that set its colour, the newsletter editions that explain it, the deliverables that build it and the rule it meets.
   behind: {
     "govern": {
+      "challenge": "One in five Board indicators still reaches the Board without a data contract, and about a quarter of material AI uses have no named owner.",
+      "action": "Data contracts for the remaining Board indicators, and an owner and inventory entry for every material AI use, by Q2 2027.",
       "question": "Who owns it?",
       "rule": "ORM art. 2, 4, 7.8, 7.9",
       "editions": [
@@ -108,10 +110,13 @@ window.DASHBOARD_DATA = {
             "red",
             "amber"
           ]
-        }
+        },
+        {"id": "KRI-AI-01", "name": "Material AI uses with a named owner and an inventory entry", "unit": "%", "owner": "CRO", "appetite": 100, "tolerance": 70, "values": [0, 0, 45.5, 72.7], "status": ["red", "red", "red", "amber"]}
       ]
     },
     "know": {
+      "challenge": "Four Critical Operations, including sanctions screening and the new digital wallet, are not yet mapped end to end, so their dependencies stay invisible.",
+      "action": "Map the remaining four by Q2 2027 and reconcile every list against every other.",
       "question": "What must never break, and what does it depend on?",
       "rule": "ORM art. 3.4, 3.5, 4.2.2",
       "editions": [
@@ -185,6 +190,8 @@ window.DASHBOARD_DATA = {
       ]
     },
     "protect": {
+      "challenge": "Compliant on paper more than in practice: the cyber index is 64, segmentation and log monitoring are ineffective, and two AI agent pilots keep standing privileged access.",
+      "action": "Fix segmentation and log coverage first; give each AI agent its own scoped, time-limited identity and remove standing access.",
       "question": "How do we protect it and spot trouble early?",
       "rule": "ORM art. 8",
       "editions": [
@@ -253,10 +260,13 @@ window.DASHBOARD_DATA = {
             "amber",
             "amber"
           ]
-        }
+        },
+        {"id": "KRI-AI-02", "name": "AI agents with standing privileged access", "unit": "count", "owner": "CISO", "appetite": 0, "tolerance": 1, "values": [0, 1, 3, 2], "status": ["green", "amber", "red", "red"]}
       ]
     },
     "respond": {
+      "challenge": "Domestic payments and salaries recovered in 6 hours against a tolerance of 4, because recovery depends on one directory server and one engineer.",
+      "action": "Fund the second payments site and a trained deputy (both on the Board page), then rerun the test.",
       "question": "How do we respond and recover?",
       "rule": "ORM art. 11, 15",
       "editions": [
@@ -329,6 +339,8 @@ window.DASHBOARD_DATA = {
       ]
     },
     "third": {
+      "challenge": "Exit plans are assumed rather than proven for 4 of 9 critical providers, and sanctions screening relies on one vendor's AI matching model with no fallback.",
+      "action": "Prove each exit with a real switch-over, starting with Vendor X; put AI providers in the register with a fallback, even a manual one.",
       "question": "Who do we depend on?",
       "rule": "ORM art. 13; Outsourcing Standards for Banks",
       "editions": [
@@ -402,10 +414,13 @@ window.DASHBOARD_DATA = {
             "amber",
             "amber"
           ]
-        }
+        },
+        {"id": "KRI-AI-03", "name": "Critical Operations depending on a single AI provider without a fallback", "unit": "count", "owner": "COO", "appetite": 0, "tolerance": 1, "values": [0, 0, 1, 1], "status": ["green", "green", "amber", "amber"]}
       ]
     },
     "test": {
+      "challenge": "Two Critical Operations have no test in the last 12 months: sanctions screening and the digital wallet, which went live untested.",
+      "action": "Test both in Q1 2027, and build scenarios at machine speed, not office speed.",
       "question": "How do we prove it works?",
       "rule": "ORM art. 6.2, 7.9, 11.3, 11.10",
       "editions": [
@@ -1662,8 +1677,8 @@ window.DASHBOARD_DATA = {
         exposure: "amber", exposureLabel: "Partly", why: "Core banking backups not yet isolated; no full restore test this year", ops: "Customer accounts, payments", action: "Isolated backups and a full restore test in Q1 2027", owner: "CIO" },
       { name: "Persistent multi-vector DDoS", signal: "Attacks last longer and combine several techniques at once", trend: "Rising",
         exposure: "amber", exposureLabel: "Partly", why: "Payments gateway relies on the vendor's protection, never tested jointly", ops: "Mobile banking, payments", action: "Joint DDoS test with Vendor X", owner: "CISO, Head of Procurement" },
-      { name: "AI-accelerated attacks", signal: "In the fastest cases, access to impact in under 40 hours", trend: "Rising",
-        exposure: "red", exposureLabel: "Yes", why: "Containment takes 7 hours on median; cloud logs only partly monitored", ops: "All", action: "Automated containment playbooks; full cloud log coverage", owner: "CISO" },
+      { name: "AI-accelerated attacks and deepfake fraud", signal: "Attackers use AI agents to run intrusions (the fastest reach impact in under 40 hours) and cloned voices or faked video calls to push payments and password resets", trend: "Rising",
+        exposure: "red", exposureLabel: "Yes", why: "Containment takes 7 hours on median; cloud logs only partly monitored; the help desk can reset a password on a voice call; two AI agent pilots run with standing privileged access", ops: "All", action: "Automated containment playbooks; full cloud log coverage; call-back on a known number for payment changes and resets; one scoped identity per AI agent", owner: "CISO, COO" },
       { name: "Provider and supply-chain compromise", signal: "Attackers reach banks through shared providers and software", trend: "Stable",
         exposure: "amber", exposureLabel: "Partly", why: "Two critical providers have no security attestation this year", ops: "Card processing, security monitoring", action: "Obtain attestations; add to contract reviews", owner: "Head of Procurement" },
       { name: "Post-quantum readiness", signal: "Data stolen today could be decrypted later; planning has started across the region", trend: "Emerging",
@@ -1682,13 +1697,16 @@ window.DASHBOARD_DATA = {
       ],
       "Q4 2026": [
         { type: "Sector threat", what: "Wiper malware reported in incidents in the region (public reports)", soWhat: "Backup isolation for core banking brought forward" },
-        { type: "Provider alert", what: "Critical provider announced a data-centre migration (illustrative)", soWhat: "Migration added to the risk committee agenda; recovery test requested" }
+        { type: "Provider alert", what: "Critical provider announced a data-centre migration (illustrative)", soWhat: "Migration added to the risk committee agenda; recovery test requested" },
+        { type: "Sector threat", what: "Large banks abroad report consumer AI agents logging into customer accounts with shared passwords (public reports)", soWhat: "Digital banking checked for agent logins; AI agents added to the inventory and the 2027 risk appetite review" }
       ]
     },
     regulatory: [
       { item: "CBUAE Operational Risk Management Regulation", status: "In force (2026)", impact: "Close gaps on mapping, third parties and testing", owner: "CRO" },
       { item: "DFSA operational resilience framework (benchmark only: Bank Horizon has no DIFC entity)", status: "Proposed (consultation, March 2026)", impact: "Compare our tolerances with the proposed DIFC approach for critical business services", owner: "Head of Compliance" },
       { item: "CBUAE capital rules aligned to revised Basel III", status: "Planned", impact: "Assess the effect on operational risk capital", owner: "CFO, CRO" },
+      { item: "CBUAE Guidance Note on Consumer Protection and Responsible Adoption and Use of AI", status: "Issued (February 2026)", impact: "An AI inventory, named owners, human oversight and explainability for AI that affects customers", owner: "CRO, Head of Compliance" },
+      { item: "MAS Guidelines on AI Risk Management (benchmark only: Bank Horizon has no Singapore entity)", status: "Issued (October 2026)", impact: "Benchmark for a Board AI risk appetite, AI inventory and accountability for third-party AI", owner: "CRO" },
       { item: "Capital Market Authority Virtual Assets Framework (the CMA replaced the SCA on 1 January 2026)", status: "Issued (April 2026)", impact: "Applies if the group launches virtual asset services", owner: "Head of Compliance" }
     ]
   },

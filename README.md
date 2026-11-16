@@ -60,10 +60,11 @@ Select any of the six outcome cards to open what is behind it: the question it a
 
 ## Key insights (sample data, Q4 2026)
 
-- **The external threat level is elevated:** identity-based intrusion, control-first ransomware and wipers, persistent DDoS and AI-accelerated attacks are rising; the bank has the same weakness, at least partly, for five of six.
+- **The external threat level is elevated:** identity-based intrusion, control-first ransomware and wipers, persistent DDoS and AI-accelerated attacks and deepfake fraud are rising; the bank has the same weakness, at least partly, for five of six.
 - **Three of ten Board appetite metrics are red:** only 8 of 12 Critical Operations can show they recover within tolerance (domestic payments took 6 hours against 4); the cyber control index is 64, below its tolerance of 65; and four Critical Operations still depend on one person.
 - **Two green metrics are reported amber by the override rule:** operational losses look low, but loss events are recorded late; no data breach was notified, but critical data is not yet fully classified.
 - **Concentration:** one provider supports 7 of 12 Critical Operations, and 4 of 9 critical providers lack a tested exit plan.
+- **AI is now on the page:** three Level 2 indicators track AI uses without an owner (KRI-AI-01), AI agents with standing privileged access (KRI-AI-02, 2 against an appetite of 0) and Critical Operations that depend on a single AI provider (KRI-AI-03). Each outcome also shows its main challenge and the action under way.
 - **Notifications:** 100% of regulatory notifications were made on time throughout the year.
 - **The wallet went live in December** without an approved tolerance for disruption or a recovery test, so it counts as outside tolerance.
 - **Every panel follows the selected quarter, and the numbers agree:** the Critical Operations chart, the testing programme, the third-party table, the six outcomes and the Board metrics all come from the same data.
