@@ -7,10 +7,10 @@ Critical Operations tested in the last 12 months,Q4 2026,10,12
 "Penetration tests on critical systems, year to date",Q2 2026,5,12
 "Penetration tests on critical systems, year to date",Q3 2026,8,12
 "Penetration tests on critical systems, year to date",Q4 2026,9,12
-"Second-line control testing plan, year to date",Q1 2026,18,100
-"Second-line control testing plan, year to date",Q2 2026,40,100
-"Second-line control testing plan, year to date",Q3 2026,62,100
-"Second-line control testing plan, year to date",Q4 2026,78,100
+"Key controls tested by the second line, year to date",Q1 2026,3,30
+"Key controls tested by the second line, year to date",Q2 2026,7,30
+"Key controls tested by the second line, year to date",Q3 2026,12,30
+"Key controls tested by the second line, year to date",Q4 2026,18,30
 "Severe but plausible scenario exercises, year to date",Q1 2026,0,3
 "Severe but plausible scenario exercises, year to date",Q2 2026,1,3
 "Severe but plausible scenario exercises, year to date",Q3 2026,2,3

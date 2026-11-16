@@ -285,8 +285,8 @@ window.DASHBOARD_DATA = {
       ]
     },
     "respond": {
-      "challenge": "Domestic payments and salaries recovered in 6 hours against a tolerance of 4, because recovery depends on one directory server and one engineer.",
-      "action": "Fund the second payments site and a trained deputy (both on the Board page), then rerun the test.",
+      "challenge": "Domestic payments and salaries recovered in 6 hours against a tolerance of 4: the payment hub runs in one cloud region, and recovery leans on one directory server and one engineer.",
+      "action": "Fund the second directory server and a trained deputy (both on the Board page), plan the second payments site, then rerun the test in June 2027.",
       "question": "How do we respond and recover?",
       "rule": "ORM art. 11, 15",
       "editions": [
@@ -1140,7 +1140,7 @@ window.DASHBOARD_DATA = {
     "Q2 2026": {"position": "red", "text": "One major incident (internet banking, 2 h 10 min), notified on time. Trade finance took 5 days to recover in testing against a 24-hour tolerance.", "decisions": ["Fund the trade finance recovery fix", "Endorse exit-plan testing for Vendor X and CloudCo"]},
     "Q3 2026": {"position": "red", "text": "Payments recovered in 6 hours against a 4-hour tolerance in September's test. Five critical providers still have no tested exit plan.", "decisions": ["Ask the Board Risk Committee to set provisional appetite thresholds", "Decide how payments will meet its 4-hour tolerance"]},
     "Q4 2026": { position: "red", text: "Three Board appetite metrics are red: Critical Operations within tolerance (payments recovered in 6 h against 4 h), the cyber control index, and Critical Operations that depend on one person. The external threat level remains elevated.",
-                 decisions: ["Approve funding for a second payments processing site", "Accept or reject the risk on Vendor X until its exit plan is tested in Q2 2027", "Approve a trained deputy for the engineer behind three Critical Operations", "Approve the digital wallet's 4-hour tolerance before it is tested"] }
+                 decisions: ["Fund a second directory server in Abu Dhabi, or accept the risk until June 2027", "Require Vendor X to run an exit test in 2027, or accept the risk until it does", "Approve a trained deputy for the engineer behind three Critical Operations", "Approve the digital wallet's 4-hour tolerance and require its recovery test by March 2027"] }
   },
 
   // Board risk appetite metrics (Level 1), from the Risk Appetite Statement RB-B2-RAF-01 and workbook RB-B2-TPL-03.
@@ -1680,14 +1680,14 @@ window.DASHBOARD_DATA = {
       "total": 12
     },
     {
-      "name": "Second-line control testing plan, year to date",
+      "name": "Key controls tested by the second line, year to date",
       "done": [
-        18,
-        40,
-        62,
-        78
+        3,
+        7,
+        12,
+        18
       ],
-      "total": 100
+      "total": 30
     },
     {
       "name": "Severe but plausible scenario exercises, year to date",
