@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Resilience Board Dashboard (sample)</title>
 <meta name="description" content="Sample Board dashboard for operational resilience and ICT risk, aligned to the CBUAE Operational Risk Management Regulation. Fictional bank, dummy data.">
-<link rel="stylesheet" href="style.css?v=20261116c">
+<link rel="stylesheet" href="style.css?v=20261117a">
 </head>
 <body>
 <div class="viz-root">
@@ -84,6 +84,15 @@
       </div>
     </section>
 
+    <section class="card flow" aria-labelledby="h-flow">
+      <h2 id="h-flow" class="card-title">Where the numbers come from</h2>
+      <p class="card-sub" id="flow-principle"></p>
+      <ol class="flow-steps" id="flow-steps"></ol>
+      <div class="flow-sum" id="flow-sum"></div>
+      <div class="flow-wrap"><div class="chart flow-chart" id="flow-chart"></div></div>
+      <details class="table-view"><summary>View as table</summary><div class="table-wrap" id="flow-table"></div></details>
+    </section>
+
     <section class="grid-2">
       <div class="card" aria-labelledby="h-ops">
         <h2 id="h-ops" class="card-title">Critical Operations against tolerance for disruption</h2>
@@ -127,7 +136,7 @@
   </main>
   <div class="tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
 </div>
-<script src="dashboard-data.js?v=20261116c"></script>
-<script src="app.js?v=20261116c"></script>
+<script src="dashboard-data.js?v=20261117a"></script>
+<script src="app.js?v=20261117a"></script>
 </body>
 </html>

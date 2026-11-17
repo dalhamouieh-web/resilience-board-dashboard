@@ -158,6 +158,8 @@
   }
 
   // ---------- KRI table ----------
+  var FLOWCLS = { "Automated": "auto", "Semi-automated": "semi", "Manual": "manual" };
+  function flowPill(k) { return k.data ? '<span class="flow-pill ' + FLOWCLS[k.data.flow] + '">' + esc(k.data.flow) + "</span>" : ""; }
   function renderKriTable() {
     var t = $("kri-table");
     var h = "<tr><th>Board metric</th><th>Value</th><th>Appetite · tolerance</th><th>Status</th><th>Trend</th><th>Level 2 KRIs (G / A / R)</th></tr>";
@@ -170,7 +172,7 @@
     });
     t.innerHTML = h;
     Array.prototype.forEach.call(t.querySelectorAll("tr.selectable"), function (row) {
-      function pick() { state.kri = row.getAttribute("data-id"); renderKriTable(); renderTrend(); }
+      function pick() { state.kri = row.getAttribute("data-id"); renderKriTable(); renderTrend(); renderFlow(); }
       row.addEventListener("click", pick);
       row.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
     });
@@ -180,7 +182,7 @@
   function renderTrend() {
     var k = D.kris.filter(function (x) { return x.id === state.kri; })[0];
     $("trend-name").textContent = k.name;
-    $("trend-sub").textContent = thresholdText(k) + ". Calculated: " + k.method.toLowerCase() + ". Owner: " + k.owner + ". Anchor: " + k.anchor + "." + (k.override[state.qi] ? " Override this quarter: " + k.override[state.qi] + " red for three months." : "");
+    $("trend-sub").textContent = thresholdText(k) + ". Calculated: " + k.method.toLowerCase() + ". Owner: " + k.owner + ". Anchor: " + k.anchor + "." + (k.override[state.qi] ? " Override this quarter: " + k.override[state.qi] + " red for three months." : "") + (k.data ? " Source: " + k.data.source + ". Data flow today: " + k.data.flow.toLowerCase() + "." : "");
     var W = 600, H = 260, L = 44, R = 96, T = 16, B = 32;
     var box = $("trend-chart");
     box.innerHTML = "";
@@ -386,9 +388,64 @@
     $("ext-reg").innerHTML = r;
   }
 
+
+  // ---------- Where the numbers come from ----------
+  function renderFlow() {
+    var F = D.dataFlow; if (!F) return;
+    $("flow-principle").textContent = F.principle;
+    $("flow-steps").innerHTML = F.steps.map(function (st) { return "<li><strong>" + esc(st[0]) + "</strong><span>" + esc(st[1]) + "</span></li>"; }).join("");
+    var c = { "Automated": 0, "Semi-automated": 0, "Manual": 0 }, ct = 0;
+    D.kris.forEach(function (k) { c[k.data.flow]++; if (k.data.contract) ct++; });
+    $("flow-sum").innerHTML = '<span><strong>' + D.kris.length + "</strong> Board metrics, as at Q4 2026</span>" +
+      '<span><span class="flow-pill auto">Automated</span> ' + c["Automated"] + "</span>" +
+      '<span><span class="flow-pill semi">Semi-automated</span> ' + c["Semi-automated"] + "</span>" +
+      '<span><span class="flow-pill manual">Manual</span> ' + c["Manual"] + "</span>" +
+      "<span><strong>" + ct + " of " + D.kris.length + "</strong> with a data contract</span>";
+    var W = 940, rowH = 40, top = 34, n = Math.max(F.systems.length, D.kris.length), H = top + n * rowH + 8;
+    var LX = 0, LW = 250, RX = 500, RW = 440;
+    var host = $("flow-chart"); host.innerHTML = "";
+    var s = svg("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": "Source systems on the left feed the ten Board metrics on the right. Solid lines are automated, dashed semi-automated, dotted manual." }, host);
+    text(s, LX, 18, "Source system", { class: "label-strong" });
+    text(s, RX, 18, "Board metric (select to see its trend)", { class: "label-strong" });
+    var sy = {}, my = {};
+    F.systems.forEach(function (sys, i) { sy[sys[0]] = top + i * rowH + rowH / 2; });
+    D.kris.forEach(function (k, i) { my[k.id] = top + i * rowH + rowH / 2; });
+    var lines = svg("g", {}, s);
+    F.systems.forEach(function (sys) {
+      sys[2].forEach(function (id) {
+        var k = D.kris.filter(function (x) { return x.id === id; })[0]; if (!k) return;
+        var y1 = sy[sys[0]], y2 = my[id], x1 = LX + LW, x2 = RX;
+        svg("path", { d: "M" + x1 + " " + y1 + " C" + (x1 + 110) + " " + y1 + " " + (x2 - 110) + " " + y2 + " " + x2 + " " + y2,
+          class: "flow-line " + FLOWCLS[k.data.flow] + (id === state.kri ? " on" : ""), "data-id": id }, lines);
+      });
+    });
+    F.systems.forEach(function (sys) {
+      var y = sy[sys[0]];
+      svg("rect", { x: LX, y: y - 15, width: LW, height: 30, rx: 6, class: "flow-node" }, s);
+      text(s, LX + 10, y - 1, sys[0], { class: "flow-node-t" });
+      text(s, LX + 10, y + 11, sys[1], { class: "flow-node-s" });
+    });
+    D.kris.forEach(function (k) {
+      var y = my[k.id];
+      var g = svg("g", { class: "flow-metric" + (k.id === state.kri ? " on" : ""), tabindex: 0, role: "button", "data-id": k.id, "aria-label": k.id + " " + k.name + ": " + k.data.flow }, s);
+      svg("rect", { x: RX, y: y - 15, width: RW, height: 30, rx: 6, class: "flow-node m " + FLOWCLS[k.data.flow] }, g);
+      text(g, RX + 10, y + 4, k.id, { class: "flow-node-id" });
+      var nm = k.name.length > 48 ? k.name.slice(0, 47) + "…" : k.name;
+      text(g, RX + 92, y + 4, nm, { class: "flow-node-t" });
+      function pick() { state.kri = k.id; renderKriTable(); renderTrend(); renderFlow(); }
+      g.addEventListener("click", pick);
+      g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+      g.addEventListener("mousemove", function (e) { showTip(e, "<strong>" + esc(k.id) + "</strong> " + esc(k.name) + "<br>Source: " + esc(k.data.source) + "<br>Today: " + esc(k.data.today) + "<br>Next: " + esc(k.data.target)); });
+      g.addEventListener("mouseleave", hideTip);
+    });
+    var t = "<table class='data'><tr><th>Board metric</th><th>Source system</th><th>Data flow</th><th>How it works today</th><th>Next step</th><th>Data contract</th></tr>";
+    D.kris.forEach(function (k) { t += "<tr><td><span class='kri-id'>" + esc(k.id) + "</span> " + esc(k.name) + "</td><td>" + esc(k.data.source) + "</td><td>" + flowPill(k) + "</td><td>" + esc(k.data.today) + "</td><td>" + esc(k.data.target) + "</td><td>" + (k.data.contract ? "Yes" : "Not yet") + "</td></tr>"; });
+    $("flow-table").innerHTML = t + "</table>";
+  }
+
   function renderAll() {
     renderHeader(); renderHeadline(); renderOutcomes(); renderBehind(); renderExternal(); renderKriTable(); renderTrend();
-    renderOps(); renderIncidents(); renderThirdParties(); renderTesting();
+    renderOps(); renderIncidents(); renderThirdParties(); renderTesting(); renderFlow();
   }
   window.addEventListener("scroll", hideTip, { passive: true });
   renderAll();
