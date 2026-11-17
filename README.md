@@ -28,6 +28,7 @@ A sample Board-level dashboard for **operational resilience and ICT risk** at a 
 | Third parties and concentration | Who do we depend on, and could we replace them? | Third-party strategy, non-objection, exit plans |
 | Testing programme | Have we tested what matters this year? | BCP and DR testing, stress tests |
 | Remediation | Are we fixing what we found, on time? | Annual report on internal control |
+| **Where the numbers come from** (new) | Which system feeds each Board number, and can we trust the flow? | Risk data aggregation and reporting (art. 10); data quality |
 
 **Interactivity:** a quarter filter (Q1 to Q4), selectable indicators with a trend chart, hover tooltips on every chart, a "View as table" option for each chart, and automatic light and dark mode.
 
@@ -53,6 +54,7 @@ Fictional quarterly data for 2026, provided in two formats:
 | `third_parties.csv` | Critical providers at Q4 2026: Critical Operations supported, SLA breaches and exit plans |
 | `testing.csv` | Testing programme progress by quarter |
 | `remediation.csv` | Key remediation actions shown each quarter |
+| `data_sources.csv` | For each Board metric: source system, data flow at Q4 2026 (automated, semi-automated or manual), how it works today, the next step and whether a data contract exists |
 
 ## What is behind each outcome
 
@@ -66,6 +68,7 @@ Select any of the six outcome cards to open what is behind it: the question it a
 - **Concentration:** one provider supports 7 of 12 Critical Operations, and 4 of 9 critical providers lack a tested exit plan.
 - **Controls behind every outcome:** the 30 key controls come from a library of 81 controls with an RCSA and a second-line testing method (module RB-B5 of the implementation pack); the workbook's check sheet reproduces the dashboard tally.
 - **AI is now on the page:** three Level 2 indicators track AI uses without an owner (KRI-AI-01), AI agents with standing privileged access (KRI-AI-02, 2 against an appetite of 0) and Critical Operations that depend on a single AI provider (KRI-AI-03). Each outcome also shows its main challenge and the action under way. The three AI indicators come with the controls in RB-B5-TPL-06; they will join the risk appetite metrics workbook (RB-B2-TPL-03) with the planned AI module.
+- **Define first, then automate:** of the ten Board metrics, one is fed automatically, five are semi-automated and four are still compiled by hand; seven have a data contract. The two whose definitions are still moving (tolerances and single-person dependencies) stay manual on purpose, and one (customer data breaches) stays manual by design. The source system of each metric is the one named in the risk appetite metrics workbook (RB-B2-TPL-03).
 - **Notifications:** 100% of regulatory notifications were made on time throughout the year.
 - **The wallet went live in December** without an approved tolerance for disruption or a recovery test, so it counts as outside tolerance.
 - **Every panel follows the selected quarter, and the numbers agree:** the Critical Operations chart, the testing programme, the third-party table, the six outcomes and the Board metrics all come from the same data.
